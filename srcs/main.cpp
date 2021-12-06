@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/06 16:49:19 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/06 17:02:13 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void test_iterator()
 		assert(it <= itGreater);
 	}
 }
+
+#include <vector.hpp>
 
 int main()
 {
