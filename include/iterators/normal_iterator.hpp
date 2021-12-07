@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 13:04:56 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/07 15:13:53 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:09:37 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,25 @@ namespace ft
     */
 
     template <class Iterator, class Container>
-    class normal_iterator
+    class normal_iterator : public iterator<
+        typename iterator_traits<Iterator>::iterator_category,
+        typename iterator_traits<Iterator>::value_type,
+        typename iterator_traits<Iterator>::difference_type,
+        typename iterator_traits<Iterator>::pointer,
+        typename iterator_traits<Iterator>::reference
+    >
     {
     public:
-
-        /*
-        * We guess the differents iterator traits of our pointer or iterator
-        * with the iterator_traits template function
-        */
-
         typedef typename iterator_traits<Iterator>::iterator_category
-                                                                iterator_category;
+                                                    iterator_category;
         typedef typename iterator_traits<Iterator>::value_type
-                                                                value_type;
+                                                    value_type;
         typedef typename iterator_traits<Iterator>::difference_type
-                                                                difference_type;
+                                                    difference_type;
         typedef typename iterator_traits<Iterator>::pointer
-                                                                pointer;
+                                                    pointer;
         typedef typename iterator_traits<Iterator>::reference
-                                                                reference;
+                                                    reference;
 
         normal_iterator(): _it() {}
         normal_iterator(Iterator const &it): _it(it) {}
