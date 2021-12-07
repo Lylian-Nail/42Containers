@@ -6,22 +6,65 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/06 16:49:19 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/07 12:41:48 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <cassert>
+#include <iterator>
+#include <typeinfo>
 #include <iterators/normal_iterator.hpp>
+
+void test_iterator_traits()
+{
+	{
+		typedef ft::iterator_traits<int *>	traits;
+
+		assert(
+			typeid(traits::iterator_category) ==
+			typeid(ft::random_access_iterator_tag)
+		);
+
+		assert(
+			typeid(traits::value_type) ==
+			typeid(int)
+		);
+
+		assert(
+			typeid(traits::reference) ==
+			typeid(int &)
+		);
+	}
+
+	{
+		typedef ft::iterator_traits<int const *>	traits;
+
+		assert(
+			typeid(traits::iterator_category) ==
+			typeid(ft::random_access_iterator_tag)
+		);
+
+		assert(
+			typeid(traits::value_type) ==
+			typeid(int)
+		);
+
+		assert(
+			typeid(traits::reference) ==
+			typeid(int &)
+		);
+	}
+}
 
 void test_iterator()
 {
 	int	value[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 	{
-		NormalIterator<int *, int[]> it(value);
+		normal_iterator<int *, int[]> it(value);
 
-		NormalIterator<int *, int[]> itCopy(value);
+		normal_iterator<int *, int[]> itCopy(value);
 		itCopy = value;
 
 		assert(it == itCopy);
@@ -38,9 +81,9 @@ void test_iterator()
 	}
 
 	{
-		NormalIterator<int *, int[]> it(value);
-		NormalIterator<int *, int[]> itGreater(value + 5);
-		NormalIterator<int *, int[]> itCopy(it);
+		normal_iterator<int *, int[]> it(value);
+		normal_iterator<int *, int[]> itGreater(value + 5);
+		normal_iterator<int *, int[]> itCopy(it);
 
 		assert(*it == 0);
 		assert(it[0] == 0);
@@ -57,5 +100,6 @@ void test_iterator()
 
 int main()
 {
+	test_iterator_traits();
 	test_iterator();
 }

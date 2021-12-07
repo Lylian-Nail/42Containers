@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 13:04:56 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/06 16:52:05 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/07 12:33:16 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 # define NORMAL_ITERATOR_HPP
 
-# include <iterator>
+# include "iterator.hpp"
 
 /*
  * This class is used to wrap a pointer as a simple random-access iterator
@@ -24,7 +24,7 @@
 */
 
 template <class Iterator, class Container>
-class NormalIterator
+class normal_iterator
 {
 public:
 
@@ -33,22 +33,22 @@ public:
      * with the iterator_traits template function
     */
 
-    typedef typename std::iterator_traits<Iterator>::iterator_category
+    typedef typename ft::iterator_traits<Iterator>::iterator_category
                                                             iterator_category;
-    typedef typename std::iterator_traits<Iterator>::value_type
+    typedef typename ft::iterator_traits<Iterator>::value_type
                                                             value_type;
-    typedef typename std::iterator_traits<Iterator>::difference_type
+    typedef typename ft::iterator_traits<Iterator>::difference_type
                                                             difference_type;
-    typedef typename std::iterator_traits<Iterator>::pointer
+    typedef typename ft::iterator_traits<Iterator>::pointer
                                                             pointer;
-    typedef typename std::iterator_traits<Iterator>::reference
+    typedef typename ft::iterator_traits<Iterator>::reference
                                                             reference;
 
-    NormalIterator(): _it() {}
-    NormalIterator(Iterator const &it): _it(it) {}
-    NormalIterator(NormalIterator const &copy): _it(copy.getBase()) {}
+    normal_iterator(): _it() {}
+    normal_iterator(Iterator const &it): _it(it) {}
+    normal_iterator(normal_iterator const &copy): _it(copy.getBase()) {}
 
-    NormalIterator &operator=(NormalIterator const &rhs)
+    normal_iterator &operator=(normal_iterator const &rhs)
     {
         if (this != &rhs)
         {
@@ -64,15 +64,15 @@ public:
     reference operator*() const { return *_it; }
     pointer operator->() const { return _it; }
 
-    NormalIterator &operator++()
+    normal_iterator &operator++()
     {
         ++_it;
         return *this;
     }
 
-    NormalIterator operator++(int)
+    normal_iterator operator++(int)
     {
-        NormalIterator copy(*this);
+        normal_iterator copy(*this);
         _it++;
         return copy;
     }
@@ -81,15 +81,15 @@ public:
      * Bidirectionnal iterator spec
     */
 
-    NormalIterator &operator--()
+    normal_iterator &operator--()
     {
         --_it;
         return *this;
     }
 
-    NormalIterator operator--(int)
+    normal_iterator operator--(int)
     {
-        NormalIterator copy(*this);
+        normal_iterator copy(*this);
         _it--;
         return copy;
     }
@@ -98,26 +98,26 @@ public:
      * Random Access iterator spec
     */
 
-    NormalIterator &operator+=(difference_type const &rhs)
+    normal_iterator &operator+=(difference_type const &rhs)
     {
         _it += rhs;
         return *this;
     }
 
-    NormalIterator operator+(difference_type const &rhs) const
+    normal_iterator operator+(difference_type const &rhs) const
     {
-        return NormalIterator(_it + rhs);
+        return normal_iterator(_it + rhs);
     }
 
-    NormalIterator &operator-=(difference_type const &rhs)
+    normal_iterator &operator-=(difference_type const &rhs)
     {
         _it -= rhs;
         return *this;
     }
 
-    NormalIterator operator-(difference_type const &rhs) const
+    normal_iterator operator-(difference_type const &rhs) const
     {
-        return NormalIterator(_it - rhs);
+        return normal_iterator(_it - rhs);
     }
 
     reference operator[](difference_type const &rhs) const
@@ -130,7 +130,7 @@ public:
         return _it;
     }
 
-    ~NormalIterator() {}
+    ~normal_iterator() {}
 
 private:
     Iterator    _it;
@@ -150,8 +150,8 @@ private:
 
 template<typename IteratorL, typename IteratorR, typename Container>
 inline bool operator==(
-    NormalIterator<IteratorL, Container> const &lhs,
-    NormalIterator<IteratorR, Container> const &rhs
+    normal_iterator<IteratorL, Container> const &lhs,
+    normal_iterator<IteratorR, Container> const &rhs
 )
 {
     return lhs.getBase() == rhs.getBase();
@@ -159,8 +159,8 @@ inline bool operator==(
 
 template<class Iterator, typename Container>
 inline bool operator==(
-    NormalIterator<Iterator, Container> const &lhs,
-    NormalIterator<Iterator, Container> const &rhs
+    normal_iterator<Iterator, Container> const &lhs,
+    normal_iterator<Iterator, Container> const &rhs
 )
 {
     return lhs.getBase() == rhs.getBase();
@@ -168,8 +168,8 @@ inline bool operator==(
 
 template<typename IteratorL, class IteratorR, typename Container>
 inline bool operator!=(
-    NormalIterator<IteratorL, Container> const &lhs,
-    NormalIterator<IteratorR, Container> const &rhs
+    normal_iterator<IteratorL, Container> const &lhs,
+    normal_iterator<IteratorR, Container> const &rhs
 )
 {
     return lhs.getBase() != rhs.getBase();
@@ -177,8 +177,8 @@ inline bool operator!=(
 
 template<typename Iterator, typename Container>
 inline bool operator!=(
-    NormalIterator<Iterator, Container> const &lhs,
-    NormalIterator<Iterator, Container> const &rhs
+    normal_iterator<Iterator, Container> const &lhs,
+    normal_iterator<Iterator, Container> const &rhs
 )
 {
     return lhs.getBase() != rhs.getBase();
@@ -188,8 +188,8 @@ inline bool operator!=(
 
 template<class IteratorL, typename IteratorR, typename Container>
 inline bool operator<(
-    NormalIterator<IteratorL, Container> const &lhs,
-    NormalIterator<IteratorR, Container> const &rhs
+    normal_iterator<IteratorL, Container> const &lhs,
+    normal_iterator<IteratorR, Container> const &rhs
 )
 {
     return lhs.getBase() < rhs.getBase();
@@ -197,8 +197,8 @@ inline bool operator<(
 
 template<typename Iterator, typename Container>
 inline bool operator<(
-    NormalIterator<Iterator, Container> const &lhs,
-    NormalIterator<Iterator, Container> const &rhs
+    normal_iterator<Iterator, Container> const &lhs,
+    normal_iterator<Iterator, Container> const &rhs
 )
 {
     return lhs.getBase() < rhs.getBase();
@@ -206,8 +206,8 @@ inline bool operator<(
 
 template<typename IteratorL, typename IteratorR, typename Container>
 inline bool operator>(
-    NormalIterator<IteratorL, Container> const &lhs,
-    NormalIterator<IteratorR, Container> const &rhs
+    normal_iterator<IteratorL, Container> const &lhs,
+    normal_iterator<IteratorR, Container> const &rhs
 )
 {
     return lhs.getBase() > rhs.getBase();
@@ -215,8 +215,8 @@ inline bool operator>(
 
 template<typename Iterator, typename Container>
 inline bool operator>(
-    NormalIterator<Iterator, Container> const &lhs,
-    NormalIterator<Iterator, Container> const &rhs
+    normal_iterator<Iterator, Container> const &lhs,
+    normal_iterator<Iterator, Container> const &rhs
 )
 {
     return lhs.getBase() > rhs.getBase();
@@ -224,8 +224,8 @@ inline bool operator>(
 
 template<typename IteratorL, typename IteratorR, typename Container>
 inline bool operator<=(
-    NormalIterator<IteratorL, Container> const &lhs,
-    NormalIterator<IteratorL, Container> const &rhs
+    normal_iterator<IteratorL, Container> const &lhs,
+    normal_iterator<IteratorL, Container> const &rhs
 )
 {
     return lhs.getBase() <= rhs.getBase();
@@ -233,8 +233,8 @@ inline bool operator<=(
 
 template<typename Iterator, typename Container>
 inline bool operator<=(
-    NormalIterator<Iterator, Container> const &lhs,
-    NormalIterator<Iterator, Container> const &rhs
+    normal_iterator<Iterator, Container> const &lhs,
+    normal_iterator<Iterator, Container> const &rhs
 )
 {
     return lhs.getBase() <= rhs.getBase();
@@ -242,8 +242,8 @@ inline bool operator<=(
 
 template<typename IteratorL, typename IteratorR, typename Container>
 inline bool operator>=(
-    NormalIterator<IteratorL, Container> const &lhs,
-    NormalIterator<IteratorR, Container> const &rhs
+    normal_iterator<IteratorL, Container> const &lhs,
+    normal_iterator<IteratorR, Container> const &rhs
 )
 {
     return lhs.getBase() >= rhs.getBase();
@@ -251,8 +251,8 @@ inline bool operator>=(
 
 template<typename Iterator, typename Container>
 inline bool operator>=(
-    NormalIterator<Iterator, Container> const &lhs,
-    NormalIterator<Iterator, Container> const &rhs
+    normal_iterator<Iterator, Container> const &lhs,
+    normal_iterator<Iterator, Container> const &rhs
 )
 {
     return lhs.getBase() >= rhs.getBase();
@@ -260,29 +260,29 @@ inline bool operator>=(
 
 // n + a
 template<typename Iterator, typename Container>
-inline NormalIterator<Iterator, Container> operator+(
-    typename NormalIterator<Iterator, Container>::difference_type const &lhs,
-    NormalIterator<Iterator, Container> const &rhs
+inline normal_iterator<Iterator, Container> operator+(
+    typename normal_iterator<Iterator, Container>::difference_type const &lhs,
+    normal_iterator<Iterator, Container> const &rhs
 )
 {
-    return NormalIterator<Iterator, Container>(rhs.getBase() + lhs);
+    return normal_iterator<Iterator, Container>(rhs.getBase() + lhs);
 }
 
 template<typename IteratorL, typename IteratorR, typename Container>
-inline typename NormalIterator<IteratorL, Container>::difference_type
+inline typename normal_iterator<IteratorL, Container>::difference_type
     operator-(
-        NormalIterator<IteratorL, Container> const &lhs,
-        NormalIterator<IteratorR, Container> const &rhs
+        normal_iterator<IteratorL, Container> const &lhs,
+        normal_iterator<IteratorR, Container> const &rhs
     )
 {
     return lhs.getBase() - rhs.getBase();
 }
 
 template<typename Iterator, typename Container>
-inline typename NormalIterator<Iterator, Container>::difference_type
+inline typename normal_iterator<Iterator, Container>::difference_type
     operator-(
-        NormalIterator<Iterator, Container> const &lhs,
-        NormalIterator<Iterator, Container> const &rhs
+        normal_iterator<Iterator, Container> const &lhs,
+        normal_iterator<Iterator, Container> const &rhs
     )
 {
     return lhs.getBase() - rhs.getBase();
