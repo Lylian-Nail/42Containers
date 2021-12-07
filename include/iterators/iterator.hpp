@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 12:08:20 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/07 12:45:14 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/07 14:33:46 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,18 @@ namespace ft
 
     /*
      * Iterator tags to differentiates iterators between them
+     * We use inheritance to use polymorphism in algo
     */
 
     struct input_iterator_tag {};
     struct output_iterator_tag {};
-    struct forward_iterator_tag {};
-    struct bidirectional_iterator_tag {};
-    struct random_access_iterator_tag {};
+    struct forward_iterator_tag : public input_iterator_tag {};
+    struct bidirectional_iterator_tag : public forward_iterator_tag {};
+    struct random_access_iterator_tag : public forward_iterator_tag {};
 
     /*
      * This class defines iterator traits for any iterators
-     * This does not implement anythings
+     * This does not implement anythings but give helps for iterator_traits
     */
 
     template <
@@ -55,7 +56,7 @@ namespace ft
     template <class Iterator>
     struct iterator_traits : public iterator<
         typename Iterator::iterator_category,
-        typename Iterator::value_type,
+        typename Iterator::value_type
     >
     {};
 
@@ -81,6 +82,18 @@ namespace ft
         T const &
    >
    {};
+
+    # include "iterator_implementation.hpp"
+
+    template <class InputIterator>
+    typename iterator_traits<InputIterator>::difference_type
+        distance(InputIterator first, InputIterator last)
+    {
+        return iterator_implementation::distance(
+                first, last,
+                typename iterator_traits<InputIterator>::iterator_category()
+            );
+    }
 
 }
 
