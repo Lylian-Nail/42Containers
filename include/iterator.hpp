@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 12:08:20 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/07 15:24:13 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:24:44 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <iterators/base_iterator.hpp>
 # include <iterators/iterator_traits.hpp>
 # include <iterators/normal_iterator.hpp>
+# include <iterators/reverse_iterator.hpp>
 # include <iterators/iterator_implementation.hpp>
 
 namespace ft
