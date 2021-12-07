@@ -6,15 +6,14 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/07 14:36:33 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/07 15:15:17 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <cassert>
-#include <iterator>
+#include <iterator.hpp>
 #include <typeinfo>
-#include <iterators/normal_iterator.hpp>
 
 void test_iterator_traits()
 {
@@ -62,9 +61,9 @@ void test_iterator()
     int	value[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
     {
-        normal_iterator<int *, int[]> it(value);
+        ft::normal_iterator<int *, int[]> it(value);
 
-        normal_iterator<int *, int[]> itCopy(value);
+        ft::normal_iterator<int *, int[]> itCopy(value);
         itCopy = value;
 
         assert(it == itCopy);
@@ -81,9 +80,9 @@ void test_iterator()
     }
 
     {
-        normal_iterator<int *, int[]> it(value);
-        normal_iterator<int *, int[]> itGreater(value + 5);
-        normal_iterator<int *, int[]> itCopy(it);
+        ft::normal_iterator<int *, int[]> it(value);
+        ft::normal_iterator<int *, int[]> itGreater(value + 5);
+        ft::normal_iterator<int *, int[]> itCopy(it);
 
         assert(*it == 0);
         assert(it[0] == 0);
@@ -103,8 +102,8 @@ void test_iterator_advance()
 
     {
         int values[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-        normal_iterator<int const *, int const []>  it(values);
-        normal_iterator<int const *, int const[]> itEnd(values + 10);
+        ft::normal_iterator<int const *, int const []>  it(values);
+        ft::normal_iterator<int const *, int const[]> itEnd(values + 10);
 
         assert(10 == ft::distance(it, itEnd));
     }

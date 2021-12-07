@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:00:58 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/07 14:35:25 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/07 15:40:59 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,27 @@ namespace iterator_implementation
     */
 
     template <class InputIterator>
-    typename iterator_traits<InputIterator>::difference_type
+    typename ft::iterator_traits<InputIterator>::difference_type
         distance(
                 InputIterator first, InputIterator last,
-                random_access_iterator_tag const &
+                ft::random_access_iterator_tag const &
             )
     {
         return last - first;
     }
 
     template <class InputIterator>
-    typename iterator_traits<InputIterator>::difference_type
+    typename ft::iterator_traits<InputIterator>::difference_type
         distance(
                 InputIterator first, InputIterator last,
-                input_iterator_tag const &
+                ft::input_iterator_tag const &
             )
     {
-        typename iterator_traits<InputIterator>::difference_type    i;
+        typename ft::iterator_traits<InputIterator>::difference_type    i;
         for (i = 0; first < last; first++, ++i)
             ;
         return i;
     }
-};
+}
 
 #endif
