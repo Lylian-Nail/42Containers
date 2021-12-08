@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:10:10 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/08 12:46:48 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/08 13:55:48 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ namespace ft
      * usefull for future type traits meta functions
      */
     template <class T>
-    struct TypeIdentity
+    struct type_identity
     {
         typedef T type;
     };

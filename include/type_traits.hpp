@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:09:02 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/08 12:57:11 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/08 13:56:02 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ namespace ft
     */
 
     template <class T>
-    struct remove_const : public TypeIdentity<T> {};
+    struct remove_const : public type_identity<T> {};
 
     template <class T>
-    struct remove_const<T const> : public TypeIdentity<T> {};
+    struct remove_const<T const> : public type_identity<T> {};
+
+    
 }
 
 #endif
