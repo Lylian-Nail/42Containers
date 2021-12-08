@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/08 12:37:42 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/08 15:31:14 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void test_iterator()
 
 void test_iterator_advance()
 {
-
     {
         int values[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         ft::normal_iterator<int const *, int const []>  it(values);
@@ -108,7 +107,6 @@ void test_iterator_advance()
 
         assert(10 == ft::distance(it, itEnd));
     }
-
 }
 
 int main()

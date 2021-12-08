@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:09:02 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/08 13:56:02 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/08 15:27:03 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 # define TYPE_TRAITS_HPP
 
+# include <iterator.hpp>
 # include "type_traits/base_type_traits.hpp"
 
 namespace ft
@@ -39,7 +40,16 @@ namespace ft
     template <class T>
     struct remove_const<T const> : public type_identity<T> {};
 
-    
+    /*
+     * Check compile time enable_if
+    */
+
+    template <bool B, class T = void>
+    struct enable_if {};
+
+    template <class T>
+    struct enable_if<true, T> : public type_identity<T> {};
+
 }
 
 #endif

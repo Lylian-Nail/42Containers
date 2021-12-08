@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:23:22 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/08 13:06:41 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/08 14:01:33 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ void test_type_traits()
     test_base_type_traits();
     test_is_same();
     test_remove_const();
-
 
 
 }
