@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:21:37 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/07 17:09:29 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/08 11:09:41 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,14 @@ namespace ft
                 _base(copy.base()) {}
 
         iterator_type   base() const { return _base; }
+
+        reverse_iterator &operator=(reverse_iterator const &rhs)
+        {
+            if (this != &rhs)
+            {
+                _base = rhs.base();
+            }
+        }
 
         reference operator*() const
         {
@@ -110,6 +118,8 @@ namespace ft
             _base += n;
             return *this;
         }
+
+        ~reverse_iterator() {}
 
     private:
         iterator_type    _base;
