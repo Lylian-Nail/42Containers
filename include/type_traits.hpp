@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:09:02 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/08 12:18:25 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/08 12:51:53 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,16 @@
 
 namespace ft
 {
-    
+
+    /*
+     * Check if same types
+    */
+
+    template <class T, class U>
+    struct is_same : public false_type {};
+
+    template <class T>
+    struct is_same<T, T> : public true_type {};
 }
 
 #endif
