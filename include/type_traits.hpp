@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:09:02 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/08 12:51:53 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/08 12:57:11 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@ namespace ft
 
     template <class T>
     struct is_same<T, T> : public true_type {};
+
+    /*
+     * Delete const qualifier
+    */
+
+    template <class T>
+    struct remove_const : public TypeIdentity<T> {};
+
+    template <class T>
+    struct remove_const<T const> : public TypeIdentity<T> {};
 }
 
 #endif

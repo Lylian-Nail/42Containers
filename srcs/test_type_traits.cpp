@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:23:22 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/08 12:52:55 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/08 13:06:41 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void test_base_type_traits()
 
 static void test_is_same()
 {
-    std::cout << "Test is same type" << std::endl;
+    std::cout << "Test is_same" << std::endl;
 
     std::cout << ft::is_same<bool, bool>() << std::endl;
     std::cout << ft::is_same<bool, bool const>() << std::endl;
@@ -70,8 +70,30 @@ static void test_is_same()
     std::cout << std::endl;
 }
 
+static void test_remove_const()
+{
+    std::cout << "Test remove_const" << std::endl;
+
+    std::cout << ft::is_same<
+        bool, ft::remove_const<bool>::type
+    >() << std::endl;
+    std::cout << ft::is_same<
+        bool, ft::remove_const<bool const>::type 
+    >() << std::endl;
+    std::cout << ft::is_same<
+        bool const *,
+        ft::remove_const<bool const* const> 
+    >() << std::endl;
+
+    std::cout << std::endl;
+}
+
 void test_type_traits()
 {
     test_base_type_traits();
     test_is_same();
+    test_remove_const();
+
+
+
 }
