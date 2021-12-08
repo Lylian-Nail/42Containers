@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/07 16:20:30 by lperson-         ###   ########.fr       */
+/*   Updated: 2021/12/08 12:37:42 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <cassert>
 #include <iterator.hpp>
 #include <typeinfo>
+#include "tests.hpp"
 
 void test_iterator_traits()
 {
@@ -112,7 +113,9 @@ void test_iterator_advance()
 
 int main()
 {
-    test_iterator_traits();
-    test_iterator_advance();
-    test_iterator();
+    // test_iterator_traits();
+    // test_iterator_advance();
+    // test_iterator();
+
+    test_type_traits();
 }

@@ -6,7 +6,7 @@
 #    By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/09 19:59:42 by lperson-          #+#    #+#              #
-#    Updated: 2021/12/06 10:43:20 by lperson-         ###   ########.fr        #
+#    Updated: 2021/12/08 12:37:52 by lperson-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRCS_DIR = ${shell find ${PATHS} -type d}
 vpath %.cpp ${foreach dir, ${SRCS_DIR}, ${dir}:}
 
 SRCS := \
-main.cpp
+main.cpp \
+test_type_traits.cpp
 OBJS = ${addprefix ${PATHB}/, ${SRCS:.cpp=.o}}
 DFILES = ${addprefix ${PATHD}/, ${SRCS:.cpp=.d}}
 
