@@ -19,7 +19,7 @@ namespace ft
     /*
     * This class is used to wrap a pointer as a simple random-access iterator
     * The iterator class name is the pointer
-    * The Container is just used to differentiates the differents container
+    * The Container is just used to differentiate the different containers
     * that used this class
     */
 
@@ -78,7 +78,7 @@ namespace ft
         }
 
         /*
-        * Bidirectionnal iterator spec
+        * Bidirectional iterator spec
         */
 
         normal_iterator &operator--()
@@ -137,12 +137,12 @@ namespace ft
     };
 
     /*
-    * This functions are for handling differents cv-qualifiers for Iterators
-    * We uses 2 things for that:
-    *  -templating
+    * These functions are for handling different cv-qualifiers for Iterators
+    * We use 2 things for that:
+    *  - templating
     *  - and implicit conversion !
     *
-    * Overloading operators outside its class permits to make:
+    * Overloading operators outside its class permits making:
     *  n + a and a + n !
     */
 

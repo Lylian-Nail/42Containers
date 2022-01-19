@@ -17,7 +17,7 @@
 namespace ft
 {
     /*
-     * Iterator tags to differentiates iterators between them
+     * Iterator tags to differentiate iterators between them.
      * We use inheritance to use polymorphism in algo
     */
 
@@ -29,7 +29,7 @@ namespace ft
 
     /*
      * This class defines iterator traits for any iterators
-     * This does not implement anythings but give helps for generates iterators
+     * This does not implement anything but give helps for generates iterators
     */
 
     template <

@@ -14,6 +14,11 @@
 
 # define ITERATOR_TRAITS_HPP
 
+/*
+ * The purpose of iterator_trait is to extract the traits of an iterator
+ * or a pointer. (As a pointer behavior the same way as an iterator).
+ */
+
 namespace ft
 {
 

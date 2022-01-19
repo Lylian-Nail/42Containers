@@ -13,10 +13,15 @@
 #ifndef REVERSE_ITERATOR_HPP
 
 # define REVERSE_ITERATOR_HPP
-
 namespace ft
 {
-    template <class Iterator>
+  /*
+   * The goal of this class is to build a reverse iterator from another
+   * iterator.
+   * It just inverse some operation of the iterator.
+   */
+
+	template <class Iterator>
     class reverse_iterator : public iterator<
         typename iterator_traits<Iterator>::iterator_category,
         typename iterator_traits<Iterator>::value_type,

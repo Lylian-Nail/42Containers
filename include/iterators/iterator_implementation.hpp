@@ -19,7 +19,7 @@ namespace iterator_implementation
 {
 
     /*
-     * We use iterator tags to differentiates differents implementations
+     * We use iterator tags to differentiate different implementations
      * of same functions and choose correct algorithm for the iterator
      * 
      * Thanks to polymorphism and function overload :-D
