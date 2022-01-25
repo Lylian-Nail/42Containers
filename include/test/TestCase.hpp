@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests.hpp                                          :+:      :+:    :+:   */
+/*   TestCase.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 12:33:35 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/08 12:34:03 by lperson-         ###   ########.fr       */
+/*   Created: 2022/01/19 13:53:35 by lperson-          #+#    #+#             */
+/*   Updated: 2022/01/19 13:53:35 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TESTS_HPP
+#ifndef TESTCASE_HPP_
+# define TESTCASE_HPP_
 
-# define TESTS_HPP
+# include <string>
 
-# ifdef TEST_STD
+class TestCase
+{
+ public:
+  TestCase();
+  TestCase(std::string const &name, int (*testF)());
+  TestCase(TestCase const &copy);
+  virtual ~TestCase();
 
-# include <iterator>
-# include <type_traits>
-# include <container>
-# include <map>
-namespace ft = std;
-
-# else
-
-# include <iterator.hpp>
-# include <type_traits.hpp>
-
-# endif
-
-void test_type_traits();
+  void getTest
+};
 
 #endif
