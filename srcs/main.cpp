@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/26 12:03:08 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/26 12:43:33 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,18 +111,20 @@ void test_iterator_advance()
 
 int one_equal_one()
 {
-    int errcode;
+    return ASSERT(1 == 1);
+}
 
-    errcode = ASSERT(1 == 1);
-    errcode = ASSERT(1 != 1);
-    return errcode;
+int failed_test()
+{
+    return ASSERT(0 != 0);
 }
 
 int main()
 {
     TestCase test0 = CREATE_TEST(one_equal_one);
-    test0.run();
 
     TestSuite simple_tests("simple_tests");
     simple_tests.addTest(test0);
+    simple_tests.addTest(CREATE_TEST(failed_test));
+    simple_tests.run();
 }

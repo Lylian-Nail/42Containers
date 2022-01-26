@@ -6,7 +6,7 @@
 #    By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/09 19:59:42 by lperson-          #+#    #+#              #
-#    Updated: 2022/01/26 12:05:43 by lperson-         ###   ########.fr        #
+#    Updated: 2022/01/26 12:47:24 by lperson-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ PATHD = ${PATHB}/depends
 PATHI := include
 
 CXX := c++
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -g
+CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 CXXFLAGS += ${addprefix -I , ${PATHI}}
 DFLAGS = -MMD -MT $@ -MF ${PATHD}/$*.d
 LD := c++

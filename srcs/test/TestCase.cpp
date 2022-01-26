@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:54:29 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/26 11:49:16 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/26 12:43:07 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ int TestCase::getResult() const
 
 int TestCase::run()
 {
-    std::cout << "Testing: " BBLU << m_name << RST << std::endl;
+    std::cout << "Testing: " BWHT << m_name << RST << std::endl;
     m_result = m_test();
-    if (!m_result)
-        std::cout << BBLU << m_name << ": " BRED << "failed!" RST << std::endl;
+    if (m_result)
+        std::cout << BWHT << m_name << ": " BRED << "failed!" RST << std::endl;
     else
-        std::cout << BBLU << m_name << ": " BGRN << "success!" RST << std::endl;
+        std::cout << BWHT << m_name << ": " BGRN << "success!" RST << std::endl;
     return m_result;
 }
 
