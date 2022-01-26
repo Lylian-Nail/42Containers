@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:51:14 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/26 11:25:44 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/26 11:29:09 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@ public:
     ~TestCase();
 
     std::string const &getName() const;
+    int getResult() const;
+    int run();
 
 private:
     std::string m_name;
     testF const m_test;
+    int         m_result;
 
     TestCase();
     TestCase(TestCase const &copy);
