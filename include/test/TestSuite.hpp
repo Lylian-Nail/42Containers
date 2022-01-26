@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:52:40 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/26 12:16:50 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/26 13:32:04 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ public:
     std::string const &getName() const;
     int getFails() const;
     int getTotalTests() const;
+    long getMSTime() const;
 
     void addTest(TestCase const &test);
 
@@ -40,6 +41,7 @@ private:
     std::string m_name;
     std::vector<TestCase> m_tests;
     int m_fails;
+    long m_mstime;
 
 };
 

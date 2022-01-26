@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:51:14 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/26 13:11:16 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/26 13:27:59 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ public:
 
     std::string const &getName() const;
     int getResult() const;
+    long getMSTime() const;
 
     int run();
 
@@ -37,6 +38,7 @@ private:
     std::string m_name;
     testF       m_test;
     int         m_result;
+    long        m_mstime;
 
 };
 
