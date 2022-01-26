@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/26 12:43:33 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/26 13:16:14 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,10 @@ int failed_test()
 
 int main()
 {
-    TestCase test0 = CREATE_TEST(one_equal_one);
+    TestCase test0 = TestCase("one_equal_one", one_equal_one);
 
     TestSuite simple_tests("simple_tests");
     simple_tests.addTest(test0);
-    simple_tests.addTest(CREATE_TEST(failed_test));
+    simple_tests.addTest(TestCase("failed_test", failed_test));
     simple_tests.run();
 }

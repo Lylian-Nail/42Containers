@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:51:14 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/26 11:54:30 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/26 13:11:16 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,5 @@ private:
     int         m_result;
 
 };
-
-#define CREATE_TEST(function) \
-    TestCase(#function, function)
 
 #endif
