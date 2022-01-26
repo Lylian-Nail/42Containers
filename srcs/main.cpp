@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/26 13:16:14 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/26 13:49:21 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,12 +111,17 @@ void test_iterator_advance()
 
 int one_equal_one()
 {
-    return ASSERT(1 == 1);
+    ASSERT(1 == 1);
+    return 0;
 }
 
 int failed_test()
 {
-    return ASSERT(0 != 0);
+    ASSERT(0 == 0);
+    ASSERT(0 != 0);
+    ASSERT(0 == 0);
+    ASSERT(1 != 1);
+    return 0;
 }
 
 int main()
