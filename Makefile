@@ -6,7 +6,7 @@
 #    By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/09 19:59:42 by lperson-          #+#    #+#              #
-#    Updated: 2021/12/08 12:37:52 by lperson-         ###   ########.fr        #
+#    Updated: 2022/01/26 11:05:19 by lperson-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ vpath %.cpp ${foreach dir, ${SRCS_DIR}, ${dir}:}
 
 SRCS := \
 main.cpp \
+basic_test.cpp \
 test_type_traits.cpp
 OBJS = ${addprefix ${PATHB}/, ${SRCS:.cpp=.o}}
 DFILES = ${addprefix ${PATHD}/, ${SRCS:.cpp=.d}}

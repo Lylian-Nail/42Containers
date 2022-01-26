@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/08 15:31:14 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/26 11:23:50 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,5 @@ void test_iterator_advance()
 
 int main()
 {
-    // test_iterator_traits();
-    // test_iterator_advance();
-    // test_iterator();
-
-    test_type_traits();
+    return 0;
 }
