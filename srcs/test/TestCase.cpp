@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:54:29 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/26 11:42:25 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/26 11:49:16 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ TestCase &TestCase::operator=(TestCase const &rhs)
     if (this != &rhs)
     {
         m_name = rhs.getName();
+        m_test = rhs.m_test;
         m_result = rhs.getResult();
     }
     return *this;

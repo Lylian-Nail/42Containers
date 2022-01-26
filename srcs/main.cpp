@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/26 11:44:07 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/26 11:50:52 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,6 @@ int one_equal_one()
 
 int main()
 {
-    TestCase test0("one_equal_one", one_equal_one);
+    TestCase test0 = CREATE_TEST(one_equal_one);
     test0.run();
 }
