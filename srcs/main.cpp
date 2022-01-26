@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/26 11:50:52 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/26 12:03:08 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,4 +122,7 @@ int main()
 {
     TestCase test0 = CREATE_TEST(one_equal_one);
     test0.run();
+
+    TestSuite simple_tests("simple_tests");
+    simple_tests.addTest(test0);
 }

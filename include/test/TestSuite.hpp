@@ -1,46 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   TestCase.hpp                                       :+:      :+:    :+:   */
+/*   TestSuite.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/25 14:51:14 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/26 11:54:30 by lperson-         ###   ########.fr       */
+/*   Created: 2022/01/26 11:52:40 by lperson-          #+#    #+#             */
+/*   Updated: 2022/01/26 12:05:27 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_CASE_HPP
+#ifndef TEST_SUITE_HPP
 
-# define TEST_CASE_HPP
+# define TEST_SUITE_HPP
 
 # include <string>
+# include <vector>
+# include "TestCase.hpp"
 
-class TestCase
+class TestSuite
 {
 public:
-    typedef int (*testF)();
-
-    TestCase();
-    TestCase(TestCase const &copy);
-    TestCase(std::string const &name, testF test);
-    ~TestCase();
+    TestSuite();
+    TestSuite(std::string const &name);
+    TestSuite(TestSuite const &copy);
+    ~TestSuite();
 
     std::string const &getName() const;
-    int getResult() const;
 
-    int run();
+    void addTest(TestCase const &test);
 
-    TestCase &operator=(TestCase const &rhs);
+    TestSuite &operator=(TestSuite const &rhs);
 
 private:
     std::string m_name;
-    testF       m_test;
-    int         m_result;
+    std::vector<TestCase> m_tests;
 
 };
-
-#define CREATE_TEST(function) \
-    TestCase(#function, function)
 
 #endif
