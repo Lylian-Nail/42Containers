@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:21:37 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/08 11:09:41 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/27 11:58:18 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ namespace ft
             return reverse_iterator(_base - n);
         }
 
-        reverse_iterator &operator+(difference_type n)
+        reverse_iterator &operator+=(difference_type n)
         {
             _base -= n;
             return *this;
@@ -118,7 +118,7 @@ namespace ft
             return reverse_iterator(_base + n);
         }
 
-        reverse_iterator operator-(difference_type n)
+        reverse_iterator operator-=(difference_type n)
         {
             _base += n;
             return *this;
