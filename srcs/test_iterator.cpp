@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:57:57 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/27 11:01:00 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/27 11:18:59 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,23 @@ static int test_normal_iterator()
     return 0;
 }
 
+static int test_reverse_iterator()
+{
+    int values[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+    {
+        ft::normal_iterator<int *, int[]> it(values);
+        ft::reverse_iterator<ft::normal_iterator<int *, int[]> > itRev(it);
+
+        ASSERT(*itRev == 10);
+        ASSERT(itRev[0] == 10);
+        ASSERT(*(itRev + 1) == 9);
+        it++;
+        ASSERT(*it == 9);
+    }
+    return 0;
+}
+
 static int test_iterator_advance()
 {
     {
@@ -119,6 +136,9 @@ TestSuite *testUnitIterator()
     );
     iterator->addTest(
         new TestCase("test_normal_iterator", test_normal_iterator)
+    );
+    iterator->addTest(
+        new TestCase("test_reverse_iterator", test_reverse_iterator)
     );
     iterator->addTest(
         new TestCase("test_iterator_advance", test_iterator_advance)
