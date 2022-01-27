@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:23:22 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/27 12:38:30 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:04:04 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,22 @@ static int test_remove_cv()
     return 0;
 }
 
+static int test_is_integral()
+{
+    ASSERT(ft::is_integral<bool>() == true);
+    ASSERT(ft::is_integral<bool const>() == true);
+    ASSERT(ft::is_integral<bool const volatile>() == true);
+    ASSERT(ft::is_integral<int>() == true);
+    ASSERT(ft::is_integral<long int>() == true);
+    ASSERT(ft::is_integral<unsigned int>() == true);
+    ASSERT(ft::is_integral<short int>() == true);
+    ASSERT(ft::is_integral<char>() == true);
+    ASSERT(ft::is_integral<signed int>() == true);
+    ASSERT(ft::is_integral<signed char>() == true);
+    ASSERT(ft::is_integral<char *>() == false);
+    return 0;
+}
+
 TestSuite *testUnitTypeTraits()
 {
     TestSuite *typeTraits = new TestSuite("type_traits");
@@ -122,7 +138,10 @@ TestSuite *testUnitTypeTraits()
         new TestCase("test_remove_const", test_remove_const)
     );
     typeTraits->addTest(
-        new TestCase("test_remove_vc", test_remove_cv)
+        new TestCase("test_remove_cv", test_remove_cv)
+    );
+    typeTraits->addTest(
+        new TestCase("test_is_integral", test_is_integral)
     );
 
     return typeTraits;

@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:09:02 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/27 12:27:48 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:01:39 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,61 @@ namespace ft
     >
     {
     };
+
+    /*
+     * Check if type is integral
+    */
+
+    template <class T>
+    struct is_integral : public false_type {};
+
+    template <class T>
+    struct is_integral<const T> : public is_integral<T> {};
+
+    template <class T>
+    struct is_integral<volatile T> : public is_integral<T> {};
+
+    template <class T>
+    struct is_integral<volatile const T> : public is_integral<T> {};
+
+    template <>
+    struct is_integral<bool> : public true_type {};
+
+    template <>
+    struct is_integral<char> : public true_type {};
+
+    template <>
+    struct is_integral<wchar_t> : public true_type {};
+
+    template <>
+    struct is_integral<signed char> : public true_type {};
+
+    template <>
+    struct is_integral<short int> : public true_type {};
+
+    template <>
+    struct is_integral<int> : public true_type {};
+
+    template <>
+    struct is_integral<long int> : public true_type {};
+
+    template <>
+    struct is_integral<long long int> : public true_type {};
+
+    template <>
+    struct is_integral<unsigned char> : public true_type {};
+
+    template <>
+    struct is_integral<unsigned short int> : public true_type {};
+
+    template <>
+    struct is_integral<unsigned int> : public true_type {};
+
+    template <>
+    struct is_integral<unsigned long int> : public true_type {};
+
+    template <>
+    struct is_integral<unsigned long long int> : public true_type {};
 
     /*
      * Check compile time enable_if
