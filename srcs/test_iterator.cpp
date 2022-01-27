@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:57:57 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/27 11:58:03 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/27 12:02:32 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,13 @@ static int test_reverse_iterator()
         ASSERT(*(itRev + 1) == 9);
         itRev++;
         ASSERT(*itRev == 9);
+        ASSERT(*(itRev - 1) == 10);
+        itRev--;
+        ASSERT(*itRev == 10);
+        ASSERT(*(itRev++) == 10);
+        ASSERT(*(++itRev) == 8);
+        ASSERT(*(itRev--) == 8);
+        ASSERT(*(--itRev) == 10);
     }
     return 0;
 }
