@@ -6,93 +6,92 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:23:22 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/08 14:01:33 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/27 10:28:40 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <type_traits.hpp>
+#include "test.hpp"
 
-static void test_integral_constant()
+static int test_integral_constant()
 {
     ft::integral_constant<int, 42> value;
 
-    std::cout << "Test integral constant: " << std::endl;
-    std::cout << value << std::endl;
-    std::cout << value() << std::endl;
-    std::cout << ft::integral_constant<int, 42>::value << std::endl;
-    std::cout << ft::integral_constant<int, 42>() << std::endl;
+    ASSERT(value == 42);
+    ASSERT(value() == 42);
+    ASSERT((ft::integral_constant<int, 42>::value) == 42);
+    ASSERT((ft::integral_constant<int, 42>()) == 42);
 
-    std::cout << std::endl;
+    return 0;
 }
 
-static void test_true_type()
+static int test_true_type()
 {
     ft::true_type   value;
 
-    std::cout << "Test true type" << std::endl;
+    ASSERT(ft::true_type() == true);
+    ASSERT(value == true);
+    ASSERT(value() == true);
 
-    std::cout << value << std::endl;
-    std::cout << value() << std::endl;
-    std::cout << ft::true_type() << std::endl;
-
-    std::cout << std::endl;
+    return 0;
 }
 
-static void test_false_type()
+static int test_false_type()
 {
     ft::false_type   value;
 
-    std::cout << "Test false type" << std::endl;
+    ASSERT(value == false);
+    ASSERT(value() == false);
+    ASSERT(ft::false_type() == false);
 
-    std::cout << value << std::endl;
-    std::cout << value() << std::endl;
-    std::cout << (bool)ft::false_type() << std::endl;
-
-    std::cout << std::endl;
+    return 0;
 }
 
-static void test_base_type_traits()
+static int test_is_same()
 {
-    test_integral_constant();
-    test_true_type();
-    test_false_type();
+    ASSERT((ft::is_same<bool, bool>()) == true);
+    ASSERT((ft::is_same<bool, bool const>()) == false);
+    ASSERT((ft::is_same<int, bool>()) == false);
+
+    return 0;
 }
 
-static void test_is_same()
+static int test_remove_const()
 {
-    std::cout << "Test is_same" << std::endl;
+    ASSERT(
+        (ft::is_same<bool, ft::remove_const<bool>::type>()) == true
+    );
+    ASSERT(
+        (ft::is_same<bool, ft::remove_const<bool const>::type>()) == true
+    );
+    ASSERT(
+        (ft::is_same<bool const*, ft::remove_const<bool const *const >::type>())
+            == true
+    );
 
-    std::cout << ft::is_same<bool, bool>() << std::endl;
-    std::cout << ft::is_same<bool, bool const>() << std::endl;
-    std::cout << ft::is_same<int, bool>() << std::endl;
-
-    std::cout << std::endl;
+    return 0;
 }
 
-static void test_remove_const()
+int test_unit_type_traits()
 {
-    std::cout << "Test remove_const" << std::endl;
+    TestSuite typeTraits("type_traits");
 
-    std::cout << ft::is_same<
-        bool, ft::remove_const<bool>::type
-    >() << std::endl;
-    std::cout << ft::is_same<
-        bool, ft::remove_const<bool const>::type 
-    >() << std::endl;
-    std::cout << ft::is_same<
-        bool const *,
-        ft::remove_const<bool const* const> 
-    >() << std::endl;
+    typeTraits.addTest(
+        TestCase("test_integral_constant", test_integral_constant)
+    );
+    typeTraits.addTest(
+        TestCase("test_true_type", test_true_type)
+    );
+    typeTraits.addTest(
+        TestCase("test_false_type", test_false_type)
+    );
+    typeTraits.addTest(
+        TestCase("test_is_same", test_is_same)
+    );
+    typeTraits.addTest(
+        TestCase("test_remove_const", test_remove_const)
+    );
 
-    std::cout << std::endl;
-}
-
-void test_type_traits()
-{
-    test_base_type_traits();
-    test_is_same();
-    test_remove_const();
-
-
+    return typeTraits.run();
 }
