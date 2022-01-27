@@ -6,7 +6,7 @@
 #    By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/09 19:59:42 by lperson-          #+#    #+#              #
-#    Updated: 2022/01/27 12:36:40 by lperson-         ###   ########.fr        #
+#    Updated: 2022/01/27 13:26:20 by lperson-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ IBaseTest.cpp \
 TestCase.cpp \
 TestSuite.cpp \
 test_iterator.cpp \
-test_type_traits.cpp
+test_type_traits.cpp \
+test_vector.cpp
 OBJS = ${addprefix ${PATHB}/, ${SRCS:.cpp=.o}}
 DFILES = ${addprefix ${PATHD}/, ${SRCS:.cpp=.d}}
 

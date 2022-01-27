@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 15:02:32 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/27 10:57:35 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:25:05 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 
 TestSuite *testUnitIterator();
 TestSuite *testUnitTypeTraits();
+TestSuite *testUnitVector();
 
 #endif
