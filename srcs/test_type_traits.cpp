@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:23:22 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/27 11:00:36 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/27 12:38:30 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,35 @@ static int test_remove_const()
     return 0;
 }
 
+static int test_remove_cv()
+{
+    ASSERT(
+        (ft::is_same<bool, ft::remove_cv<bool>::type>()) == true
+    );
+    ASSERT(
+        (ft::is_same<bool, ft::remove_cv<bool const>::type>()) == true
+    );
+    ASSERT(
+        (ft::is_same<bool const *, ft::remove_cv<bool const *const>::type>())
+            == true
+    );
+    ASSERT(
+        (ft::is_same<bool, ft::remove_cv<volatile bool>::type>()) == true
+    );
+    ASSERT(
+        (ft::is_same<bool, ft::remove_cv<volatile const bool>::type>()) == true
+    );
+    ASSERT(
+        (ft::is_same<bool volatile *, 
+         ft::remove_cv<bool volatile * volatile>::type>()) == true
+    );
+    ASSERT(
+        (ft::is_same<volatile bool const *,
+         ft::remove_cv<volatile bool const *const volatile>::type>()) == true
+    );
+    return 0;
+}
+
 TestSuite *testUnitTypeTraits()
 {
     TestSuite *typeTraits = new TestSuite("type_traits");
@@ -91,6 +120,9 @@ TestSuite *testUnitTypeTraits()
     );
     typeTraits->addTest(
         new TestCase("test_remove_const", test_remove_const)
+    );
+    typeTraits->addTest(
+        new TestCase("test_remove_vc", test_remove_cv)
     );
 
     return typeTraits;

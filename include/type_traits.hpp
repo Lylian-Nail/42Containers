@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:09:02 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/08 15:27:03 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/27 12:27:48 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,20 @@ namespace ft
 
     template <class T>
     struct remove_const<T const> : public type_identity<T> {};
+
+    /*
+     * Delete const volatile qualifiers
+    */
+
+    template <class T>
+    struct remove_cv : public type_identity<typename remove_const<T>::type> {};
+
+    template <class T>
+    struct remove_cv<volatile T> : public type_identity<
+        typename remove_const<T>::type
+    >
+    {
+    };
 
     /*
      * Check compile time enable_if
