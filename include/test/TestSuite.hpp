@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:52:40 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/26 13:32:04 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/27 10:53:33 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <vector>
 # include "TestCase.hpp"
 
-class TestSuite
+class TestSuite : public IBaseTest
 {
 public:
     TestSuite();
@@ -31,7 +31,7 @@ public:
     int getTotalTests() const;
     long getMSTime() const;
 
-    void addTest(TestCase const &test);
+    void addTest(IBaseTest *test);
 
     int run();
 
@@ -39,7 +39,7 @@ public:
 
 private:
     std::string m_name;
-    std::vector<TestCase> m_tests;
+    std::vector<IBaseTest *> m_tests;
     int m_fails;
     long m_mstime;
 

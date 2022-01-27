@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   IBaseTest.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/27 10:59:53 by lperson-         ###   ########.fr       */
+/*   Created: 2022/01/27 10:35:39 by lperson-          #+#    #+#             */
+/*   Updated: 2022/01/27 10:52:36 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.hpp"
+#ifndef IBASE_TEST_HPP
 
-int main()
+# define IBASE_TEST_HPP
+
+class IBaseTest
 {
-    TestSuite containers("ft_containers");
+public:
+    virtual ~IBaseTest();
 
-    containers.addTest(testUnitIterator());
-    containers.addTest(testUnitTypeTraits());
+    virtual int run()= 0;
+};
 
-    return containers.run();
-}
+#endif

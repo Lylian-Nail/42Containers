@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:57:57 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/27 10:27:02 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/27 11:01:00 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,13 +110,19 @@ static int test_iterator_advance()
     return 0;
 }
 
-int test_unit_iterator()
+TestSuite *testUnitIterator()
 {
-    TestSuite iterator("iterator");
+    TestSuite *iterator =  new TestSuite("iterator");
 
-    iterator.addTest(TestCase("test_iterator_traits", test_iterator_traits));
-    iterator.addTest(TestCase("test_normal_iterator", test_normal_iterator));
-    iterator.addTest(TestCase("test_iterator_advance", test_iterator_advance));
+    iterator->addTest(
+        new TestCase("test_iterator_traits", test_iterator_traits)
+    );
+    iterator->addTest(
+        new TestCase("test_normal_iterator", test_normal_iterator)
+    );
+    iterator->addTest(
+        new TestCase("test_iterator_advance", test_iterator_advance)
+    );
 
-    return iterator.run();
+    return iterator;
 }

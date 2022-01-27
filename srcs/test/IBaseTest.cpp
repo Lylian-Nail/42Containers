@@ -1,23 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   IBaseTest.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/27 10:59:53 by lperson-         ###   ########.fr       */
+/*   Created: 2022/01/27 10:36:56 by lperson-          #+#    #+#             */
+/*   Updated: 2022/01/27 10:40:09 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.hpp"
+#include "test/IBaseTest.hpp"
 
-int main()
+IBaseTest::~IBaseTest()
 {
-    TestSuite containers("ft_containers");
-
-    containers.addTest(testUnitIterator());
-    containers.addTest(testUnitTypeTraits());
-
-    return containers.run();
 }

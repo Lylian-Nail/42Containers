@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:51:14 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/26 13:27:59 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/27 10:53:42 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 # define TEST_CASE_HPP
 
 # include <string>
+# include "IBaseTest.hpp"
 
-class TestCase
+class TestCase : public IBaseTest
 {
 public:
     typedef int (*testF)();

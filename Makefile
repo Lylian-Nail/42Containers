@@ -6,7 +6,7 @@
 #    By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/09 19:59:42 by lperson-          #+#    #+#              #
-#    Updated: 2022/01/27 10:26:49 by lperson-         ###   ########.fr        #
+#    Updated: 2022/01/27 10:39:19 by lperson-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ vpath %.cpp ${foreach dir, ${SRCS_DIR}, ${dir}:}
 SRCS := \
 main.cpp \
 basic_test.cpp \
+IBaseTest.cpp \
 TestCase.cpp \
 TestSuite.cpp \
 test_iterator.cpp \

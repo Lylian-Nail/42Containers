@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:56:53 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/26 13:34:10 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/27 10:55:34 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ TestSuite::TestSuite(TestSuite const &copy):
 
 TestSuite::~TestSuite()
 {
+    std::vector<IBaseTest *>::iterator itBegin = m_tests.begin();
+    std::vector<IBaseTest *>::iterator itEnd = m_tests.end();
+
+    for (; itBegin != itEnd; itBegin++)
+        delete *itBegin;
 }
 
 std::string const &TestSuite::getName() const
@@ -63,7 +68,7 @@ long TestSuite::getMSTime() const
     return m_mstime;
 }
 
-void TestSuite::addTest(TestCase const &test)
+void TestSuite::addTest(IBaseTest *test)
 {
     m_tests.push_back(test);
 }
@@ -72,14 +77,14 @@ int TestSuite::run()
 {
     std::cout << "Running unit: " BWHT << m_name << RST << std::endl;
 
-    std::vector<TestCase>::iterator itBegin = m_tests.begin();
-    std::vector<TestCase>::iterator itEnd = m_tests.end();
+    std::vector<IBaseTest *>::iterator itBegin = m_tests.begin();
+    std::vector<IBaseTest *>::iterator itEnd = m_tests.end();
 
     std::clock_t clock = std::clock();
     for (;itBegin != itEnd; itBegin++)
     {
         std::cout << std::endl;
-        if (itBegin->run())
+        if ((*itBegin)->run())
             m_fails++;
     }
 

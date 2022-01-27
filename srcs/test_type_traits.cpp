@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:23:22 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/27 10:28:40 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/27 11:00:36 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,25 +73,25 @@ static int test_remove_const()
     return 0;
 }
 
-int test_unit_type_traits()
+TestSuite *testUnitTypeTraits()
 {
-    TestSuite typeTraits("type_traits");
+    TestSuite *typeTraits = new TestSuite("type_traits");
 
-    typeTraits.addTest(
-        TestCase("test_integral_constant", test_integral_constant)
+    typeTraits->addTest(
+        new TestCase("test_integral_constant", test_integral_constant)
     );
-    typeTraits.addTest(
-        TestCase("test_true_type", test_true_type)
+    typeTraits->addTest(
+        new TestCase("test_true_type", test_true_type)
     );
-    typeTraits.addTest(
-        TestCase("test_false_type", test_false_type)
+    typeTraits->addTest(
+        new TestCase("test_false_type", test_false_type)
     );
-    typeTraits.addTest(
-        TestCase("test_is_same", test_is_same)
+    typeTraits->addTest(
+        new TestCase("test_is_same", test_is_same)
     );
-    typeTraits.addTest(
-        TestCase("test_remove_const", test_remove_const)
+    typeTraits->addTest(
+        new TestCase("test_remove_const", test_remove_const)
     );
 
-    return typeTraits.run();
+    return typeTraits;
 }
