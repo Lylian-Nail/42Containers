@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:23:43 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 11:57:16 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 12:11:57 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ namespace ft
         allocator_type  m_alloc;
         size_type       m_size;
         size_type       m_capacity;
-        value_type      m_values[];
+        pointer         m_values;
 
     };
 

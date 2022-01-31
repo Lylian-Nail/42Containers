@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 11:57:05 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 12:11:30 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ namespace ft
         iterator first(begin());
         iterator last(end());
         for (;first != last; first++)
-            m_alloc.destroy(*first);
+            m_alloc.destroy(&*first);
         m_alloc.deallocate(m_values, m_capacity);
     }
 
