@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 13:04:56 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/07 16:09:37 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:21:52 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,14 @@ namespace ft
 
         normal_iterator(): _it() {}
         normal_iterator(Iterator const &it): _it(it) {}
-        normal_iterator(normal_iterator const &copy): _it(copy.getBase()) {}
+
+        // Allow iterator to const iterator conversion
+        template <class Iter>
+        normal_iterator(
+            normal_iterator<Iter, Container> const &copy): 
+            _it(copy.getBase())
+        {
+        }
 
         normal_iterator &operator=(normal_iterator const &rhs)
         {
