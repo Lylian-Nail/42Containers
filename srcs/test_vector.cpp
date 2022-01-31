@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 13:52:12 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:26:53 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,27 @@ static int testVectorDefaultCtor()
 
 static int testVectorFillCtor()
 {
-    ft::vector<std::string> vector(10, "Hey");
+    {
+        ft::vector<std::string> vector(10, "Hey");
+    
+        ASSERT(vector.size() == 10);
+        ASSERT(vector.capacity() == 10);
+        ft::vector<std::string>::const_iterator itBegin(vector.begin());
+        ft::vector<std::string>::const_iterator itEnd(vector.end());
+        for (; itBegin != itEnd; itBegin++)
+            ASSERT(itBegin->compare("Hey") == 0);
+    }
 
-    ASSERT(vector.size() == 10);
-    ASSERT(vector.capacity() == 10);
-    ft::vector<std::string>::const_iterator itBegin(vector.begin());
-    ft::vector<std::string>::const_iterator itEnd(vector.end());
-    for (; itBegin != itEnd; itBegin++)
-        ASSERT(itBegin->compare("Hey") == 0);
+    {
+        ft::vector<std::string> vector(1000);
 
+        ASSERT(vector.size() == 1000);
+        ASSERT(vector.capacity() == 1000);
+        ft::vector<std::string>::const_iterator itBegin(vector.begin());
+        ft::vector<std::string>::const_iterator itEnd(vector.end());
+        for (; itBegin != itEnd; itBegin++)
+            ASSERT(itBegin->empty());
+    }
     return 0;
 }
 
