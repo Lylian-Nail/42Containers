@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:09:25 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/07 15:51:43 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:42:46 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ namespace ft
     */
 
     template <class T> class iterator_traits<T*> : public iterator<
-        random_access_iterator_tag,
+        std::random_access_iterator_tag,
         T
     >
     {};
@@ -48,7 +48,7 @@ namespace ft
     */
 
    template <class T> class iterator_traits<T const *> : public iterator<
-        random_access_iterator_tag,
+        std::random_access_iterator_tag,
         T const,
         ptrdiff_t,
         T const *,

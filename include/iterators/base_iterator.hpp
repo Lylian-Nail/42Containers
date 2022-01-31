@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:07:42 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/07 15:41:18 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:42:18 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ namespace ft
     /*
      * Iterator tags to differentiate iterators between them.
      * We use inheritance to use polymorphism in algo
+     *
+     * struct input_iterator_tag {};
+     * struct output_iterator_tag {};
+     * struct forward_iterator_tag : public input_iterator_tag {};
+     * struct bidirectional_iterator_tag : public forward_iterator_tag {};
+     * struct random_access_iterator_tag : public bidirectional_iterator_tag {};
+     *
     */
-
-    struct input_iterator_tag {};
-    struct output_iterator_tag {};
-    struct forward_iterator_tag : public input_iterator_tag {};
-    struct bidirectional_iterator_tag : public forward_iterator_tag {};
-    struct random_access_iterator_tag : public bidirectional_iterator_tag {};
 
     /*
      * This class defines iterator traits for any iterators

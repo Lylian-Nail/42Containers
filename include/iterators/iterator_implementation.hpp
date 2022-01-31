@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:00:58 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/07 15:40:59 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:42:30 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ namespace iterator_implementation
     typename ft::iterator_traits<InputIterator>::difference_type
         distance(
                 InputIterator first, InputIterator last,
-                ft::random_access_iterator_tag const &
+                std::random_access_iterator_tag const &
             )
     {
         return last - first;
@@ -39,7 +39,7 @@ namespace iterator_implementation
     typename ft::iterator_traits<InputIterator>::difference_type
         distance(
                 InputIterator first, InputIterator last,
-                ft::input_iterator_tag const &
+                std::input_iterator_tag const &
             )
     {
         typename ft::iterator_traits<InputIterator>::difference_type    i;

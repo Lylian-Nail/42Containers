@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:57:57 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/27 12:59:21 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:43:08 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int test_iterator_traits()
 
         ASSERT(
             typeid(traits::iterator_category) ==
-            typeid(ft::random_access_iterator_tag)
+            typeid(std::random_access_iterator_tag)
         );
 
         ASSERT(
@@ -40,7 +40,7 @@ static int test_iterator_traits()
 
         ASSERT(
             typeid(traits::iterator_category) ==
-            typeid(ft::random_access_iterator_tag)
+            typeid(std::random_access_iterator_tag)
         );
 
         ASSERT(
