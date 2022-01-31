@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 12:11:30 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 13:46:44 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ namespace ft
     template <class T, class Alloc>
     typename vector<T, Alloc>::const_iterator vector<T, Alloc>::end() const
     {
-        return iterator(m_values + m_size);
+        return const_iterator(m_values + m_size);
     }
 
 };
