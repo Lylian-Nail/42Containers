@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 14:26:53 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:35:17 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,23 @@ static int testVectorFillCtor()
     return 0;
 }
 
+static int testVectorRangeCtor()
+{
+    std::vector<int> vectorOfInt(10000, 42);
+    std::vector<int>::const_iterator first(vectorOfInt.begin());
+    std::vector<int>::const_iterator last(vectorOfInt.end());
+
+    ft::vector<int> vector(vectorOfInt.begin(), vectorOfInt.end());
+    ft::vector<int>::const_iterator itBegin(vector.begin());
+    ft::vector<int>::const_iterator itEnd(vector.end());
+
+    for (; itBegin != itEnd; itBegin++, first++)
+    {
+        ASSERT(*first == *itBegin);
+    }
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -71,6 +88,9 @@ TestSuite *testUnitVector()
     );
     vector->addTest(
         new TestCase("test_vector_fill_ctor", testVectorFillCtor)
+    );
+    vector->addTest(
+        new TestCase("test_vector_range_ctor", testVectorRangeCtor)
     );
 
     return vector;
