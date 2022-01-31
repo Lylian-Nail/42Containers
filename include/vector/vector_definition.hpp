@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:23:43 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 12:11:57 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 15:23:18 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define VECTOR_DEFINITION_HPP
 
 # include "iterator.hpp"
+# include "type_traits.hpp"
 # include <memory>
 
 namespace ft
@@ -55,7 +56,11 @@ namespace ft
         );
         template <class InputIterator>
         vector(
-            InputIterator first, InputIterator last, allocator_type const &alloc = allocator_type()
+            typename enable_if<
+                !is_integral<InputIterator>::value, InputIterator
+            >::type first,
+            InputIterator last,
+            allocator_type const &alloc = allocator_type()
         );
         vector(vector const &copy);
         ~vector();

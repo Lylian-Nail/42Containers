@@ -6,13 +6,15 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 13:46:44 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 15:25:23 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_IMPLEMENTATION_HPP
 
-#define VECTOR_IMPLEMENTATION_HPP
+# define VECTOR_IMPLEMENTATION_HPP
+
+# include "type_traits.hpp"
 
 namespace ft
 {
@@ -48,7 +50,9 @@ namespace ft
     template <class T, class Alloc>
     template <class InputIterator>
     vector<T, Alloc>::vector(
-        InputIterator first,
+        typename enable_if<
+            !is_integral<InputIterator>::value, InputIterator
+        >::type first,
         InputIterator last,
         allocator_type const &alloc
     ):
@@ -58,7 +62,7 @@ namespace ft
         m_size = size;
         m_capacity = size;
         m_values = m_alloc.allocate(m_capacity);
-        for (int i(0); first != last; first++, ++i)
+        for (size_type i(0); first != last; first++, ++i)
             m_alloc.construct(m_values + i, *first);
     }
 
@@ -71,7 +75,7 @@ namespace ft
         m_values = m_alloc.allocate(m_capacity);
         const_iterator first(copy.begin());
         const_iterator last(copy.end());
-        for (size_type i(0); first != last; first++)
+        for (size_type i(0); first != last; first++, i++)
             m_alloc.construct(m_values + i, *first);
     }
 

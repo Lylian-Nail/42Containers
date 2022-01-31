@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 14:35:17 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:52:35 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,25 @@ static int testVectorRangeCtor()
     return 0;
 }
 
+static int testVectorCopyCtor()
+{
+    ft::vector<int> vectorOfInt(100000, 42);
+    ft::vector<int>::const_iterator first(vectorOfInt.begin());
+    ft::vector<int>::const_iterator last(vectorOfInt.end());
+    ft::vector<int> vector(vectorOfInt);
+    ft::vector<int>::const_iterator begin(vector.begin());
+    ft::vector<int>::const_iterator end(vector.end());
+
+    ASSERT(vectorOfInt.size() == vector.size());
+    ASSERT(vectorOfInt.capacity() == vector.capacity());
+    ASSERT(vectorOfInt.get_allocator() == vector.get_allocator());
+    ASSERT(first != begin);
+
+    for (; first != last; first++, begin++)
+        ASSERT(*first == *begin);
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -91,6 +110,9 @@ TestSuite *testUnitVector()
     );
     vector->addTest(
         new TestCase("test_vector_range_ctor", testVectorRangeCtor)
+    );
+    vector->addTest(
+        new TestCase("test_vector_copy_ctor", testVectorCopyCtor)
     );
 
     return vector;
