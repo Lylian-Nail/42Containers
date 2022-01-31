@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 15:50:40 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 16:00:54 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,12 @@ namespace ft
     typename vector<T, Alloc>::size_type vector<T, Alloc>::size() const
     {
         return m_size;
+    }
+
+    template <class T, class Alloc>
+    bool vector<T, Alloc>::empty() const
+    {
+        return size() == 0;
     }
 
     template <class T, class Alloc>

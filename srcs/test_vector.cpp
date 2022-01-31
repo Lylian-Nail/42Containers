@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 15:53:47 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 16:00:42 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,22 @@ static int testVectorMaxSize()
     return 0;
 }
 
+static int testVectorEmpty()
+{
+    {
+        ft::vector<int> vectorOfInt(0);
+    
+        ASSERT(vectorOfInt.empty());
+    }
+    {
+        ft::vector<int> vectorOfInt(10);
+
+        ASSERT(!vectorOfInt.empty());
+    }
+
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -126,6 +142,9 @@ TestSuite *testUnitVector()
     );
     vector->addTest(
         new TestCase("test_vector_max_size", testVectorMaxSize)
+    );
+    vector->addTest(
+        new TestCase("test_vector_empty", testVectorEmpty)
     );
 
     return vector;
