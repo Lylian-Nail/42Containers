@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:23:43 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 15:38:25 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 15:54:56 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ namespace ft
 
         size_type size() const;
         size_type capacity() const;
+        size_type max_size() const;
         allocator_type get_allocator() const;
 
         /*
@@ -83,10 +84,10 @@ namespace ft
         const_iterator end() const;
 
     private:
-        allocator_type const    m_alloc;
-        size_type               m_size;
-        size_type               m_capacity;
-        pointer                 m_values;
+        allocator_type  m_alloc;
+        size_type       m_size;
+        size_type       m_capacity;
+        pointer         m_values;
 
     };
 

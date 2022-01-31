@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 15:25:23 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 15:50:40 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,12 @@ namespace ft
     typename vector<T, Alloc>::size_type vector<T, Alloc>::capacity() const
     {
         return m_capacity;
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::size_type vector<T, Alloc>::max_size() const
+    {
+        return m_alloc.max_size();
     }
 
     template <class T, class Alloc>

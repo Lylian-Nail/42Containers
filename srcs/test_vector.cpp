@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 14:52:35 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/01/31 15:53:47 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,16 @@ static int testVectorCopyCtor()
     return 0;
 }
 
+static int testVectorMaxSize()
+{
+    ft::vector<int> vectorOfInt(1000, 42);
+    std::allocator<int> alloc;
+
+    ASSERT(vectorOfInt.max_size() == alloc.max_size());
+
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -113,6 +123,9 @@ TestSuite *testUnitVector()
     );
     vector->addTest(
         new TestCase("test_vector_copy_ctor", testVectorCopyCtor)
+    );
+    vector->addTest(
+        new TestCase("test_vector_max_size", testVectorMaxSize)
     );
 
     return vector;
