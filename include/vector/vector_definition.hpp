@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:23:43 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 15:23:18 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/08 14:25:43 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ namespace ft
         const_iterator begin() const;
         iterator end();
         const_iterator end() const;
+        reverse_iterator rbegin();
+        const_reverse_iterator rbegin() const;
+        reverse_iterator rend();
+        const_reverse_iterator rend() const;
 
     private:
         allocator_type  m_alloc;

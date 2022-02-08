@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 14:52:35 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/08 15:53:13 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,33 @@ static int testVectorCopyCtor()
     return 0;
 }
 
+static int testVectorReverseIterator()
+{
+    {
+        ft::vector<int> vectorOfInt;
+        ft::vector<int>::const_reverse_iterator first(vectorOfInt.rbegin());
+        ft::vector<int>::const_reverse_iterator last(vectorOfInt.rend());
+
+        for (; first != last; first++)
+            ASSERT(false);
+    }
+    {
+        ft::vector<int> vectorOfInt(100000, 42);
+        ft::vector<int>::const_reverse_iterator first(vectorOfInt.rbegin());
+        ft::vector<int>::const_reverse_iterator last(vectorOfInt.rend());
+        ft::vector<int>::size_type size = 0;
+
+        for (; first != last; first++)
+        {
+            size++;
+            ASSERT(*first == 42);
+        }
+        ASSERT(size == vectorOfInt.size());
+    }
+
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -113,6 +140,9 @@ TestSuite *testUnitVector()
     );
     vector->addTest(
         new TestCase("test_vector_copy_ctor", testVectorCopyCtor)
+    );
+    vector->addTest(
+        new TestCase("test_vector_reverse_iterator", testVectorReverseIterator)
     );
 
     return vector;
