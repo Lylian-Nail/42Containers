@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/16 11:36:42 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/16 11:40:18 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,6 @@ namespace ft
             m_values = new_values;
             m_capacity = new_capacity;
         }
-
     }
 
     /*
@@ -185,6 +184,32 @@ namespace ft
     typename vector<T, Alloc>::const_iterator vector<T, Alloc>::end() const
     {
         return const_iterator(m_values + m_size);
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::reverse_iterator vector<T, Alloc>::rbegin()
+    {
+        return reverse_iterator(end());
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::const_reverse_iterator
+    vector<T, Alloc>::rbegin() const
+    {
+        return reverse_iterator(end());
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::reverse_iterator vector<T, Alloc>::rend()
+    {
+        return reverse_iterator(begin());
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::const_reverse_iterator
+    vector<T, Alloc>::rend() const
+    {
+        return reverse_iterator(begin());
     }
 
 };

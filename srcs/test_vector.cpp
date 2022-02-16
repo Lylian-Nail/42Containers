@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/16 11:38:00 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/16 11:41:22 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,10 +140,34 @@ static int testVectorReserve()
 
     for (; begin != last; begin++, first++)
     {
-        std::cout << *first << " : " << *begin << "; ";
         ASSERT(*first == *begin);
     }
-    std::cout << std::endl;
+    return 0;
+}
+
+static int testVectorReverseIterator()
+{
+    {
+        ft::vector<int> vectorOfInt;
+        ft::vector<int>::const_reverse_iterator first(vectorOfInt.rbegin());
+        ft::vector<int>::const_reverse_iterator last(vectorOfInt.rend());
+
+        for (; first != last; first++)
+            ASSERT(false);
+    }
+    {
+        ft::vector<int> vectorOfInt(100000, 42);
+        ft::vector<int>::const_reverse_iterator first(vectorOfInt.rbegin());
+        ft::vector<int>::const_reverse_iterator last(vectorOfInt.rend());
+        ft::vector<int>::size_type size = 0;
+
+        for (; first != last; first++)
+        {
+            size++;
+            ASSERT(*first == 42);
+        }
+        ASSERT(size == vectorOfInt.size());
+    }
 
     return 0;
 }
@@ -171,8 +195,10 @@ TestSuite *testUnitVector()
         new TestCase("test_vector_empty", testVectorEmpty)
     );
     vector->addTest(
+        new TestCase("test_vector_reverse_iterator", testVectorReverseIterator)
+    );
+    vector->addTest(
         new TestCase("test_vector_reserve", testVectorReserve)
     );
-
     return vector;
 }
