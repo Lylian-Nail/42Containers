@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/16 13:06:23 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/16 13:44:25 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define VECTOR_IMPLEMENTATION_HPP
 
 # include "type_traits.hpp"
+# include <stdexcept>
 
 namespace ft
 {
@@ -123,6 +124,23 @@ namespace ft
     typename vector<T, Alloc>::const_reference
         vector<T, Alloc>::operator[](size_type n) const
     {
+        return m_values[n];
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::reference vector<T, Alloc>::at(size_type n)
+    {
+        if (n >= size())
+            throw std::out_of_range("vector::at");
+        return m_values[n];
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::const_reference
+        vector<T, Alloc>::at(size_type n) const
+    {
+        if (n >= size())
+            throw std::out_of_range("vector::at");
         return m_values[n];
     }
 

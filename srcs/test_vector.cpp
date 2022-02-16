@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/16 13:20:23 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/16 13:57:14 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,67 @@ static int testVectorAccessOperator()
     return 0;
 }
 
+static int testVectorAt()
+{
+    {
+        ft::vector<std::string> vectorOfString(100, "Hello, World");
+
+        ft::vector<std::string>::size_type i = 0;
+        ft::vector<std::string>::size_type size = vectorOfString.size();
+
+        vectorOfString.at(0) = "Hello, there";
+        ft::vector<std::string>::reference string = vectorOfString.at(1);
+        string = "General Kenobi";
+        while (i < size)
+        {
+            if (i == 0)
+            {
+                ASSERT(vectorOfString.at(i).compare("Hello, there") == 0);
+            }
+            else if (i == 1)
+            {
+                ASSERT(vectorOfString.at(i).compare("General Kenobi") == 0);
+            }
+            else
+            {
+                ASSERT(vectorOfString.at(i).compare("Hello, World") == 0);
+            }
+            ++i;
+        }
+        try
+        {
+            vectorOfString.at(i);
+            ASSERT(false);
+        }
+        catch (std::out_of_range &e)
+        {
+            ASSERT(true);
+        }
+    }
+    {
+        ft::vector<std::string> const vectorOfString(100, "Hello, World");
+
+        ft::vector<std::string>::size_type i = 0;
+        ft::vector<std::string>::size_type size = vectorOfString.size();
+
+        while (i < size)
+        {
+            ASSERT(vectorOfString.at(i).compare("Hello, World") == 0);
+            ++i;
+        }
+        try
+        {
+            vectorOfString.at(i);
+            ASSERT(false);
+        }
+        catch (std::out_of_range &e)
+        {
+            ASSERT(true);
+        }
+    }
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -189,6 +250,9 @@ TestSuite *testUnitVector()
     );
     vector->addTest(
         new TestCase("test_vector_access_operator", testVectorAccessOperator)
+    );
+    vector->addTest(
+        new TestCase("test_vector_at", testVectorAt)
     );
 
     return vector;
