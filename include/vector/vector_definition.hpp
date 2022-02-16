@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:23:43 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/08 14:25:43 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/16 13:06:32 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ namespace ft
         size_type size() const;
         size_type capacity() const;
         allocator_type get_allocator() const;
+        reference operator[](size_type n);
+        const_reference operator[](size_type n) const;
 
         /*
          * Iterators

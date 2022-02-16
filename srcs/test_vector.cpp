@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/08 15:53:13 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/16 13:20:23 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,49 @@ static int testVectorReverseIterator()
     return 0;
 }
 
+static int testVectorAccessOperator()
+{
+    {
+        ft::vector<std::string> vectorOfString(100, "Hello, World");
+
+        ft::vector<std::string>::reference string = vectorOfString[0];
+
+        string = "Hello, there";
+        vectorOfString[1] = "General Kenobi";
+
+        ft::vector<std::string>::size_type i = 0;
+        ft::vector<std::string>::size_type size = vectorOfString.size();
+        while (i < size)
+        {
+            if (i == 0)
+            {
+                ASSERT(vectorOfString[i].compare("Hello, there") == 0);
+            }
+            else if (i == 1)
+            {
+                ASSERT(vectorOfString[i].compare("General Kenobi") == 0);
+            }
+            else
+            {
+                ASSERT(vectorOfString[i].compare("Hello, World") == 0);
+            }
+            ++i;
+        }
+    }
+    {
+        ft::vector<std::string> const vectorOfString(100, "Hello, world");
+
+        ft::vector<std::string>::size_type i = 0;
+        ft::vector<std::string>::size_type size = vectorOfString.size();
+        while (i < size)
+        {
+            ASSERT(vectorOfString[i].compare("Hello, world") == 0);
+            ++i;
+        }
+    }
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -143,6 +186,9 @@ TestSuite *testUnitVector()
     );
     vector->addTest(
         new TestCase("test_vector_reverse_iterator", testVectorReverseIterator)
+    );
+    vector->addTest(
+        new TestCase("test_vector_access_operator", testVectorAccessOperator)
     );
 
     return vector;

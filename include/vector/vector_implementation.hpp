@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/08 15:52:55 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/16 13:06:23 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,20 @@ namespace ft
         vector<T, Alloc>::get_allocator() const
     {
         return m_alloc;
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::reference
+        vector<T, Alloc>::operator[](size_type n)
+    {
+        return m_values[n];
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::const_reference
+        vector<T, Alloc>::operator[](size_type n) const
+    {
+        return m_values[n];
     }
 
     /*
