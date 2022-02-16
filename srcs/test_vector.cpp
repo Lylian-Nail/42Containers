@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/16 13:57:14 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/16 14:18:55 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,6 +226,38 @@ static int testVectorAt()
             ASSERT(true);
         }
     }
+
+    {
+        ft::vector<int> vectorOfInt;
+
+        try
+        {
+            vectorOfInt.at(0);
+            ASSERT(false);
+        }
+        catch(const std::out_of_range &e)
+        {
+            ASSERT(true);
+        }
+    }
+    return 0;
+}
+
+static int testVectorFront()
+{
+    {
+        ft::vector<int> vectorOfInt(100, 42);
+
+        ASSERT(vectorOfInt.front() == 42);
+        vectorOfInt[0] = -42;
+        ASSERT(vectorOfInt.front() == -42);
+        vectorOfInt.front() = 42;
+        ASSERT(vectorOfInt.front() == 42);
+    }
+    {
+        ft::vector<int> const vectorOfInt(100, 42);
+        ASSERT(vectorOfInt.front() == 42);
+    }
     return 0;
 }
 
@@ -253,6 +285,9 @@ TestSuite *testUnitVector()
     );
     vector->addTest(
         new TestCase("test_vector_at", testVectorAt)
+    );
+    vector->addTest(
+        new TestCase("test_vector_front", testVectorFront)
     );
 
     return vector;

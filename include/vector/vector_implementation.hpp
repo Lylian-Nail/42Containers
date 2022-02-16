@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/16 13:44:25 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/16 14:17:22 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,18 @@ namespace ft
         if (n >= size())
             throw std::out_of_range("vector::at");
         return m_values[n];
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::reference vector<T, Alloc>::front()
+    {
+        return *m_values;
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::const_reference vector<T, Alloc>::front() const
+    {
+        return *m_values;
     }
 
     /*
