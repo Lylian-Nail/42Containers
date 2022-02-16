@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/16 14:17:22 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/16 14:26:15 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,18 @@ namespace ft
     typename vector<T, Alloc>::const_reference vector<T, Alloc>::front() const
     {
         return *m_values;
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::reference vector<T, Alloc>::back()
+    {
+        return m_values[m_size - 1];
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::const_reference vector<T, Alloc>::back() const
+    {
+        return m_values[m_size - 1];
     }
 
     /*

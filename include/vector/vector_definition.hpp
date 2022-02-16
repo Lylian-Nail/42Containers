@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:23:43 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/16 14:10:56 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/16 14:26:19 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ namespace ft
         const_reference at(size_type n) const;
         reference front();
         const_reference front() const;
+        reference back();
+        const_reference back() const;
 
         /*
          * Iterators
