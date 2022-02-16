@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 16:00:42 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/16 11:38:00 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,30 @@ static int testVectorEmpty()
     return 0;
 }
 
+static int testVectorReserve()
+{
+    ft::vector<char> vector(100, 'a');
+    ft::vector<char> vectorCopy(vector);
+    ft::vector<char>::const_iterator first = vectorCopy.begin();
+
+    vector.reserve(110);
+    ft::vector<char>::const_iterator begin = vector.begin();
+    ft::vector<char>::const_iterator last = vector.end();
+
+    ASSERT(vector.capacity() >= 100);
+    ASSERT(vectorCopy.size() == vector.size());
+    ASSERT(vectorCopy.capacity() != vector.capacity());
+
+    for (; begin != last; begin++, first++)
+    {
+        std::cout << *first << " : " << *begin << "; ";
+        ASSERT(*first == *begin);
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -145,6 +169,9 @@ TestSuite *testUnitVector()
     );
     vector->addTest(
         new TestCase("test_vector_empty", testVectorEmpty)
+    );
+    vector->addTest(
+        new TestCase("test_vector_reserve", testVectorReserve)
     );
 
     return vector;

@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 16:00:54 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/16 11:36:42 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 # define VECTOR_IMPLEMENTATION_HPP
 
+# include <stdexcept>
 # include "type_traits.hpp"
 
 namespace ft
@@ -122,6 +123,40 @@ namespace ft
         vector<T, Alloc>::get_allocator() const
     {
         return m_alloc;
+    }
+
+    /*
+     * Setters
+    */
+
+    template <class T, class Alloc>
+    void vector<T, Alloc>::reserve(
+        typename vector<T, Alloc>::size_type capacity
+    )
+    {
+        if (capacity > max_size())
+            throw (std::length_error("reserve"));
+
+        if (capacity > m_capacity)
+        {
+            size_type new_capacity(m_capacity);
+            while (new_capacity < capacity)
+                new_capacity *= 1.5;
+
+            pointer new_values = m_alloc.allocate(new_capacity);
+            const_iterator first(begin());
+            const_iterator last(end());
+            for (size_type i(0); first != last; first++, i++)
+            {
+                m_alloc.construct(new_values + i, *first);
+                m_alloc.destroy(m_values + i);
+            }
+            m_alloc.deallocate(m_values, m_capacity);
+
+            m_values = new_values;
+            m_capacity = new_capacity;
+        }
+
     }
 
     /*
