@@ -6,7 +6,7 @@
 #    By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/09 19:59:42 by lperson-          #+#    #+#              #
-#    Updated: 2022/01/31 13:18:15 by lperson-         ###   ########.fr        #
+#    Updated: 2022/02/16 13:46:18 by lperson-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ PATHB := build
 PATHD = ${PATHB}/depends
 PATHI := include
 
-CXX := c++
+CXX := g++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 CXXFLAGS += ${addprefix -I , ${PATHI}}
 DFLAGS = -MMD -MT $@ -MF ${PATHD}/$*.d

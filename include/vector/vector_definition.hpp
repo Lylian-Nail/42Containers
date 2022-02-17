@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:23:43 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/16 11:40:07 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/17 13:45:18 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,14 @@ namespace ft
         size_type capacity() const;
         size_type max_size() const;
         allocator_type get_allocator() const;
+        reference operator[](size_type n);
+        const_reference operator[](size_type n) const;
+        reference at(size_type n);
+        const_reference at(size_type n) const;
+        reference front();
+        const_reference front() const;
+        reference back();
+        const_reference back() const;
 
         /*
          * Setters

@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/16 11:40:18 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/17 13:45:23 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 # include <stdexcept>
 # include "type_traits.hpp"
+# include <stdexcept>
 
 namespace ft
 {
@@ -123,6 +124,61 @@ namespace ft
         vector<T, Alloc>::get_allocator() const
     {
         return m_alloc;
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::reference
+        vector<T, Alloc>::operator[](size_type n)
+    {
+        return m_values[n];
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::const_reference
+        vector<T, Alloc>::operator[](size_type n) const
+    {
+        return m_values[n];
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::reference vector<T, Alloc>::at(size_type n)
+    {
+        if (n >= size())
+            throw std::out_of_range("vector::at");
+        return m_values[n];
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::const_reference
+        vector<T, Alloc>::at(size_type n) const
+    {
+        if (n >= size())
+            throw std::out_of_range("vector::at");
+        return m_values[n];
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::reference vector<T, Alloc>::front()
+    {
+        return *m_values;
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::const_reference vector<T, Alloc>::front() const
+    {
+        return *m_values;
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::reference vector<T, Alloc>::back()
+    {
+        return m_values[m_size - 1];
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::const_reference vector<T, Alloc>::back() const
+    {
+        return m_values[m_size - 1];
     }
 
     /*

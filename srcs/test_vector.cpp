@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/16 11:41:22 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/17 13:39:54 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,160 @@ static int testVectorReverseIterator()
     return 0;
 }
 
+static int testVectorAccessOperator()
+{
+    {
+        ft::vector<std::string> vectorOfString(100, "Hello, World");
+
+        ft::vector<std::string>::reference string = vectorOfString[0];
+
+        string = "Hello, there";
+        vectorOfString[1] = "General Kenobi";
+
+        ft::vector<std::string>::size_type i = 0;
+        ft::vector<std::string>::size_type size = vectorOfString.size();
+        while (i < size)
+        {
+            if (i == 0)
+            {
+                ASSERT(vectorOfString[i].compare("Hello, there") == 0);
+            }
+            else if (i == 1)
+            {
+                ASSERT(vectorOfString[i].compare("General Kenobi") == 0);
+            }
+            else
+            {
+                ASSERT(vectorOfString[i].compare("Hello, World") == 0);
+            }
+            ++i;
+        }
+    }
+    {
+        ft::vector<std::string> const vectorOfString(100, "Hello, world");
+
+        ft::vector<std::string>::size_type i = 0;
+        ft::vector<std::string>::size_type size = vectorOfString.size();
+        while (i < size)
+        {
+            ASSERT(vectorOfString[i].compare("Hello, world") == 0);
+            ++i;
+        }
+    }
+    return 0;
+}
+
+static int testVectorAt()
+{
+    {
+        ft::vector<std::string> vectorOfString(100, "Hello, World");
+
+        ft::vector<std::string>::size_type i = 0;
+        ft::vector<std::string>::size_type size = vectorOfString.size();
+
+        vectorOfString.at(0) = "Hello, there";
+        ft::vector<std::string>::reference string = vectorOfString.at(1);
+        string = "General Kenobi";
+        while (i < size)
+        {
+            if (i == 0)
+            {
+                ASSERT(vectorOfString.at(i).compare("Hello, there") == 0);
+            }
+            else if (i == 1)
+            {
+                ASSERT(vectorOfString.at(i).compare("General Kenobi") == 0);
+            }
+            else
+            {
+                ASSERT(vectorOfString.at(i).compare("Hello, World") == 0);
+            }
+            ++i;
+        }
+        try
+        {
+            vectorOfString.at(i);
+            ASSERT(false);
+        }
+        catch (std::out_of_range &e)
+        {
+            ASSERT(true);
+        }
+    }
+    {
+        ft::vector<std::string> const vectorOfString(100, "Hello, World");
+
+        ft::vector<std::string>::size_type i = 0;
+        ft::vector<std::string>::size_type size = vectorOfString.size();
+
+        while (i < size)
+        {
+            ASSERT(vectorOfString.at(i).compare("Hello, World") == 0);
+            ++i;
+        }
+        try
+        {
+            vectorOfString.at(i);
+            ASSERT(false);
+        }
+        catch (std::out_of_range &e)
+        {
+            ASSERT(true);
+        }
+    }
+
+    {
+        ft::vector<int> vectorOfInt;
+
+        try
+        {
+            vectorOfInt.at(0);
+            ASSERT(false);
+        }
+        catch(const std::out_of_range &e)
+        {
+            ASSERT(true);
+        }
+    }
+    return 0;
+}
+
+static int testVectorFront()
+{
+    {
+        ft::vector<int> vectorOfInt(100, 42);
+
+        ASSERT(vectorOfInt.front() == 42);
+        vectorOfInt[0] = -42;
+        ASSERT(vectorOfInt.front() == -42);
+        vectorOfInt.front() = 42;
+        ASSERT(vectorOfInt.front() == 42);
+    }
+    {
+        ft::vector<int> const vectorOfInt(100, 42);
+        ASSERT(vectorOfInt.front() == 42);
+    }
+    return 0;
+}
+
+static int testVectorBack()
+{
+    {
+        ft::vector<int> vectorOfInt(100, 42);
+
+        ASSERT(vectorOfInt.back() == 42);
+        vectorOfInt[vectorOfInt.size() - 1] = -42;
+        ASSERT(vectorOfInt.back() == -42);
+        vectorOfInt.back() = 42;
+        ASSERT(vectorOfInt.back() == 42);
+    }
+    {
+        ft::vector<int> const vectorOfInt(100, 42);
+        ASSERT(vectorOfInt.back() == 42);
+    }
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -198,7 +352,20 @@ TestSuite *testUnitVector()
         new TestCase("test_vector_reverse_iterator", testVectorReverseIterator)
     );
     vector->addTest(
+        new TestCase("test_vector_access_operator", testVectorAccessOperator)
+    );
+    vector->addTest(
+        new TestCase("test_vector_at", testVectorAt)
+    );
+    vector->addTest(
+        new TestCase("test_vector_front", testVectorFront)
+    );
+    vector->addTest(
+        new TestCase("test_vector_back", testVectorBack)
+    );
+    vector->addTest(
         new TestCase("test_vector_reserve", testVectorReserve)
     );
+
     return vector;
 }
