@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/21 13:20:52 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/21 13:26:58 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -405,6 +405,28 @@ static int testVectorPopBack()
     return 0;
 }
 
+static int testVectorClear()
+{
+    {
+        ft::vector<int> vectorOfInt(100, 42);
+
+        ASSERT(vectorOfInt.size() != 0);
+        vectorOfInt.clear();
+        ASSERT(vectorOfInt.size() == 0);
+        ASSERT(vectorOfInt.begin() == vectorOfInt.end());
+    }
+    {
+        ft::vector<int> vectorEmpty;
+
+        ASSERT(vectorEmpty.size() == 0);
+        ASSERT(vectorEmpty.begin() == vectorEmpty.end());
+        vectorEmpty.clear();
+        ASSERT(vectorEmpty.size() == 0);
+        ASSERT(vectorEmpty.begin() == vectorEmpty.end());
+    }
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -453,6 +475,9 @@ TestSuite *testUnitVector()
     );
     vector->addTest(
         new TestCase("test_vector_pop_back", testVectorPopBack)
+    );
+    vector->addTest(
+        new TestCase("test_vector_clear", testVectorClear)
     );
     return vector;
 }

@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/21 13:23:05 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/21 13:24:48 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,11 +243,11 @@ namespace ft
         this->resize(m_size - 1);
     }
 
-    // template <class T, class Alloc>
-    // void vector<T, Alloc>::clear()
-    // {
-    //     this->resize(0);
-    // }
+    template <class T, class Alloc>
+    void vector<T, Alloc>::clear()
+    {
+        this->resize(0);
+    }
 
     /*
      Iterators
