@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:23:43 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/21 13:51:55 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/21 14:24:03 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ namespace ft
             >::type first,
             InputIterator last
         );
-        // void assign(size_type n, value_type const &value);
+        void assign(size_type n, value_type const &value);
 
         /*
          * Iterators

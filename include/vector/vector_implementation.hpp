@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/21 14:02:57 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/21 14:25:55 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,6 +267,15 @@ namespace ft
         for (size_type i(0); first != last; first++, ++i)
             m_alloc.construct(m_values + i, *first);
         m_size = size;
+    }
+
+    template <class T, class Alloc>
+    void vector<T, Alloc>::assign(
+        size_type n, value_type const &value
+    )
+    {
+        this->clear();
+        this->resize(n, value);
     }
 
     /*
