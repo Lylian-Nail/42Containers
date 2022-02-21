@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/21 13:08:05 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/21 13:13:32 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,6 +240,12 @@ namespace ft
     void vector<T, Alloc>::push_back(value_type const &value)
     {
         this->resize(m_size + 1, value);
+    }
+
+    template <class T, class Alloc>
+    void vector<T, Alloc>::pop_back()
+    {
+        this->resize(m_size - 1);
     }
 
     /*
