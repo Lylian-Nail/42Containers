@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:23:43 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/21 13:24:41 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/21 13:51:55 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,14 @@ namespace ft
         void push_back(value_type const &value);
         void pop_back();
         void clear();
+        template <class InputIterator>
+        void assign(
+            typename enable_if<
+                !is_integral<InputIterator>::value, InputIterator
+            >::type first,
+            InputIterator last
+        );
+        // void assign(size_type n, value_type const &value);
 
         /*
          * Iterators

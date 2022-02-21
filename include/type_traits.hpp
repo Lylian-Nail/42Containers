@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:09:02 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/27 13:01:39 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/21 14:18:23 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 # define TYPE_TRAITS_HPP
 
-# include <iterator.hpp>
 # include "type_traits/base_type_traits.hpp"
 
 namespace ft

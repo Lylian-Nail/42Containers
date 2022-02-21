@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/21 13:26:58 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/21 13:50:14 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -427,6 +427,37 @@ static int testVectorClear()
     return 0;
 }
 
+static int testVectorAssignRange()
+{
+    {
+        ft::vector<int> vectorOfInt(100, 42);
+        ft::vector<int> vectorCopied(150, -42);
+
+        ft::vector<int>::const_iterator first(vectorOfInt.begin());
+        ft::vector<int>::const_iterator last(vectorOfInt.end());
+        ft::vector<int>::const_iterator firstCopied(vectorCopied.begin());
+        ft::vector<int>::const_iterator lastCopied(vectorCopied.end());
+        for (; first != last; first++)
+            ASSERT(*first == 42);
+
+        vectorOfInt.assign(vectorCopied.begin(), vectorCopied.end());
+        first = vectorOfInt.begin();
+        last = vectorOfInt.end();
+        for (; first != last; first++, firstCopied++)
+            ASSERT(*first == *firstCopied);
+        ASSERT(vectorOfInt.size() == vectorCopied.size());
+    }
+    {
+        ft::vector<int> vectorOfInt(100, 42);
+        ft::vector<int> vectorEmpty;
+
+        vectorOfInt.assign(vectorEmpty.begin(), vectorEmpty.end());
+        ASSERT(vectorOfInt.size() == 0);
+        ASSERT(vectorOfInt.begin() == vectorOfInt.end());
+    }
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -478,6 +509,9 @@ TestSuite *testUnitVector()
     );
     vector->addTest(
         new TestCase("test_vector_clear", testVectorClear)
+    );
+    vector->addTest(
+        new TestCase("test_vector_assign_range", testVectorAssignRange)
     );
     return vector;
 }

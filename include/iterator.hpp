@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 12:08:20 by lperson-          #+#    #+#             */
-/*   Updated: 2021/12/07 16:24:44 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/21 14:22:17 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 # include <cstddef>
 
+# include <type_traits.hpp>
 # include <iterators/base_iterator.hpp>
 # include <iterators/iterator_traits.hpp>
 # include <iterators/normal_iterator.hpp>
@@ -30,7 +31,12 @@ namespace ft
 
     template <class InputIterator>
     typename iterator_traits<InputIterator>::difference_type
-        distance(InputIterator first, InputIterator last)
+    distance(
+        typename enable_if<
+            !is_integral<InputIterator>::value, InputIterator
+        >::type first,
+        InputIterator last
+    )
     {
         return iterator_implementation::distance(
                 first, last,

@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/21 13:24:48 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/21 14:02:57 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,6 +247,26 @@ namespace ft
     void vector<T, Alloc>::clear()
     {
         this->resize(0);
+    }
+
+    template <class T, class Alloc>
+    template <class InputIterator>
+    void vector<T, Alloc>::assign(
+        typename enable_if<
+            !is_integral<InputIterator>::value, InputIterator
+        >::type first,
+        InputIterator last
+    )
+    {
+        this->clear();
+
+        size_type size = distance(first, last);
+        if (size > m_capacity)
+            this->reserve(size);
+
+        for (size_type i(0); first != last; first++, ++i)
+            m_alloc.construct(m_values + i, *first);
+        m_size = size;
     }
 
     /*
