@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:23:43 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/21 13:13:03 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/21 13:20:57 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ namespace ft
         void resize(size_type size, value_type value = value_type());
         void push_back(value_type const &value);
         void pop_back();
+        // void clear();
 
         /*
          * Iterators

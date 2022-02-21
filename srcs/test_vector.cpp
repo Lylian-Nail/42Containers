@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/21 13:15:44 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/21 13:20:52 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -367,6 +367,14 @@ static int testVectorPushBack()
         ASSERT(vectorOfInt.back() == -42);
         ASSERT(vectorOfInt.size() == oldSize + 1);
     }
+    {
+        ft::vector<int> vectorEmpty;
+
+        vectorEmpty.push_back(-42);
+        ASSERT(vectorEmpty.back() == -42);
+        ASSERT(vectorEmpty.front() == -42);
+        ASSERT(vectorEmpty.size() == 1);
+    }
     return 0;
 }
 
@@ -383,6 +391,16 @@ static int testVectorPopBack()
         vectorOfInt.pop_back();
         ASSERT(vectorOfInt.back() == 42);
         ASSERT(vectorOfInt.size() == oldSize);
+    }
+    {
+        ft::vector<int> vectorEmpty;
+
+        vectorEmpty.push_back(-42);
+        ASSERT(vectorEmpty.back() == -42);
+        ASSERT(vectorEmpty.front() == -42);
+        ASSERT(vectorEmpty.size() == 1);
+        vectorEmpty.pop_back();
+        ASSERT(vectorEmpty.size() == 0);
     }
     return 0;
 }
@@ -436,6 +454,5 @@ TestSuite *testUnitVector()
     vector->addTest(
         new TestCase("test_vector_pop_back", testVectorPopBack)
     );
-
     return vector;
 }
