@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/21 14:32:28 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/21 15:49:57 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -484,6 +484,44 @@ static int testVectorAssignFill()
     return 0;
 }
 
+static int testVectorErasePosition()
+{
+    {
+        ft::vector<int> vectorOfInt;
+
+        for (ft::vector<int>::size_type i = 1; i < 100; ++i)
+            vectorOfInt.push_back(i);
+        
+        ft::vector<int>::size_type erasePosition = 9;
+        ft::vector<int>::iterator newPos;
+        newPos = vectorOfInt.erase(vectorOfInt.begin() + erasePosition);
+        ASSERT(*newPos == 11);
+
+        ft::vector<int>::const_iterator first(vectorOfInt.begin());
+        ft::vector<int>::const_iterator last(vectorOfInt.end());
+        for (int i = 1; first != newPos; first++, i++)
+        {
+            ASSERT(i == *first);
+        }
+        for (int i = *newPos; newPos != last; newPos++, ++i)
+        {
+            ASSERT(i == *newPos);
+        }
+    }
+    {
+        ft::vector<int> vectorOfInt;
+
+        for (int i = 1; i < 100; ++i)
+            vectorOfInt.push_back(i);
+
+        ft::vector<int>::iterator newPos;
+        newPos = vectorOfInt.erase(vectorOfInt.end() - 1);
+        ASSERT(newPos == vectorOfInt.end());
+        ASSERT(vectorOfInt.back() == 98);
+    }
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -541,6 +579,9 @@ TestSuite *testUnitVector()
     );
     vector->addTest(
         new TestCase("test_vector_assign_fill", testVectorAssignFill)
+    );
+    vector->addTest(
+        new TestCase("test_vector_erase_position", testVectorErasePosition)
     );
     return vector;
 }

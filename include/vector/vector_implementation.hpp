@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/21 14:25:55 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/21 14:58:10 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ namespace ft
             throw (std::length_error("reserve"));
         else if (capacity > m_capacity)
         {
-            size_type new_capacity = m_capacity ? m_capacity : capacity;
+            size_type new_capacity = m_capacity > 1 ? m_capacity : capacity;
             while (new_capacity < capacity)
                 new_capacity *= 1.5;
 
@@ -276,6 +276,19 @@ namespace ft
     {
         this->clear();
         this->resize(n, value);
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::iterator
+    vector<T, Alloc>::erase(iterator position)
+    {
+        const_iterator last = this->end();
+        iterator first = position;
+        m_alloc.destroy(&(*position));
+        for (;first != last; first++)
+            first[0] = first[1];
+        m_size--;
+        return position;
     }
 
     /*
