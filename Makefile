@@ -6,7 +6,7 @@
 #    By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/09 19:59:42 by lperson-          #+#    #+#              #
-#    Updated: 2022/02/16 13:46:18 by lperson-         ###   ########.fr        #
+#    Updated: 2022/02/21 12:52:50 by lperson-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ PATHI := include
 CXX := g++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 CXXFLAGS += ${addprefix -I , ${PATHI}}
+CXXFLAGS += -g
 DFLAGS = -MMD -MT $@ -MF ${PATHD}/$*.d
 LD := c++
 LDFLAGS :=
@@ -46,7 +47,7 @@ DFILES = ${addprefix ${PATHD}/, ${SRCS:.cpp=.d}}
 
 .PHONY := all clean fclean re
 
-all: ${NAME} ${NAME_STD}
+all:${NAME_STD} ${NAME}
 
 ${NAME}: ${OBJS}
 	${LD} -o $@ $^ ${LDFLAGS}

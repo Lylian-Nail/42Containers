@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/17 13:39:54 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/17 14:03:28 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,27 +121,6 @@ static int testVectorEmpty()
         ASSERT(!vectorOfInt.empty());
     }
 
-    return 0;
-}
-
-static int testVectorReserve()
-{
-    ft::vector<char> vector(100, 'a');
-    ft::vector<char> vectorCopy(vector);
-    ft::vector<char>::const_iterator first = vectorCopy.begin();
-
-    vector.reserve(110);
-    ft::vector<char>::const_iterator begin = vector.begin();
-    ft::vector<char>::const_iterator last = vector.end();
-
-    ASSERT(vector.capacity() >= 100);
-    ASSERT(vectorCopy.size() == vector.size());
-    ASSERT(vectorCopy.capacity() != vector.capacity());
-
-    for (; begin != last; begin++, first++)
-    {
-        ASSERT(*first == *begin);
-    }
     return 0;
 }
 
@@ -326,6 +305,57 @@ static int testVectorBack()
     return 0;
 }
 
+static int testVectorReserve()
+{
+    ft::vector<char> vector(100, 'a');
+    ft::vector<char> vectorCopy(vector);
+    ft::vector<char>::const_iterator first = vectorCopy.begin();
+
+    vector.reserve(110);
+    ft::vector<char>::const_iterator begin = vector.begin();
+    ft::vector<char>::const_iterator last = vector.end();
+
+    ASSERT(vector.capacity() >= 100);
+    ASSERT(vectorCopy.size() == vector.size());
+    ASSERT(vectorCopy.capacity() != vector.capacity());
+
+    for (; begin != last; begin++, first++)
+    {
+        ASSERT(*first == *begin);
+    }
+    return 0;
+}
+
+static int testVectorResize()
+{
+    {
+        ft::vector<char> vector(1000, 'a');
+        ft::vector<char> vectorCopy(vector);
+
+        vector.resize(2000, 'b');
+        ft::vector<char>::size_type size = vector.size();
+        ft::vector<char>::size_type sizeCopy = vectorCopy.size();
+
+        ASSERT(vectorCopy.size() == 1000);
+        ASSERT(vector.size() == 2000);
+    
+        for (ft::vector<char>::size_type i = 0; i < sizeCopy; i++)
+            ASSERT(vector[i] == vectorCopy[i]);
+
+        for (; sizeCopy < size; ++sizeCopy)
+            ASSERT(vector[sizeCopy] == 'b');
+
+        vector.resize(1000);
+
+        ASSERT(vector.size() == vectorCopy.size());
+
+        size = vector.size();
+        for (ft::vector<char>::size_type i = 0; i < size; ++i)
+            ASSERT(vector[i] == vectorCopy[i]);
+    }
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -365,6 +395,9 @@ TestSuite *testUnitVector()
     );
     vector->addTest(
         new TestCase("test_vector_reserve", testVectorReserve)
+    );
+    vector->addTest(
+        new TestCase("test_vector_resize", testVectorResize)
     );
 
     return vector;

@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:23:43 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/17 13:45:18 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/17 13:53:41 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,9 @@ namespace ft
         /*
          * Setters
         */
+
         void reserve(size_type capacity);
+        void resize(size_type size, value_type value = value_type());
 
         /*
          * Iterators
