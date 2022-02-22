@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:23:43 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/22 10:21:43 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/22 11:10:57 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,9 @@ namespace ft
         /*
          * Copy and swap
         */
+
         vector &operator=(vector const &vectorCopied);
+        void swap(vector &vectorSwapped);
 
         /*
          * Iterators

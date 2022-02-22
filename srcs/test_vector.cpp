@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/22 10:47:48 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/22 11:32:32 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -586,8 +586,6 @@ static int testVectorEraseRange()
     return 0;
 }
 
-# include <iostream>
-
 static int testVectorAssignementOperator()
 {
     {
@@ -615,6 +613,45 @@ static int testVectorAssignementOperator()
         ASSERT(vectorCopied.size() == vectorEmpty.size());
         ASSERT(vectorCopied.end() == vectorCopied.begin());
         ASSERT(vectorCopied.capacity() != vectorEmpty.capacity());
+    }
+    return 0;
+}
+
+static int testVectorSwap()
+{
+    {
+        ft::vector<int> vectorOfInt;
+        ft::vector<int> vectorSwapped;
+
+        for (int i = 1; i < 100; ++i)
+            vectorOfInt.push_back(i);
+        for (int i = 100; i < 300; ++i)
+            vectorSwapped.push_back(i);
+
+        ft::vector<int> vectorCopy(vectorOfInt);
+        ft::vector<int>::const_iterator first = vectorOfInt.begin();
+        ft::vector<int>::const_iterator last = vectorOfInt.end();
+
+        vectorOfInt.swap(vectorSwapped);
+        ASSERT(vectorSwapped.size() == vectorCopy.size());
+        ASSERT(vectorOfInt.size() == 200);
+
+        // Check validity of iterators after swap
+        for (int i = 1; first != last; ++first, ++i)
+            ASSERT(*first == i);
+
+        first = vectorSwapped.begin();
+        last = vectorSwapped.end();
+        ft::vector<int>::const_iterator copy = vectorCopy.begin();
+        for (; first != last; ++copy, ++first)
+            ASSERT(*copy == *first);
+
+        first = vectorOfInt.begin();
+        last = vectorOfInt.end();
+        for (int i = 100; first != last; ++i, ++first)
+        {
+            ASSERT(i == *first);
+        }
     }
     return 0;
 }
@@ -687,6 +724,9 @@ TestSuite *testUnitVector()
         new TestCase(
             "test_vector_assignement_operator", testVectorAssignementOperator
         )
+    );
+    vector->addTest(
+        new TestCase("test_vector_swap", testVectorSwap)
     );
     return vector;
 }

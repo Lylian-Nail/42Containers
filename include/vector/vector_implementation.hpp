@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/22 10:51:52 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/22 11:04:53 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -312,7 +312,7 @@ namespace ft
 
     template <class T, class Alloc>
     vector<T, Alloc> &vector<T, Alloc>::operator=(
-        vector<T, Alloc> const &vectorCopied
+        vector const &vectorCopied
     )
     {
         if (this != &vectorCopied)
@@ -320,6 +320,29 @@ namespace ft
             this->assign(vectorCopied.begin(), vectorCopied.end());
         }
         return *this;
+    }
+
+    template <class T, class Alloc>
+    void vector<T, Alloc>::swap(vector &vectorSwapped)
+    {
+        if (this != &vectorSwapped)
+        {
+            vector<T, Alloc>::pointer values = vectorSwapped.m_values;
+            vector<T, Alloc>::size_type size = vectorSwapped.size();
+            vector<T, Alloc>::size_type capacity = vectorSwapped.capacity();
+            vector<T, Alloc>::allocator_type allocator;
+            allocator = vectorSwapped.get_allocator();
+
+            vectorSwapped.m_values = m_values;
+            vectorSwapped.m_size = this->size();
+            vectorSwapped.m_capacity = this->capacity();
+            vectorSwapped.m_alloc = this->get_allocator();
+
+            m_values = values;
+            m_size = size;
+            m_capacity = capacity;
+            m_alloc = allocator;
+        }
     }
 
     /*
