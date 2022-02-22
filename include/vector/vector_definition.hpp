@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:23:43 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/21 14:36:01 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/21 15:55:42 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ namespace ft
         );
         void assign(size_type n, value_type const &value);
         iterator erase(iterator position);
+        iterator erase(iterator first, iterator last);
 
         /*
          * Iterators

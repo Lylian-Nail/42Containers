@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/21 14:58:10 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/22 08:37:24 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,6 +289,27 @@ namespace ft
             first[0] = first[1];
         m_size--;
         return position;
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::iterator
+    vector<T, Alloc>::erase(iterator first, iterator last)
+    {
+        iterator oldPos = first;
+        size_type offset = 0;
+        iterator newPos = first;
+        for (; first != last; first++, offset++)
+        {
+            m_alloc.destroy(&(*first));
+        }
+        iterator end = this->end();
+        for (; last != end; last++)
+        {
+            *(last - offset) = *last;
+        }
+        m_size -= offset;
+
+        return newPos;
     }
 
     /*

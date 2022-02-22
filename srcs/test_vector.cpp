@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/21 15:49:57 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/22 09:49:43 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -522,6 +522,67 @@ static int testVectorErasePosition()
     return 0;
 }
 
+static int testVectorEraseRange()
+{
+    {
+        ft::vector<int> vectorOfInt;
+
+        for (int i = 1; i < 300; ++i)
+            vectorOfInt.push_back(i);
+
+        ft::vector<int>::iterator newPosition = vectorOfInt.erase(
+            vectorOfInt.begin() + 99, vectorOfInt.begin() + 199
+        );
+        ft::vector<int>::const_iterator first = vectorOfInt.begin();
+        for (int i = 1; first != newPosition; first++, ++i)
+        {
+            ASSERT(*first == i);
+        }
+
+        ASSERT(*newPosition == 200);
+        ft::vector<int>::const_iterator last = vectorOfInt.end();
+        for (int i = 200; newPosition != last; ++i, ++newPosition)
+        {
+            ASSERT(i == *newPosition);
+        }
+    }
+    {
+        ft::vector<int> vectorOfInt;
+
+        for (int i = 1; i <= 10; ++i)
+            vectorOfInt.push_back(i);
+
+        ft::vector<int>::iterator newPosition = vectorOfInt.erase(
+            vectorOfInt.begin() + 4, vectorOfInt.begin() + 8
+        );
+        ft::vector<int>::const_iterator first = vectorOfInt.begin();
+        for (int i = 1; first != newPosition; ++i, ++first)
+        {
+            ASSERT(i == *first);
+        }
+        ASSERT(*newPosition == 9);
+        ft::vector<int>::const_iterator last = vectorOfInt.end();
+        for (int i = 9; newPosition != last; ++i, ++newPosition)
+        {
+            ASSERT(i == *newPosition);
+        }
+    }
+    {
+        ft::vector<int> vectorOfInt;
+
+        for (int i = 1; i <= 10; ++i)
+            vectorOfInt.push_back(i);
+
+        ft::vector<int>::iterator newPosition = vectorOfInt.erase(
+            vectorOfInt.begin(), vectorOfInt.end()
+        );
+
+        ASSERT(vectorOfInt.size() == 0);
+        ASSERT(newPosition == vectorOfInt.end());
+    }
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -582,6 +643,9 @@ TestSuite *testUnitVector()
     );
     vector->addTest(
         new TestCase("test_vector_erase_position", testVectorErasePosition)
+    );
+    vector->addTest(
+        new TestCase("test_vector_erase_range", testVectorEraseRange)
     );
     return vector;
 }
