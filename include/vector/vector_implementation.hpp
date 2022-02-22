@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/22 11:39:39 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:57:18 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 # include <stdexcept>
 # include "type_traits.hpp"
-# include <stdexcept>
+# include "algorithm.hpp"
 
 namespace ft
 {
@@ -270,6 +270,33 @@ namespace ft
     {
         this->clear();
         this->resize(n, value);
+    }
+
+    template <class T, class Alloc>
+    typename vector<T, Alloc>::iterator vector<T, Alloc>::insert(
+        iterator position,
+        value_type const &value
+    )
+    {
+        // Save index of position in case of reallocation and lose of pointer
+        size_type const positionIndex = distance(this->begin(), position);
+
+        if (m_size == m_capacity)
+            this->reserve(m_size + 1);
+
+        iterator newPosition = this->begin() + positionIndex;
+        value_type savedValue = *newPosition;
+        m_alloc.construct(&(*newPosition), value);
+        m_size++;
+
+        const_iterator last = this->end();
+        iterator first = newPosition + 1;
+        for (; first != last; ++first)
+        {
+            // If we did'nt scope with ft it searches swap in class scope
+            ft::swap(savedValue, *first);
+        }
+        return newPosition;
     }
 
     template <class T, class Alloc>

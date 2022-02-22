@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/22 11:45:35 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:57:43 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -656,6 +656,47 @@ static int testVectorSwap()
     return 0;
 }
 
+static int testVectorInsertSingleElement()
+{
+    {
+        ft::vector<int> vectorOfInt;
+
+        for (int i = 1; i < 100; ++i)
+            vectorOfInt.push_back(i);
+        ft::vector<int>::size_type oldSize = vectorOfInt.size();
+        ft::vector<int>::iterator newPosition = vectorOfInt.insert(
+            vectorOfInt.begin() + 50, 420
+        );
+        ASSERT(oldSize == vectorOfInt.size() - 1);
+
+        ft::vector<int>::const_iterator first = vectorOfInt.begin();
+        for (int i = 1; first != newPosition; ++i, ++first)
+        {
+            ASSERT(*first == i);
+        }
+        ASSERT(*newPosition == 420);
+        ++newPosition;
+        ft::vector<int>::const_iterator last = vectorOfInt.end();
+        for (int i = 51; newPosition != last; ++i, ++newPosition)
+        {
+            std::cout << *newPosition << " : " << i << std::endl;
+            ASSERT(*newPosition == i);
+        }
+    }
+    {
+        ft::vector<int> vectorEmpty;
+        ft::vector<int>::iterator newPosition = vectorEmpty.insert(
+            vectorEmpty.begin(), 420
+        );
+
+        ASSERT(vectorEmpty.size() == 1);
+        ASSERT(vectorEmpty.front() == vectorEmpty.back());
+        ASSERT(vectorEmpty.front() == *newPosition);
+        ASSERT(*newPosition == 420);
+    }
+    return 0;
+}
+
 static int testVectorNonMemberSwap()
 {
     {
@@ -768,6 +809,11 @@ TestSuite *testUnitVector()
     );
     vector->addTest(
         new TestCase("test_vector_non_member_swap", testVectorNonMemberSwap)
+    );
+    vector->addTest(
+        new TestCase(
+            "test_vector_insert_single_element", testVectorInsertSingleElement
+        )
     );
     return vector;
 }
