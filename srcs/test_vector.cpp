@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/22 09:49:43 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/22 10:38:58 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -583,6 +583,39 @@ static int testVectorEraseRange()
     return 0;
 }
 
+# include <iostream>
+
+static int testVectorAssignementOperator()
+{
+    {
+        ft::vector<int> vectorOfInt(100, 42);
+        ft::vector<int> vectorCopy(250, -42);
+
+        ASSERT(vectorCopy.size() != vectorOfInt.size());
+        vectorCopy = vectorOfInt;
+        ASSERT(vectorCopy.capacity() != vectorOfInt.capacity());
+        ASSERT(vectorCopy.size() == vectorOfInt.size());
+        ft::vector<int>::const_iterator first = vectorOfInt.begin();
+        ft::vector<int>::const_iterator last = vectorOfInt.end();
+        ft::vector<int>::const_iterator copied = vectorCopy.begin();
+
+        for (; first != last; ++first, ++copied)
+        {
+            ASSERT(*first == *copied);
+        }
+    }
+    {
+        ft::vector<int> vectorEmpty;
+        ft::vector<int> vectorCopied(100, 42);
+
+        vectorCopied = vectorEmpty;
+        ASSERT(vectorCopied.size() == vectorEmpty.size());
+        ASSERT(vectorCopied.end() == vectorCopied.begin());
+        ASSERT(vectorCopied.capacity() != vectorEmpty.capacity());
+    }
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -646,6 +679,11 @@ TestSuite *testUnitVector()
     );
     vector->addTest(
         new TestCase("test_vector_erase_range", testVectorEraseRange)
+    );
+    vector->addTest(
+        new TestCase(
+            "test_vector_assignement_operator", testVectorAssignementOperator
+        )
     );
     return vector;
 }
