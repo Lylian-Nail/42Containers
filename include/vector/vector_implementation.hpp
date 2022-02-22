@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/22 11:04:53 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/22 11:39:39 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -397,6 +397,16 @@ namespace ft
     vector<T, Alloc>::rend() const
     {
         return reverse_iterator(begin());
+    }
+
+    /*
+     * Non-members function
+    */
+
+    template <class T, class Alloc>
+    void swap(vector<T, Alloc> &first, vector<T, Alloc> &second)
+    {
+        first.swap(second);
     }
 
 };
