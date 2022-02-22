@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/22 10:38:58 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/22 10:47:48 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ static int testVectorRangeCtor()
     ft::vector<int> vector(vectorOfInt.begin(), vectorOfInt.end());
     ft::vector<int>::const_iterator itBegin(vector.begin());
     ft::vector<int>::const_iterator itEnd(vector.end());
+
+    ASSERT(vectorOfInt.size() == vector.size());
+    ASSERT(vectorOfInt.capacity() == vector.capacity());
 
     for (; itBegin != itEnd; itBegin++, first++)
     {

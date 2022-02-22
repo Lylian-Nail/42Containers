@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/22 10:27:18 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/22 10:51:52 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,11 @@ namespace ft
         allocator_type const &alloc
     ):
         m_alloc(alloc),
-        m_size(size),
-        m_capacity(size)
+        m_size(0),
+        m_capacity(0),
+        m_values(NULL)
     {
-        m_values = m_alloc.allocate(m_capacity);
-        for (size_type i(0); i < m_size; ++i)
-            m_alloc.construct(m_values + i, val);
+        this->assign(size, val);
     }
 
     template <class T, class Alloc>
@@ -58,27 +57,22 @@ namespace ft
         InputIterator last,
         allocator_type const &alloc
     ):
-        m_alloc(alloc)
+        m_alloc(alloc),
+        m_size(0),
+        m_capacity(0),
+        m_values(NULL)
     {
-        difference_type size = ft::distance(first, last);
-        m_size = size;
-        m_capacity = size;
-        m_values = m_alloc.allocate(m_capacity);
-        for (size_type i(0); first != last; first++, ++i)
-            m_alloc.construct(m_values + i, *first);
+        this->assign(first, last);
     }
 
     template <class T, class Alloc>
     vector<T, Alloc>::vector(vector const &copy):
         m_alloc(copy.get_allocator()),
-        m_size(copy.size()),
-        m_capacity(copy.capacity())
+        m_size(0),
+        m_capacity(0),
+        m_values(NULL)
     {
-        m_values = m_alloc.allocate(m_capacity);
-        const_iterator first(copy.begin());
-        const_iterator last(copy.end());
-        for (size_type i(0); first != last; first++, i++)
-            m_alloc.construct(m_values + i, *first);
+        *this = copy;
     }
 
     template <class T, class Alloc>
