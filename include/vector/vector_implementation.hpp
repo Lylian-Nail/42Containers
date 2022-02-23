@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/23 09:09:56 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/23 09:35:05 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,12 +304,43 @@ namespace ft
             *trueEnd = trueEnd[size];
         }
 
-        // Insert value in now free space
+        // Insert values in now free space
         iterator lastInsert = newPosition + size;
-        for (; newPosition != lastInsert; ++newPosition)
+        for (; newPosition != lastInsert; ++newPosition, ++m_size)
         {
             m_alloc.construct(&(*newPosition), value);
-            m_size++;
+        }
+    }
+
+    template <class T, class Alloc>
+    template <class InputIterator>
+    void vector<T, Alloc>::insert(
+        iterator position,
+        typename enable_if<
+            !is_integral<InputIterator>::value, InputIterator
+        >::type first,
+        InputIterator last
+    )
+    {
+        size_type const insertedSize = distance(first, last);
+        // Save position index in case of reallocation
+        size_type const positionIndex = distance(this->begin(), position);
+        if (m_size + insertedSize >= m_capacity)
+            this->reserve(m_size + insertedSize);
+        iterator newPosition = this->begin() + positionIndex;
+
+        // Push all values to end
+        reverse_iterator trueEnd = this->rbegin() - insertedSize;
+        for (; trueEnd.base() != newPosition; ++trueEnd)
+        {
+            *trueEnd = trueEnd[insertedSize];
+        }
+
+        // Insert values in now free space
+        iterator lastInsert = newPosition + insertedSize;
+        for (; newPosition != lastInsert; ++first, ++newPosition, ++m_size)
+        {
+            m_alloc.construct(&(*newPosition), *first);
         }
     }
 

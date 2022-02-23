@@ -6,17 +6,18 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/23 09:06:21 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/23 09:39:26 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.hpp"
 #include <memory>
 
+#include <stdexcept>
+
 #ifdef STD
 
 # include <vector>
-# include <iostream>
 namespace ft = std;
 
 #else
@@ -779,6 +780,59 @@ static int testVectorInsertFill()
     return 0;
 }
 
+static int testVectorInsertRange()
+{
+    {
+        ft::vector<int> vectorOfInt;
+        ft::vector<int> insertedVector;
+
+        for (int i = 1; i <= 10; ++i)
+        {
+            vectorOfInt.push_back(i);
+        }
+        for (int i = 11; i <= 20; ++i)
+        {
+            insertedVector.push_back(i);
+        }
+
+        ASSERT(vectorOfInt.size() == 10);
+        vectorOfInt.insert(
+            vectorOfInt.begin() + 4,
+            insertedVector.begin(),
+            insertedVector.end()
+        );
+        ft::vector<int>::const_iterator first = vectorOfInt.begin();
+        ft::vector<int>::const_iterator insertedPosition;
+        insertedPosition = vectorOfInt.begin() + 4;
+        for (int i = 1; first != insertedPosition; ++first, ++i)
+        {
+            ASSERT(i == *first);
+        }
+
+        ft::vector<int>::const_iterator lastInsertedPosition;
+        lastInsertedPosition = insertedPosition + insertedVector.size();
+        for (
+            int i = 11; 
+            insertedPosition != lastInsertedPosition; 
+            ++insertedPosition, ++i
+        )
+        {
+            ASSERT(i == *insertedPosition);
+        }
+
+        ft::vector<int>::const_iterator last = vectorOfInt.end();
+        for (
+            int i = 5;
+            lastInsertedPosition != last;
+            ++lastInsertedPosition, ++i
+        )
+        {
+            // ASSERT(i == *lastInsertedPosition);
+        }
+    }
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -862,6 +916,11 @@ TestSuite *testUnitVector()
     vector->addTest(
         new TestCase(
             "test_vector_insert_fill", testVectorInsertFill
+        )
+    );
+    vector->addTest(
+        new TestCase(
+            "test_vector_insert_range", testVectorInsertRange
         )
     );
     return vector;
