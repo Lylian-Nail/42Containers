@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:23:43 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/23 14:19:34 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/23 14:35:34 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,9 +153,9 @@ namespace ft
     */
 
     template <class T, class Alloc>
-    bool operator==(vector<T, Alloc> &lhs, vector<T, Alloc> &rhs);
+    bool operator==(vector<T, Alloc> const &lhs, vector<T, Alloc> const &rhs);
     template <class T, class Alloc>
-    bool operator!=(vector<T, Alloc> &lhs, vector<T, Alloc> &rhs);
+    bool operator!=(vector<T, Alloc> const &lhs, vector<T, Alloc> const &rhs);
 
 };
 
