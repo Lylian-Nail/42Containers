@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/23 14:23:58 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/23 15:00:59 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -913,6 +913,27 @@ int testVectorDifferenceOperator()
     return 0;
 }
 
+int testVectorLessThanOperator()
+{
+    {
+        ft::vector<int> vectorOfInts;
+
+        for (int i = 0; i < 100; ++i)
+            vectorOfInts.push_back(i);
+        
+        ft::vector<int> vectorOfIntsToo(vectorOfInts);
+        vectorOfIntsToo.back() = vectorOfInts.back() - 1;
+        ASSERT(vectorOfIntsToo < vectorOfInts);
+    }
+    {
+        ft::vector<int> vectorEmpty;
+        ft::vector<int> vectorOfInts(1, 42);
+
+        ASSERT(vectorEmpty < vectorOfInts);
+    }
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -1011,5 +1032,11 @@ TestSuite *testUnitVector()
             "test_vector_difference_operator", testVectorDifferenceOperator
         )
     );
+    vector->addTest(
+        new TestCase(
+            "test_vector_less_than_operator", testVectorLessThanOperator
+        )
+    );
+
     return vector;
 }
