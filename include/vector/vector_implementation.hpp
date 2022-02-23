@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/23 09:06:58 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/23 09:09:56 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,25 +278,10 @@ namespace ft
         value_type const &value
     )
     {
-        // Save index of position in case of reallocation and lose of pointer
+        // Save index position before possible reallocation
         size_type const positionIndex = distance(this->begin(), position);
-
-        if (m_size == m_capacity)
-            this->reserve(m_size + 1);
-
-        iterator newPosition = this->begin() + positionIndex;
-        value_type savedValue = *newPosition;
-        m_alloc.construct(&(*newPosition), value);
-        m_size++;
-
-        const_iterator last = this->end();
-        iterator first = newPosition + 1;
-        for (; first != last; ++first)
-        {
-            // If we did'nt scope with ft it searches swap in class scope
-            ft::swap(savedValue, *first);
-        }
-        return newPosition;
+        this->insert(position, 1, value);
+        return this->begin() + positionIndex;
     }
 
     template <class T, class Alloc>
