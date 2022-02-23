@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/22 14:57:43 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/23 09:06:21 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -679,7 +679,6 @@ static int testVectorInsertSingleElement()
         ft::vector<int>::const_iterator last = vectorOfInt.end();
         for (int i = 51; newPosition != last; ++i, ++newPosition)
         {
-            std::cout << *newPosition << " : " << i << std::endl;
             ASSERT(*newPosition == i);
         }
     }
@@ -730,6 +729,51 @@ static int testVectorNonMemberSwap()
         for (int i = 100; first != last; ++i, ++first)
         {
             ASSERT(i == *first);
+        }
+    }
+    return 0;
+}
+
+static int testVectorInsertFill()
+{
+    {
+        ft::vector<int> vectorOfInt;
+
+        for (int i = 1; i <= 10; ++i)
+        {
+            vectorOfInt.push_back(i);
+        }
+
+        ASSERT(vectorOfInt.size() == 10);
+        ft::vector<int>::iterator insertedPosition = vectorOfInt.begin() + 4;
+        vectorOfInt.insert(
+            insertedPosition,
+            3,
+            42
+        );
+        ASSERT(vectorOfInt.size() == 13);
+
+        insertedPosition = vectorOfInt.begin() + 4;
+        ft::vector<int>::iterator first = vectorOfInt.begin();
+        for (int i = 1; first != insertedPosition; ++first, ++i)
+        {
+            ASSERT(i == *first);
+        }
+
+        ft::vector<int>::iterator lastInsertedPosition = insertedPosition + 3;
+        for (; insertedPosition != lastInsertedPosition; ++insertedPosition)
+        {
+            ASSERT(*insertedPosition == 42);
+        }
+
+        ft::vector<int>::iterator last = vectorOfInt.end();
+        for (
+            int i = 5;
+            lastInsertedPosition != last;
+            ++lastInsertedPosition, ++i
+        )
+        {
+            ASSERT(*lastInsertedPosition == i)
         }
     }
     return 0;
@@ -813,6 +857,11 @@ TestSuite *testUnitVector()
     vector->addTest(
         new TestCase(
             "test_vector_insert_single_element", testVectorInsertSingleElement
+        )
+    );
+    vector->addTest(
+        new TestCase(
+            "test_vector_insert_fill", testVectorInsertFill
         )
     );
     return vector;

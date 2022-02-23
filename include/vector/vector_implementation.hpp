@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/22 14:57:18 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/23 09:06:58 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,6 +297,35 @@ namespace ft
             ft::swap(savedValue, *first);
         }
         return newPosition;
+    }
+
+    template <class T, class Alloc>
+    void vector<T, Alloc>::insert(
+        iterator position,
+        size_type size,
+        value_type const &value
+    )
+    {
+        // Save index position before possible reallocation
+        size_type const positionIndex = distance(this->begin(), position);
+        if (m_size + size >= m_capacity)
+            this->reserve(m_size + size);
+        iterator newPosition = this->begin() + positionIndex;
+
+        // Push all values to the end
+        reverse_iterator trueEnd = this->rbegin() - size;
+        for (; trueEnd.base() != newPosition; ++trueEnd)
+        {
+            *trueEnd = trueEnd[size];
+        }
+
+        // Insert value in now free space
+        iterator lastInsert = newPosition + size;
+        for (; newPosition != lastInsert; ++newPosition)
+        {
+            m_alloc.construct(&(*newPosition), value);
+            m_size++;
+        }
     }
 
     template <class T, class Alloc>
