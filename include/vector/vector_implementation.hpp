@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/23 09:35:05 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/23 14:12:27 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -479,6 +479,18 @@ namespace ft
     void swap(vector<T, Alloc> &first, vector<T, Alloc> &second)
     {
         first.swap(second);
+    }
+
+    /*
+     * Non-members functions comparaison
+    */
+
+    template <class T, class Alloc>
+    bool operator==(vector<T, Alloc> &lhs, vector<T, Alloc> &rhs)
+    {
+        if (lhs.size() != rhs.size())
+            return false;
+        return equal(lhs.begin(), lhs.end(), rhs.begin());
     }
 
 };

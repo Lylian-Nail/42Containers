@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/23 13:59:13 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/23 14:16:50 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -868,6 +868,28 @@ static int testVectorInsertRange()
     return 0;
 }
 
+int testVectorEqualOperator()
+{
+    {
+        ft::vector<int> vectorOfInts;
+
+        for (int i = 0; i < 100; ++i)
+            vectorOfInts.push_back(i);
+
+        ft::vector<int> vectorCopy(vectorOfInts);
+        ASSERT(vectorOfInts == vectorCopy);
+    }
+    {
+        ft::vector<int> vectorEmpty;
+        ft::vector<int> vectorEmptyToo;
+
+        ASSERT(vectorEmpty == vectorEmptyToo);
+        vectorEmpty.push_back(42);
+        ASSERT(!(vectorEmpty == vectorEmptyToo));
+    }
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -957,6 +979,9 @@ TestSuite *testUnitVector()
         new TestCase(
             "test_vector_insert_range", testVectorInsertRange
         )
+    );
+    vector->addTest(
+        new TestCase("test_vector_equal_operator", testVectorEqualOperator)
     );
     return vector;
 }
