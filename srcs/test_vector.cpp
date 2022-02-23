@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/23 15:00:59 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/23 15:07:29 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -934,6 +934,30 @@ int testVectorLessThanOperator()
     return 0;
 }
 
+int testVectorLessThanOrEqualOperator()
+{
+    {
+        ft::vector<int> vectorOfInts;
+
+        for (int i = 0; i < 100; ++i)
+            vectorOfInts.push_back(i);
+
+        ft::vector<int> vectorOfIntsToo(vectorOfInts);
+        ASSERT(vectorOfInts <= vectorOfInts);
+        vectorOfIntsToo.back() = vectorOfIntsToo.back() - 1;
+        ASSERT(vectorOfIntsToo <= vectorOfInts);
+    }
+    {
+        ft::vector<int> vectorEmpty;
+        ft::vector<int> vectorEmptyToo;
+
+        ASSERT(vectorEmpty <= vectorEmptyToo);
+        vectorEmptyToo.push_back(42);
+        ASSERT(vectorEmpty <= vectorEmptyToo);
+    }
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -1035,6 +1059,12 @@ TestSuite *testUnitVector()
     vector->addTest(
         new TestCase(
             "test_vector_less_than_operator", testVectorLessThanOperator
+        )
+    );
+    vector->addTest(
+        new TestCase(
+            "test_vector_less_than_or_equal_operator",
+            testVectorLessThanOrEqualOperator
         )
     );
 

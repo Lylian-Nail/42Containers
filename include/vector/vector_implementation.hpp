@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/23 14:58:11 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/23 15:07:59 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -506,6 +506,12 @@ namespace ft
             lhs.begin(), lhs.end(),
             rhs.begin(), rhs.end()
         );
+    }
+
+    template <class T, class Alloc>
+    bool operator<=(vector<T, Alloc> const &lhs, vector<T, Alloc> const &rhs)
+    {
+        return !(rhs < lhs);
     }
 
 };
