@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:47:20 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/22 12:48:30 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/23 13:55:16 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@
 
 namespace ft
 {
-
-    template <class T>
-    void swap(T &a, T &b)
-    {
-        T c(a);
-        a = b;
-        b = c;
-    }
 
 };
 
