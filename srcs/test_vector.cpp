@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/23 15:12:25 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/23 15:18:43 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -979,6 +979,30 @@ int testVectorGreaterThanOperator()
     return 0;
 }
 
+int testVectorGreaterThanOrEqualOperator()
+{
+    {
+        ft::vector<int> vectorOfInts;
+
+        for (int i = 0; i < 100; ++i)
+            vectorOfInts.push_back(i);
+
+        ft::vector<int> vectorOfIntsToo(vectorOfInts);
+        ASSERT(vectorOfInts >= vectorOfIntsToo);
+        vectorOfInts.back() = vectorOfIntsToo.back() + 1;
+        ASSERT(vectorOfInts >= vectorOfIntsToo);
+    }
+    {
+        ft::vector<int> vectorEmpty;
+        ft::vector<int> vectorEmptyToo;
+
+        ASSERT(vectorEmpty >= vectorEmptyToo);
+        vectorEmpty.push_back(42);
+        ASSERT(vectorEmpty >= vectorEmptyToo);
+    }
+    return 0;
+}
+
 TestSuite *testUnitVector()
 {
     TestSuite *vector = new TestSuite("vector");
@@ -1091,6 +1115,12 @@ TestSuite *testUnitVector()
     vector->addTest(
         new TestCase(
             "test_vector_greater_than_operator", testVectorGreaterThanOperator
+        )
+    );
+    vector->addTest(
+        new TestCase(
+            "test_vector_greater_than_or_equal_operator",
+            testVectorGreaterThanOrEqualOperator
         )
     );
 
