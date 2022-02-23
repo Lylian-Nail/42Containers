@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/23 09:39:26 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/23 13:49:44 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -777,6 +777,19 @@ static int testVectorInsertFill()
             ASSERT(*lastInsertedPosition == i)
         }
     }
+    {
+        ft::vector<int> vectorOfInt;
+
+        vectorOfInt.insert(vectorOfInt.begin(), 10, 42);
+        ASSERT(vectorOfInt.size() == 10);
+
+        ft::vector<int>::const_iterator first = vectorOfInt.begin();
+        ft::vector<int>::const_iterator last = vectorOfInt.end();
+        for (; first != last; ++first)
+        {
+            ASSERT(*first == 42);
+        }
+    }
     return 0;
 }
 
@@ -827,7 +840,29 @@ static int testVectorInsertRange()
             ++lastInsertedPosition, ++i
         )
         {
-            // ASSERT(i == *lastInsertedPosition);
+            ASSERT(i == *lastInsertedPosition);
+        }
+    }
+    {
+        ft::vector<int> vectorEmpty;
+        ft::vector<int> vectorInserted;
+
+        for (int i = 1; i <= 10; ++i)
+        {
+            vectorInserted.push_back(i);
+        }
+
+        vectorEmpty.insert(
+            vectorEmpty.begin(),
+            vectorInserted.begin(),
+            vectorInserted.end()
+        );
+        ASSERT(vectorEmpty.size() == 10);
+        ft::vector<int>::const_iterator first = vectorEmpty.begin();
+        ft::vector<int>::const_iterator last = vectorEmpty.end();
+        for (int i = 1; first != last; ++first, ++i)
+        {
+            ASSERT(*first == i);
         }
     }
     return 0;
