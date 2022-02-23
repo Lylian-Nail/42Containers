@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/23 14:12:27 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/23 14:20:35 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -482,7 +482,7 @@ namespace ft
     }
 
     /*
-     * Non-members functions comparaison
+     * Non-members functions relationnal operators
     */
 
     template <class T, class Alloc>
@@ -491,6 +491,12 @@ namespace ft
         if (lhs.size() != rhs.size())
             return false;
         return equal(lhs.begin(), lhs.end(), rhs.begin());
+    }
+
+    template <class T, class Alloc>
+    bool operator!=(vector<T, Alloc> &lhs, vector<T, Alloc> &rhs)
+    {
+        return !(lhs == rhs);
     }
 
 };
