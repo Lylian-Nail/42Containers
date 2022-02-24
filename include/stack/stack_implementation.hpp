@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:37:48 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/24 10:59:15 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/24 11:08:27 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ namespace ft
     template <class T, class Container>
     stack<T, Container>::~stack()
     {
+    }
+
+    /*
+     * Getters
+    */
+
+    template <class T, class Container>
+    typename stack<T, Container>::size_type stack<T, Container>::size() const
+    {
+        return m_container.size();
     }
 
 };

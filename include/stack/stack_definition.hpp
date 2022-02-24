@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:41:08 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/24 10:58:55 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/24 11:10:10 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ namespace ft
 
         explicit stack(container_type const &container = container_type());
         ~stack();
+
+        /*
+         * Getters
+        */
+
+        size_type size() const;
+        
 
     private:
         container_type const    m_container;
