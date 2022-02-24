@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:43:48 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/24 13:05:45 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/24 13:11:05 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,26 @@ int testStackDifferenceOperator()
     return 0;
 }
 
+int testStackLessThanOperator()
+{
+    {
+        ft::stack<int> emptyStack;
+        ft::stack<int> emptyStackToo;
+
+        emptyStackToo.push(24);
+        ASSERT(emptyStack < emptyStackToo);
+    }
+    {
+        ft::vector<int> vectorOfInts(24, 42);
+        ft::stack<int, ft::vector<int> > stackOfInts(vectorOfInts);
+        ft::stack<int, ft::vector<int> > stackOfIntsToo(vectorOfInts);
+        stackOfInts.top() = stackOfIntsToo.top() - 1;
+
+        ASSERT(stackOfInts < stackOfIntsToo);
+    }
+    return 0;
+}
+
 TestSuite *testUnitStack()
 {
     TestSuite *stack = new TestSuite("stack");
@@ -206,6 +226,11 @@ TestSuite *testUnitStack()
     stack->addTest(
         new TestCase(
             "test_stack_difference_operator", testStackDifferenceOperator
+        )
+    );
+    stack->addTest(
+        new TestCase(
+            "test_stack_less_than_operator", testStackLessThanOperator
         )
     );
 
