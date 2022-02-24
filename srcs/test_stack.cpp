@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:43:48 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/24 13:22:15 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/24 13:26:24 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,35 @@ int testStackGreaterThanOperator()
     return 0;
 }
 
+int testStackGreaterThanOrEqualOperator()
+{
+    {
+        ft::stack<int> emptyStack;
+        ft::stack<int> emptyStackToo;
+
+        emptyStack.push(24);
+        ASSERT(emptyStack > emptyStackToo);
+    }
+    {
+        ft::vector<int> vectorOfInts(24, 42);
+        ft::stack<int, ft::vector<int> > stackOfInts(vectorOfInts);
+        ft::stack<int, ft::vector<int> > stackOfIntsToo(vectorOfInts);
+        stackOfInts.top() = stackOfIntsToo.top() + 1;
+
+        ASSERT(stackOfInts > stackOfIntsToo);
+    }
+    {
+        ft::stack<int> stackEmpty;
+        ft::stack<int> stackEmptyToo;
+
+        ASSERT(stackEmpty >= stackEmptyToo);
+        stackEmpty.push(24);
+        stackEmptyToo.push(24);
+        ASSERT(stackEmpty >= stackEmptyToo);
+    }
+    return 0;
+}
+
 TestSuite *testUnitStack()
 {
     TestSuite *stack = new TestSuite("stack");
@@ -291,6 +320,12 @@ TestSuite *testUnitStack()
     stack->addTest(
         new TestCase(
             "test_stack_greater_than_operator", testStackGreaterThanOperator
+        )
+    );
+    stack->addTest(
+        new TestCase(
+            "test_stack_greater_than_or_equal_operator",
+            testStackGreaterThanOrEqualOperator
         )
     );
 
