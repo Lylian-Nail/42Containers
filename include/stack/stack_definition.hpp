@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:41:08 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/24 11:22:50 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/24 11:25:30 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ namespace ft
         */
 
         value_type &top();
+        void push(value_type const &value);
 
     private:
         container_type m_container;
