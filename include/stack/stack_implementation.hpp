@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:37:48 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/24 13:13:20 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/24 13:21:09 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,14 @@ namespace ft
     )
     {
         return lhs.m_container <= rhs.m_container;
+    }
+
+    template <class T1, class Container1>
+    bool operator>(
+        stack<T1, Container1> const &lhs, stack<T1, Container1> const &rhs
+    )
+    {
+        return lhs.m_container > rhs.m_container;
     }
 
 };
