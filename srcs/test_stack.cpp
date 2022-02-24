@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:43:48 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/24 11:08:17 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/24 11:15:01 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,22 @@ static int testStackSize()
     return 0;
 }
 
+static int testStackEmpty()
+{
+    {
+        ft::stack<int> emptyStack;
+
+        ASSERT(emptyStack.empty());
+    }
+    {
+        ft::vector<int> vectorOfInts(10000, 42);
+        ft::stack<int, ft::vector<int> > stackOfInts(vectorOfInts);
+
+        ASSERT(!stackOfInts.empty());
+    }
+    return 0;
+}
+
 TestSuite *testUnitStack()
 {
     TestSuite *stack = new TestSuite("stack");
@@ -66,6 +82,9 @@ TestSuite *testUnitStack()
     );
     stack->addTest(
         new TestCase("test_stack_size", testStackSize)
+    );
+    stack->addTest(
+        new TestCase("test_stack_empty", testStackEmpty)
     );
 
     return stack;

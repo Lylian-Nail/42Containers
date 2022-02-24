@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:41:08 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/24 11:10:10 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/24 11:13:06 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ namespace ft
         */
 
         size_type size() const;
-        
+        bool empty() const;
 
     private:
         container_type const    m_container;
