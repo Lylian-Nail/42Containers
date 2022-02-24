@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   stack.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/24 10:44:07 by lperson-         ###   ########.fr       */
+/*   Created: 2022/02/23 15:28:07 by lperson-          #+#    #+#             */
+/*   Updated: 2022/02/24 10:38:27 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.hpp"
+#ifndef STACK_HPP
 
-int main()
-{
-    TestSuite containers("ft_containers");
+# define STACK_HPP
 
-    containers.addTest(testUnitIterator());
-    containers.addTest(testUnitTypeTraits());
-    containers.addTest(testUnitVector());
-    containers.addTest(testUnitStack());
+# include "stack/stack_definition.hpp"
+# include "stack/stack_implementation.hpp"
 
-    return containers.run();
-}
+#endif
