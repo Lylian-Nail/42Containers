@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:41:08 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/24 12:33:22 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/24 13:01:04 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,15 @@ namespace ft
         value_type &top();
         void push(value_type const &value);
         void pop();
+
+        /*
+        * Non-members relationnal operators
+        */
+
+        template <class T1, class Container1>
+        friend bool operator==(
+            stack<T1, Container1> const &lhs, stack<T1, Container1> const &rhs
+        );
 
     private:
         container_type m_container;
