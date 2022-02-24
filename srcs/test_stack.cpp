@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:43:48 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/24 11:30:34 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/24 12:38:18 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,30 @@ static int testStackPush()
     return 0;
 }
 
+static int testStackPop()
+{
+    {
+        ft::stack<int> stackEmpty;
+
+        stackEmpty.push(23);
+        ASSERT(!stackEmpty.empty());
+        stackEmpty.pop();
+        ASSERT(stackEmpty.empty());
+    }
+    {
+        ft::vector<int> vectorOfInts(24, 42);
+        vectorOfInts.back() = 24;
+        ft::stack<int, ft::vector<int> > stackOfInts(vectorOfInts);
+
+        ASSERT(stackOfInts.top() == 24);
+        ASSERT(stackOfInts.size() == vectorOfInts.size());
+        stackOfInts.pop();
+        ASSERT(stackOfInts.top() == 42);
+        ASSERT(stackOfInts.size() == vectorOfInts.size() - 1);
+    }
+    return 0;
+}
+
 TestSuite *testUnitStack()
 {
     TestSuite *stack = new TestSuite("stack");
@@ -134,6 +158,9 @@ TestSuite *testUnitStack()
     );
     stack->addTest(
         new TestCase("test_stack_push", testStackPush)
+    );
+    stack->addTest(
+        new TestCase("test_stack_pop", testStackPop)
     );
 
     return stack;

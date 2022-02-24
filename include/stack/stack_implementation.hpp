@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:37:48 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/24 11:30:09 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/24 12:33:54 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@ namespace ft
     void stack<T, Container>::push(value_type const &value)
     {
         m_container.push_back(value);
+    }
+
+    template <class T, class Container>
+    void stack<T, Container>::pop()
+    {
+        m_container.pop_back();
     }
 
 };
