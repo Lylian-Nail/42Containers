@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:43:48 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/24 11:15:01 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/24 11:22:35 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,26 @@ static int testStackEmpty()
     return 0;
 }
 
+static int testStackTop()
+{
+    {
+        ft::vector<int> vectorOfInts(10, 42);
+        vectorOfInts.back() = 24;
+        ft::stack<int, ft::vector<int> > stackOfInts(vectorOfInts);
+
+        ASSERT(stackOfInts.top() == 24);
+        stackOfInts.top() = 42;
+        ASSERT(stackOfInts.top() == 42);
+    }
+    {
+        ft::vector<int> const vectorOfInts(10, 42);
+        ft::stack<int, ft::vector<int> > const stackOfInts(vectorOfInts);
+
+        ASSERT(stackOfInts.top() == 42);
+    }
+    return 0;
+}
+
 TestSuite *testUnitStack()
 {
     TestSuite *stack = new TestSuite("stack");
@@ -85,6 +105,9 @@ TestSuite *testUnitStack()
     );
     stack->addTest(
         new TestCase("test_stack_empty", testStackEmpty)
+    );
+    stack->addTest(
+        new TestCase("test_stack_top", testStackTop)
     );
 
     return stack;
