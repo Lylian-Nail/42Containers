@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   BinaryTree.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/28 11:25:09 by lperson-         ###   ########.fr       */
+/*   Created: 2022/02/28 09:53:01 by lperson-          #+#    #+#             */
+/*   Updated: 2022/02/28 11:22:37 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.hpp"
-#include <stack>
+#ifndef BINARY_TREE_HPP
 
-int main()
-{
-    TestSuite containers("ft_containers");
+# define BINARY_TREE_HPP
 
-    containers.addTest(testUnitIterator());
-    containers.addTest(testUnitTypeTraits());
-    containers.addTest(testUnitVector());
-    containers.addTest(testUnitStack());
-    containers.addTest(testUnitBinaryTree());
+# include "BinaryTree_definition.hpp"
+# include "BinaryTree_implementation.hpp"
 
-    return containers.run();
-}
+#endif

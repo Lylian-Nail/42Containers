@@ -6,7 +6,7 @@
 #    By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/09 19:59:42 by lperson-          #+#    #+#              #
-#    Updated: 2022/02/24 13:16:35 by lperson-         ###   ########.fr        #
+#    Updated: 2022/02/28 11:10:27 by lperson-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ TestSuite.cpp \
 test_iterator.cpp \
 test_type_traits.cpp \
 test_vector.cpp \
-test_stack.cpp
+test_stack.cpp \
+test_binary_tree.cpp
 OBJS = ${addprefix ${PATHB}/, ${SRCS:.cpp=.o}}
 OBJS_STD = ${addprefix ${PATHB}/, ${SRCS:.cpp=_std.o}}
 DFILES = ${addprefix ${PATHD}/, ${SRCS:.cpp=.d}}
