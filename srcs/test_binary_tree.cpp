@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/28 11:50:45 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/28 11:58:26 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,29 @@ static int testBinaryTreeNodeCopyConstructor()
     return 0;
 }
 
+static int testBinaryTreeNodeAssignementOperator()
+{
+    {
+        ft::BinaryTreeNode<int> intNode(42);
+        ft::BinaryTreeNode<int> intNodeCopy(intNode);
+
+        ASSERT(intNodeCopy.getData() == intNode.getData());
+        ASSERT(intNodeCopy.getParent() == intNode.getParent());
+        ASSERT(intNodeCopy.getLeftChild() == intNode.getLeftChild());
+        ASSERT(intNodeCopy.getRightChild() == intNode.getRightChild());
+    }
+    {
+        ft::BinaryTreeNode<int> const intNode(42);
+        ft::BinaryTreeNode<int> const intNodeCopy(intNode);
+
+        ASSERT(intNodeCopy.getData() == intNode.getData());
+        ASSERT(intNodeCopy.getParent() == intNode.getParent());
+        ASSERT(intNodeCopy.getLeftChild() == intNode.getLeftChild());
+        ASSERT(intNodeCopy.getRightChild() == intNode.getRightChild());
+    }
+    return 0;
+}
+
 TestSuite *testUnitBinaryTree()
 {
     TestSuite *binaryTree = new TestSuite("binary tree");
@@ -82,6 +105,12 @@ TestSuite *testUnitBinaryTree()
         new TestCase(
             "test binary tree node copy constructor",
             testBinaryTreeNodeCopyConstructor
+        )
+    );
+    binaryTree->addTest(
+        new TestCase(
+            "test binary tree node assignement operator",
+            testBinaryTreeNodeAssignementOperator
         )
     );
 

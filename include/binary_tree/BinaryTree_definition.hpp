@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/28 11:49:36 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/28 11:54:01 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,11 @@ namespace ft
         pointer         getLeftChild() const;
         pointer         getRightChild() const;
 
-        // BinaryTreeNode &operator=(BinaryTreeNode const &rhs);
+        /*
+         * Assignement
+        */
+
+        BinaryTreeNode &operator=(BinaryTreeNode const &rhs);
 
     private:
         value_type      m_data;

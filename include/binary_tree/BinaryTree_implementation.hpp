@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/28 11:50:07 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/28 11:55:47 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,23 @@ namespace ft
     BinaryTreeNode<T>::getRightChild() const
     {
         return m_rightChild;
+    }
+
+    /*
+     * Assignement
+    */
+
+    template <class T>
+    BinaryTreeNode<T> &BinaryTreeNode<T>::operator=(BinaryTreeNode const &rhs)
+    {
+        if (this != &rhs)
+        {
+            m_data = rhs.getData();
+            m_parent = rhs.getParent();
+            m_leftChild = rhs.getLeftChild();
+            m_rightChild = rhs.getRightChild();
+        }
+        return *this;
     }
 
 }
