@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/28 11:58:26 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/28 13:58:44 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static int testBinaryTreeNodeConstructor()
 {
     {
-        ft::BinaryTreeNode<int> intNode(42);
+        ft::BinaryTree<int>::Node intNode(42);
 
         ASSERT(intNode.getData() == 42);
         ASSERT(intNode.getParent() == NULL);
@@ -24,7 +24,7 @@ static int testBinaryTreeNodeConstructor()
         ASSERT(intNode.getRightChild() == NULL);
     }
     {
-        ft::BinaryTreeNode<std::string> stringNode("Hello, World");
+        ft::BinaryTree<std::string>::Node stringNode("Hello, World");
 
         ASSERT(stringNode.getData().compare("Hello, World") == 0);
         ASSERT(stringNode.getParent() == NULL);
@@ -37,8 +37,8 @@ static int testBinaryTreeNodeConstructor()
 static int testBinaryTreeNodeCopyConstructor()
 {
     {
-        ft::BinaryTreeNode<int> intNode(42);
-        ft::BinaryTreeNode<int> intNodeCopy(intNode);
+        ft::BinaryTree<int>::Node intNode(42);
+        ft::BinaryTree<int>::Node intNodeCopy(intNode);
 
         ASSERT(intNodeCopy.getData() == intNode.getData());
         ASSERT(intNodeCopy.getParent() == intNode.getParent());
@@ -46,8 +46,8 @@ static int testBinaryTreeNodeCopyConstructor()
         ASSERT(intNodeCopy.getRightChild() == intNode.getRightChild());
     }
     {
-        ft::BinaryTreeNode<std::string> stringNodeEmpty;
-        ft::BinaryTreeNode<std::string> stringNodeCopy(stringNodeEmpty);
+        ft::BinaryTree<std::string>::Node stringNodeEmpty;
+        ft::BinaryTree<std::string>::Node stringNodeCopy(stringNodeEmpty);
 
         ASSERT(stringNodeEmpty.getData() == stringNodeCopy.getData());
         ASSERT(stringNodeEmpty.getParent() == stringNodeCopy.getParent());
@@ -57,8 +57,8 @@ static int testBinaryTreeNodeCopyConstructor()
         );
     }
     {
-        ft::BinaryTreeNode<int> const intNode(42);
-        ft::BinaryTreeNode<int> const intNodeCopy(intNode);
+        ft::BinaryTree<int>::Node const intNode(42);
+        ft::BinaryTree<int>::Node const intNodeCopy(intNode);
 
         ASSERT(intNodeCopy.getData() == intNode.getData());
         ASSERT(intNodeCopy.getParent() == intNode.getParent());
@@ -71,8 +71,8 @@ static int testBinaryTreeNodeCopyConstructor()
 static int testBinaryTreeNodeAssignementOperator()
 {
     {
-        ft::BinaryTreeNode<int> intNode(42);
-        ft::BinaryTreeNode<int> intNodeCopy(intNode);
+        ft::BinaryTree<int>::Node intNode(42);
+        ft::BinaryTree<int>::Node intNodeCopy(intNode);
 
         ASSERT(intNodeCopy.getData() == intNode.getData());
         ASSERT(intNodeCopy.getParent() == intNode.getParent());
@@ -80,8 +80,8 @@ static int testBinaryTreeNodeAssignementOperator()
         ASSERT(intNodeCopy.getRightChild() == intNode.getRightChild());
     }
     {
-        ft::BinaryTreeNode<int> const intNode(42);
-        ft::BinaryTreeNode<int> const intNodeCopy(intNode);
+        ft::BinaryTree<int>::Node const intNode(42);
+        ft::BinaryTree<int>::Node const intNodeCopy(intNode);
 
         ASSERT(intNodeCopy.getData() == intNode.getData());
         ASSERT(intNodeCopy.getParent() == intNode.getParent());

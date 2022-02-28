@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/28 11:55:47 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:16:17 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ namespace ft
      * Constructors and destructors
     */
 
-    template <class T>
-    BinaryTreeNode<T>::BinaryTreeNode():
+    template <class T, class Compare, class Alloc>
+    BinaryTree<T, Compare, Alloc>::Node::Node():
         m_data(),
         m_parent(NULL),
         m_leftChild(NULL),
@@ -29,8 +29,8 @@ namespace ft
     {
     }
 
-    template <class T>
-    BinaryTreeNode<T>::BinaryTreeNode(const_reference data):
+    template <class T, class Compare, class Alloc>
+    BinaryTree<T, Compare, Alloc>::Node::Node(const_reference data):
         m_data(data),
         m_parent(NULL),
         m_leftChild(NULL),
@@ -38,8 +38,8 @@ namespace ft
     {
     }
 
-    template <class T>
-    BinaryTreeNode<T>::BinaryTreeNode(BinaryTreeNode const &copy):
+    template <class T, class Compare, class Alloc>
+    BinaryTree<T, Compare, Alloc>::Node::Node(Node const &copy):
         m_data(copy.getData()),
         m_parent(copy.getParent()),
         m_leftChild(copy.getLeftChild()),
@@ -47,8 +47,8 @@ namespace ft
     {
     }
 
-    template <class T>
-    BinaryTreeNode<T>::~BinaryTreeNode()
+    template <class T, class Compare, class Alloc>
+    BinaryTree<T, Compare, Alloc>::Node::~Node()
     {
     }
 
@@ -56,30 +56,30 @@ namespace ft
      * Getters
     */
 
-    template <class T>
-    typename BinaryTreeNode<T>::const_reference
-    BinaryTreeNode<T>::getData()const
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::const_reference
+    BinaryTree<T, Compare, Alloc>::Node::getData() const
     {
         return m_data;
     }
 
-    template <class T>
-    typename BinaryTreeNode<T>::pointer
-    BinaryTreeNode<T>::getParent() const
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::pointer
+    BinaryTree<T, Compare, Alloc>::Node::getParent() const
     {
         return m_parent;
     }
 
-    template <class T>
-    typename BinaryTreeNode<T>::pointer
-    BinaryTreeNode<T>::getLeftChild() const
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::pointer
+    BinaryTree<T, Compare, Alloc>::Node::getLeftChild() const
     {
         return m_leftChild;
     }
 
-    template <class T>
-    typename BinaryTreeNode<T>::pointer
-    BinaryTreeNode<T>::getRightChild() const
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::pointer
+    BinaryTree<T, Compare, Alloc>::Node::getRightChild() const
     {
         return m_rightChild;
     }
@@ -88,8 +88,9 @@ namespace ft
      * Assignement
     */
 
-    template <class T>
-    BinaryTreeNode<T> &BinaryTreeNode<T>::operator=(BinaryTreeNode const &rhs)
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::Node &
+    BinaryTree<T, Compare, Alloc>::Node::operator=(Node const &rhs)
     {
         if (this != &rhs)
         {

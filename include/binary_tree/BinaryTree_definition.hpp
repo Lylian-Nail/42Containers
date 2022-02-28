@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/28 11:54:01 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:11:21 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,59 +20,71 @@
 namespace ft
 {
 
-    /*
-     * Create Binary Tree Node class
-     * that contains data and pointer to parent, left child and right child.
-     * 
-     * A node can be inserted in a tree,
-     * it can be also a root or a leaf.
-     * 
-     * Node have to be allocated with correct allocator.
-    */
-
-    template <class T>
-    class BinaryTreeNode
+    template <
+        class T,
+        class Compare = std::less<T>,
+        class Alloc = std::allocator<T>
+    >
+    class BinaryTree
     {
     public:
         /*
-         * Template aliases
+        * Template aliases
         */
-
+        
         typedef T                                           value_type;
-        typedef T &                                         reference;
-        typedef T const &                                   const_reference;
-        typedef T *                                         pointer;
-        typedef T const *                                   const_pointer;
+        typedef Compare                                     value_compare;
+        typedef Alloc                                       allocator_type;
+        typedef typename allocator_type::reference          reference;
+        typedef typename allocator_type::const_reference    const_reference;
+        typedef typename allocator_type::pointer            pointer;
+        typedef typename allocator_type::const_pointer      const_pointer;
+        typedef size_t                                      size_type;
 
         /*
-         * Constructors and destructors
+        * Create Binary Tree Node class
+        * that contains data and pointer to parent, left child and right child.
+        *
+        * A node can be inserted in a tree,
+        * it can be also a root or a leaf.
+        * 
+        * Node have to be allocated with correct allocator.
         */
 
-        BinaryTreeNode();
-        explicit BinaryTreeNode(const_reference data);
-        BinaryTreeNode(BinaryTreeNode const &copy);
-        ~BinaryTreeNode();
+        class Node
+        {
+        public:
+            /*
+            * Constructors and destructors
+            */
 
-        /*
-         * Getters
-        */
+            Node();
+            explicit Node(const_reference data);
+            Node(Node const &copy);
+            ~Node();
 
-        const_reference getData() const;
-        pointer         getParent() const;
-        pointer         getLeftChild() const;
-        pointer         getRightChild() const;
+            /*
+            * Getters
+            */
 
-        /*
-         * Assignement
-        */
+            const_reference getData() const;
+            pointer         getParent() const;
+            pointer         getLeftChild() const;
+            pointer         getRightChild() const;
 
-        BinaryTreeNode &operator=(BinaryTreeNode const &rhs);
+            /*
+            * Assignement
+            */
 
-    private:
-        value_type      m_data;
-        pointer         m_parent;
-        pointer         m_leftChild;
-        pointer         m_rightChild;
+            Node &operator=(Node const &rhs);
+
+        private:
+            value_type      m_data;
+            pointer         m_parent;
+            pointer         m_leftChild;
+            pointer         m_rightChild;
+
+        };
 
     };
 
