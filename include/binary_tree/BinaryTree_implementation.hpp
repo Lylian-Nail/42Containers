@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/28 14:16:17 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:28:43 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,62 @@
 
 namespace ft
 {
+
     /*
-     * Constructors and destructors
+     * Constructors and destructor
+    */
+
+    // template <class T, class Compare, class Alloc>
+    // BinaryTree<T, Compare, Alloc>::BinaryTree():
+    //     m_root(NULL),
+    //     m_size(0),
+    //     m_compare(),
+    //     m_allocator()
+    // {
+    // }
+
+    template <class T, class Compare, class Alloc>
+    BinaryTree<T, Compare, Alloc>::BinaryTree(
+        value_compare const &compare,
+        allocator_type const &allocator
+    ):
+        m_root(NULL),
+        m_size(0),
+        m_compare(compare),
+        m_allocator(allocator)
+    {
+    }
+
+    template <class T, class Compare, class Alloc>
+    BinaryTree<T, Compare, Alloc>::~BinaryTree()
+    {
+        // TODO: use iterators to clean allocated resources
+    }
+
+    /*
+     * Getters
+    */
+
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::value_compare
+    BinaryTree<T, Compare, Alloc>::value_comp() const
+    {
+        return m_compare;
+    }
+
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::allocator_type
+    BinaryTree<T, Compare, Alloc>::get_allocator() const
+    {
+        return m_allocator;
+    }
+
+    /*
+     * Implemention of Node class
+    */
+
+    /*
+     * Constructors and destructor
     */
 
     template <class T, class Compare, class Alloc>

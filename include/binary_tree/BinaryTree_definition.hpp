@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/28 14:11:21 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:28:36 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 namespace ft
 {
 
+    /*
+     * The binary tree class
+     * A simple and naive binary tree class
+    */
+
     template <
         class T,
         class Compare = std::less<T>,
@@ -31,7 +36,7 @@ namespace ft
         /*
         * Template aliases
         */
-        
+
         typedef T                                           value_type;
         typedef Compare                                     value_compare;
         typedef Alloc                                       allocator_type;
@@ -40,6 +45,23 @@ namespace ft
         typedef typename allocator_type::pointer            pointer;
         typedef typename allocator_type::const_pointer      const_pointer;
         typedef size_t                                      size_type;
+
+        /*
+         * Constructors and destructors
+        */
+
+        explicit BinaryTree(
+            value_compare const &compare = value_compare(),
+            allocator_type const &allocator = allocator_type()
+        );
+        ~BinaryTree();
+
+        /*
+         * Getters
+        */
+
+        value_compare value_comp() const;
+        allocator_type get_allocator() const;
 
         /*
         * Create Binary Tree Node class
@@ -85,6 +107,12 @@ namespace ft
             pointer         m_rightChild;
 
         };
+
+    private:
+        Node            *m_root;
+        size_type       m_size;
+        value_compare   m_compare;
+        allocator_type  m_allocator;
 
     };
 
