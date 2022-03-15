@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/15 11:53:28 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:52:37 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,36 +34,22 @@ namespace ft
     class BinaryTree
     {
     public:
+
         /*
-        * Template aliases
+        * Template base public aliases
         */
 
+    public:
         typedef T                                           value_type;
         typedef Compare                                     value_compare;
         typedef Alloc                                       allocator_type;
         typedef typename allocator_type::reference          reference;
         typedef typename allocator_type::const_reference    const_reference;
         typedef typename allocator_type::pointer            pointer;
-        typedef typename allocator_type::const_pointer      const_pointer;
         typedef size_t                                      size_type;
+        typedef typename allocator_type::const_pointer      const_pointer;
 
-        /*
-         * Constructors and destructors
-        */
-
-        explicit BinaryTree(
-            value_compare const &compare = value_compare(),
-            allocator_type const &allocator = allocator_type()
-        );
-        ~BinaryTree();
-
-        /*
-         * Getters
-        */
-
-        value_compare value_comp() const;
-        allocator_type get_allocator() const;
-
+    private:
         /*
         * Create Binary Tree Node class
         * that contains data and pointer to parent, left child and right child.
@@ -106,11 +92,23 @@ namespace ft
             pointer         m_parent;
             pointer         m_leftChild;
             pointer         m_rightChild;
-
         };
 
         /*
-         * Create an iterator for binary tree class
+         * Template node allocation private aliases
+        */
+
+        typedef typename allocator_type::rebind<Node>::other
+                                        node_allocator_type;
+        typedef typename node_allocator_type::value_type         node_type;
+        typedef typename node_allocator_type::pointer            node_pointer;
+        typedef typename node_allocator_type::const_pointer      node_const_pointer;
+        typedef typename node_allocator_type::reference          node_reference;
+        typedef typename node_allocator_type::const_reference
+                                        node_const_reference;
+
+        /*
+         * Create a bidirectionnal iterator for binary tree class
         */
 
         template <class Node>
@@ -172,11 +170,48 @@ namespace ft
             void decrement();
         };
 
+    /*
+     * Template public alias for iterator
+    */
+
+    public:
+        typedef in_order_iterator<node_pointer>             iterator;
+        typedef in_order_iterator<node_const_pointer>       const_iterator;
+
+        /*
+         * Constructors and destructors
+        */
+
+        explicit BinaryTree(
+            value_compare const &compare = value_compare(),
+            allocator_type const &allocator = allocator_type()
+        );
+        ~BinaryTree();
+
+        /*
+         * Getters
+        */
+
+        value_compare value_comp() const;
+        allocator_type get_allocator() const;
+
+        /*
+         * Iterators
+        */
+
+        iterator begin();
+        const_iterator begin() const;
+
+        iterator end();
+        const_iterator end() const;
+
     private:
-        Node            *m_root;
-        size_type       m_size;
-        value_compare   m_compare;
-        allocator_type  m_allocator;
+        node_pointer        m_superRoot;
+        node_pointer        m_root;
+        size_type           m_size;
+        value_compare       m_compare;
+        allocator_type      m_allocator;
+        node_allocator_type m_node_allocator;
 
     };
 

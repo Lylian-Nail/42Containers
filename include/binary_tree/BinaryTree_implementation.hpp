@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/15 11:54:51 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:50:26 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ namespace ft
         m_root(NULL),
         m_size(0),
         m_compare(compare),
-        m_allocator(allocator)
+        m_allocator(allocator),
+        m_node_allocator(allocator)
     {
+        m_superRoot = m_node_allocator.allocate(sizeof(node_type));
     }
 
     template <class T, class Compare, class Alloc>
@@ -54,6 +56,44 @@ namespace ft
     BinaryTree<T, Compare, Alloc>::get_allocator() const
     {
         return m_allocator;
+    }
+
+    /*
+     * Iterator
+    */
+
+   template <class T, class Compare, class Alloc>
+   typename BinaryTree<T, Compare, Alloc>::iterator
+   BinaryTree<T, Compare, Alloc>::begin()
+    {
+        node_pointer first = m_superRoot;
+        while (first->leftChild)
+            first = first->leftChild;
+        return iterator(first);
+    }
+
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::const_iterator
+    BinaryTree<T, Compare, Alloc>::begin() const
+    {
+        node_pointer first = m_superRoot;
+        while (first->leftChild)
+            first = first->leftChild;
+        return const_iterator(first);
+    }
+
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::iterator
+    BinaryTree<T, Compare, Alloc>::end()
+    {
+        return iterator(m_superRoot);
+    }
+
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::const_iterator
+    BinaryTree<T, Compare, Alloc>::end() const
+    {
+        return const_iterator(m_superRoot);
     }
 
     /*
