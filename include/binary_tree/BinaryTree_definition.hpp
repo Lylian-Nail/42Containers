@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/28 16:28:36 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/15 11:53:28 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 # include <memory>
 # include <functional>
+# include "iterator.hpp"
 
 namespace ft
 {
@@ -108,6 +109,69 @@ namespace ft
 
         };
 
+        /*
+         * Create an iterator for binary tree class
+        */
+
+        template <class Node>
+        class in_order_iterator : public iterator<
+            std::bidirectional_iterator_tag,
+            typename iterator_traits<Node>::value_type,
+            typename iterator_traits<Node>::difference_type,
+            typename iterator_traits<Node>::pointer,
+            typename iterator_traits<Node>::reference
+        >
+        {
+        public:
+            typedef typename std::bidirectional_iterator_tag
+                                                    iterator_category;
+            typedef typename iterator_traits<Node>::value_type
+                                                    value_type;
+            typedef typename iterator_traits<Node>::difference_type
+                                                    difference_type;
+            typedef typename iterator_traits<Node>::pointer
+                                                    pointer;
+            typedef typename iterator_traits<Node>::reference
+                                                    reference;
+
+            in_order_iterator();
+            in_order_iterator(Node const &node);
+            template <class Pointer>
+            in_order_iterator(in_order_iterator<Pointer> const &copy);
+            ~in_order_iterator();
+
+            in_order_iterator &operator=(in_order_iterator const &rhs);
+
+            /*
+             * Getter
+            */
+
+            Node base() const;
+
+            /*
+             * Forward iterator spec
+            */
+
+            reference operator*() const;
+            pointer operator->() const;
+
+            in_order_iterator &operator++();
+            in_order_iterator operator++(int);
+
+            /*
+             * Bidirectional iterator spec
+            */
+
+            in_order_iterator &operator--();
+            in_order_iterator operator--(int);
+
+        private:
+            Node    m_node;
+
+            void increment();
+            void decrement();
+        };
+
     private:
         Node            *m_root;
         size_type       m_size;
@@ -116,6 +180,29 @@ namespace ft
 
     };
 
-}
+    template <class T, class Compare, class Alloc, class Node>
+    bool operator==(
+        typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node> it0,
+        typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node> it1
+    );
 
+    template <class T, class Compare, class Alloc, class Node0, class Node1>
+    bool operator==(
+        typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node0> it0,
+        typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node1> it1
+    );
+
+    template <class T, class Compare, class Alloc, class Node>
+    bool operator!=(
+        typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node> it0,
+        typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node> it1
+    );
+
+    template <class T, class Compare, class Alloc, class Node0, class Node1>
+    bool operator!=(
+        typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node0> it0,
+        typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node1> it1
+    );
+
+}
 #endif
