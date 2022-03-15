@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/28 16:28:43 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/15 09:59:21 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,6 @@ namespace ft
     /*
      * Constructors and destructor
     */
-
-    // template <class T, class Compare, class Alloc>
-    // BinaryTree<T, Compare, Alloc>::BinaryTree():
-    //     m_root(NULL),
-    //     m_size(0),
-    //     m_compare(),
-    //     m_allocator()
-    // {
-    // }
 
     template <class T, class Compare, class Alloc>
     BinaryTree<T, Compare, Alloc>::BinaryTree(
