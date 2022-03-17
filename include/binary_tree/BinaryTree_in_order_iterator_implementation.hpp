@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:30:13 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/15 16:23:46 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/17 13:09:59 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ namespace ft
             // We reach end of left branch of right child
             m_node = m_node->m_rightChild;
             while (m_node->m_leftChild)
-                m_node = m_node.m_leftChild;
+                m_node = m_node->m_leftChild;
         }
         else
         {
