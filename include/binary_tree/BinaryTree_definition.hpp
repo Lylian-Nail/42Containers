@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/28 16:28:36 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/15 16:12:27 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,37 @@ namespace ft
     >
     class BinaryTree
     {
+    private:
+        class Node;
+        template <class Node>
+        class in_order_iterator;
+
     public:
         /*
-        * Template aliases
+        * Template base public aliases
         */
-
         typedef T                                           value_type;
         typedef Compare                                     value_compare;
         typedef Alloc                                       allocator_type;
         typedef typename allocator_type::reference          reference;
         typedef typename allocator_type::const_reference    const_reference;
         typedef typename allocator_type::pointer            pointer;
-        typedef typename allocator_type::const_pointer      const_pointer;
         typedef size_t                                      size_type;
+        typedef typename allocator_type::const_pointer      const_pointer;
+
+    private:
+        typedef typename allocator_type::rebind<Node>::other
+                                        node_allocator_type;
+        typedef typename node_allocator_type::value_type         node_type;
+        typedef typename node_allocator_type::pointer            node_pointer;
+        typedef typename node_allocator_type::const_pointer      node_const_pointer;
+        typedef typename node_allocator_type::reference          node_reference;
+        typedef typename node_allocator_type::const_reference
+                                        node_const_reference;
+
+    public:
+        typedef in_order_iterator<node_pointer>   iterator;
+        typedef in_order_iterator<node_pointer>   const_iterator;
 
         /*
          * Constructors and destructors
@@ -64,58 +82,24 @@ namespace ft
         allocator_type get_allocator() const;
 
         /*
-        * Create Binary Tree Node class
-        * that contains data and pointer to parent, left child and right child.
-        *
-        * A node can be inserted in a tree,
-        * it can be also a root or a leaf.
-        * 
-        * Node have to be allocated with correct allocator.
+         * Iterators
         */
 
-        class Node
-        {
-        public:
-            /*
-            * Constructors and destructors
-            */
+        iterator begin();
+        const_iterator begin() const;
 
-            Node();
-            explicit Node(const_reference data);
-            Node(Node const &copy);
-            ~Node();
-
-            /*
-            * Getters
-            */
-
-            const_reference getData() const;
-            pointer         getParent() const;
-            pointer         getLeftChild() const;
-            pointer         getRightChild() const;
-
-            /*
-            * Assignement
-            */
-
-            Node &operator=(Node const &rhs);
-
-        private:
-            value_type      m_data;
-            pointer         m_parent;
-            pointer         m_leftChild;
-            pointer         m_rightChild;
-
-        };
+        iterator end();
+        const_iterator end() const;
 
     private:
-        Node            *m_root;
-        size_type       m_size;
-        value_compare   m_compare;
-        allocator_type  m_allocator;
+        node_pointer        m_superRoot;
+        node_pointer        m_root;
+        size_type           m_size;
+        value_compare       m_compare;
+        allocator_type      m_allocator;
+        node_allocator_type m_node_allocator;
 
     };
 
 }
-
 #endif
