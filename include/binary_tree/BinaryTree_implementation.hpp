@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/17 10:06:27 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/17 13:18:35 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ namespace ft
         m_node_allocator(allocator)
     {
         m_superRoot = m_node_allocator.allocate(sizeof(node_type));
+        m_superRoot->m_parent = NULL;
+        m_superRoot->m_leftChild = NULL;
+        m_superRoot->m_rightChild = NULL;
+        m_allocator.construct(&m_superRoot->m_data, T());
     }
 
     template <class T, class Compare, class Alloc>
