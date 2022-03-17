@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:30:13 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/17 13:09:59 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/17 13:20:27 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,63 +177,6 @@ namespace ft
                 m_node = parent;
         }
     }
-
-    template <class T, class Compare, class Alloc, class Node>
-    bool operator==(
-        typename BinaryTree<
-            T, Compare, Alloc
-        >::in_order_iterator<Node> const &it0,
-        typename BinaryTree<
-            T, Compare, Alloc
-        >::in_order_iterator<Node> const &it1
-    )
-    {
-        return it0.base() == it1.base();
-    }
-
-    template <class T, class Compare, class Alloc, class Node1, class Node2>
-    bool operator==(
-        typename BinaryTree<
-            T, Compare, Alloc
-        >::in_order_iterator<Node1> const &it0,
-        typename BinaryTree<
-            T, Compare, Alloc
-        >::in_order_iterator<Node2> const &it1
-    )
-    {
-        return it0.base() == it1.base();
-    }
-
-    template <class T, class Compare, class Alloc, class Node>
-    bool operator!=(
-        typename BinaryTree<
-            T, Compare, Alloc
-        >::in_order_iterator<
-            typename BinaryTree<T, Compare, Alloc>::Node
-        > const &it0,
-        typename BinaryTree<
-            T, Compare, Alloc
-        >::in_order_iterator<
-            typename BinaryTree<T, Compare, Alloc>::Node
-        > const &it1
-    )
-    {
-        return !(it0 == it1);
-    }
-
-    template <class T, class Compare, class Alloc, class Node1, class Node2>
-    bool operator!=(
-        typename BinaryTree<
-            T, Compare, Alloc
-        >::in_order_iterator<Node1> const &it0,
-        typename BinaryTree<
-            T, Compare, Alloc
-        >::in_order_iterator<Node2> const &it1
-    )
-    {
-        return !(it0 == it1);
-    }
-
 }
 
 #endif
