@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/17 13:18:35 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/17 13:39:29 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ namespace ft
         {
             m_node_allocator.deallocate(first.base(), sizeof(node_type));
         }
+        m_node_allocator.deallocate(m_superRoot, sizeof(node_type));
     }
 
     /*
