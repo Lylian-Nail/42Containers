@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/17 13:09:36 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/17 13:32:13 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ namespace ft
                                         node_const_reference;
 
     public:
-        typedef in_order_iterator<node_pointer>   iterator;
-        typedef in_order_iterator<node_pointer>   const_iterator;
+        typedef in_order_iterator<node_pointer>         iterator;
+        typedef in_order_iterator<node_const_pointer>   const_iterator;
 
         /*
          * Constructors and destructors
