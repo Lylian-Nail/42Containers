@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/17 13:32:13 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/20 19:11:12 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,10 @@ namespace ft
     private:
         typedef typename allocator_type::rebind<Node>::other
                                         node_allocator_type;
-        typedef typename node_allocator_type::value_type         node_type;
+        typedef typename node_allocator_type::value_type        node_type;
         typedef typename node_allocator_type::pointer            node_pointer;
-        typedef typename node_allocator_type::const_pointer      node_const_pointer;
+        typedef typename node_allocator_type::const_pointer
+                                            node_const_pointer;
         typedef typename node_allocator_type::reference          node_reference;
         typedef typename node_allocator_type::const_reference
                                         node_const_reference;
@@ -79,6 +80,12 @@ namespace ft
 
         value_compare value_comp() const;
         allocator_type get_allocator() const;
+
+        /*
+         * Setters
+        */
+
+        void clear();
 
         /*
          * Iterators

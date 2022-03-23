@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/17 13:39:29 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/20 19:10:26 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,7 @@ namespace ft
     template <class T, class Compare, class Alloc>
     BinaryTree<T, Compare, Alloc>::~BinaryTree()
     {
-        iterator first = begin();
-        iterator last = end();
-        for (; first != last; first++)
-        {
-            m_node_allocator.deallocate(first.base(), sizeof(node_type));
-        }
-        m_node_allocator.deallocate(m_superRoot, sizeof(node_type));
+        this->clear();
     }
 
     /*
@@ -66,6 +60,22 @@ namespace ft
     BinaryTree<T, Compare, Alloc>::get_allocator() const
     {
         return m_allocator;
+    }
+
+    /*
+     * Setters
+    */
+
+    template <class T, class Compare, class Alloc>
+    void BinaryTree<T, Compare, Alloc>::clear()
+    {
+        iterator first = begin();
+        const_iterator last = end();
+        for (; first != last; first++)
+        {
+            m_node_allocator.deallocate(first.base(), sizeof(node_type));
+        }
+        m_node_allocator.deallocate(m_superRoot, sizeof(node_type));
     }
 
     /*

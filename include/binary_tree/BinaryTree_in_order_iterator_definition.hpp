@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:28:33 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/17 13:00:06 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/23 12:18:53 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ namespace ft
         in_order_iterator operator--(int);
 
     private:
-        node_pointer    m_node;
+        Node    m_node;
 
         void increment();
         void decrement();

@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:01:20 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/17 13:08:56 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/23 12:29:23 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ namespace ft
     {
         Node0 const &it0Impl = static_cast<Node0 const &>(it0);
         Node1 const &it1Impl = static_cast<Node1 const &>(it1);
-        return it0Impl.base() == it1Impl.base();
+        return it0Impl.base() != it1Impl.base();
     }
 }
 
