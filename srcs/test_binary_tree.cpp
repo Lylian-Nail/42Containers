@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 07:22:22 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 07:25:31 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,16 @@ static int testBinaryTreeEmpty()
     return 0;
 }
 
+static int testBinaryTreeSize()
+{
+    {
+        ft::BinaryTree<int> intTree;
+
+        ASSERT(intTree.size() == 0);
+    }
+    return 0;
+}
+
 TestSuite *testUnitBinaryTree()
 {
     TestSuite *binaryTree = new TestSuite("binary tree");
@@ -47,6 +57,9 @@ TestSuite *testUnitBinaryTree()
     );
     binaryTree->addTest(
         new TestCase("test binary tree empty", testBinaryTreeEmpty)
+    );
+    binaryTree->addTest(
+        new TestCase("test binary tree size", testBinaryTreeSize)
     );
 
     return binaryTree;

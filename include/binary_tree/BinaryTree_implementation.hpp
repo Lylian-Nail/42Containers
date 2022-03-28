@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 07:20:30 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 07:24:32 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,13 @@ namespace ft
     bool BinaryTree<T, Compare, Alloc>::empty() const
     {
         return m_size == 0;
+    }
+
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::size_type
+    BinaryTree<T, Compare, Alloc>::size() const
+    {
+        return m_size;
     }
 
     /*
