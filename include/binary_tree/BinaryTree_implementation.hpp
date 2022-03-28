@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 10:49:35 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 10:59:02 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,13 @@ namespace ft
     {
         iterator first = begin();
         const_iterator last = end();
-        for (; first != last; first++)
+        for (; first != last;)
         {
-            m_node_allocator.deallocate(first.base(), sizeof(node_type));
+            iterator actual(first);
+            ++first;
+            destroy_node(actual.base());
         }
-        m_node_allocator.deallocate(m_superRoot, sizeof(node_type));
+        destroy_node(m_superRoot);
     }
 
     /*
@@ -152,7 +154,7 @@ namespace ft
     void BinaryTree<T, Compare, Alloc>::destroy_node(node_pointer node)
     {
         m_allocator.destroy(&node->data);
-        m_node_allocator.deallocate(node);
+        m_node_allocator.deallocate(node, sizeof(node_type));
     }
 }
 
