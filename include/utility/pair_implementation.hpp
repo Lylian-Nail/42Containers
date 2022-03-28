@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 07:49:46 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 08:12:46 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 08:25:46 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,15 @@ namespace ft
         return *this;
     }
 
+    /*
+     * Non member operator overloads
+    */
+
+    template <class T1, class T2>
+    bool operator==(pair<T1, T2> const &lhs, pair<T1, T2> const &rhs)
+    {
+        return lhs.first == rhs.first && lhs.second == rhs.second;
+    }
 };
 
 #endif
