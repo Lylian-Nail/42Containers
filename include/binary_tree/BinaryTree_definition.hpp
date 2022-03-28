@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 07:23:19 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 07:27:13 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ namespace ft
         allocator_type get_allocator() const;
         bool empty() const;
         size_type size() const;
+        size_type max_size() const;
 
         /*
          * Setters

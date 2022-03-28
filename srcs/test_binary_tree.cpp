@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 07:25:31 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 07:29:24 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,31 @@ static int testBinaryTreeSize()
     return 0;
 }
 
+static int testBinaryTreeMaxSize()
+{
+    {
+        ft::BinaryTree<int> intTree;
+
+        ASSERT(intTree.max_size() == intTree.get_allocator().max_size());
+    }
+    return 0;
+}
+
 TestSuite *testUnitBinaryTree()
 {
     TestSuite *binaryTree = new TestSuite("binary tree");
 
     binaryTree->addTest(
-        new TestCase(
-            "test binary tree contructor",
-            testBinaryTreeConstructor
-        )
+        new TestCase("test binary tree contructor", testBinaryTreeConstructor)
     );
     binaryTree->addTest(
         new TestCase("test binary tree empty", testBinaryTreeEmpty)
     );
     binaryTree->addTest(
         new TestCase("test binary tree size", testBinaryTreeSize)
+    );
+    binaryTree->addTest(
+        new TestCase("test binary tree max size", testBinaryTreeMaxSize)
     );
 
     return binaryTree;
