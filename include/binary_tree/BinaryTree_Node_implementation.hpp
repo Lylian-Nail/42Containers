@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:25:13 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 09:39:51 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 10:36:47 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ namespace ft
     template <class T, class Compare, class Alloc>
     BinaryTree<T, Compare, Alloc>::Node::~Node()
     {
-        m_allocator.destroy(data);
     }
 
     /*
