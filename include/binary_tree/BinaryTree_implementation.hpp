@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/20 19:10:26 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 07:20:30 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ namespace ft
     BinaryTree<T, Compare, Alloc>::get_allocator() const
     {
         return m_allocator;
+    }
+
+    template <class T, class Compare, class Alloc>
+    bool BinaryTree<T, Compare, Alloc>::empty() const
+    {
+        return m_size == 0;
     }
 
     /*
