@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 07:49:46 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 09:08:17 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 09:12:14 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,12 @@ namespace ft
         return
             lhs.first < rhs.first ||
             (!(rhs.first < lhs.first) && lhs.second < rhs.second);
+    }
+
+    template <class T1, class T2>
+    bool operator<=(pair<T1, T2> const &lhs, pair<T1, T2> const &rhs)
+    {
+        return !(rhs < lhs);
     }
 
     template <class T1, class T2>
