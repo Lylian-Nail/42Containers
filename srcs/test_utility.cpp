@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 07:46:18 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 08:03:15 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 08:05:50 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ static int testPairCopyConstructor()
         ft::pair<bool, int> pair;
         pair.first = true;
         pair.second = 42;
+
+        ft::pair<bool, int> copyPair(pair);
+        ASSERT(pair.first == copyPair.first);
+        ASSERT(pair.second == copyPair.second);
+    }
+    {
+        ft::pair <bool, int> const pair(true, 42);
 
         ft::pair<bool, int> copyPair(pair);
         ASSERT(pair.first == copyPair.first);
