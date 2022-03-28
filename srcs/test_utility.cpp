@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 07:46:18 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 08:05:50 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 08:07:20 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ static int testPairDefaultConstructor()
 {
     {
         ft::pair<bool, int> pair;
+    }
+    {
+        ft::pair<bool, std::string> pair;
+        ASSERT(pair.second.length() == 0);
     }
     return 0;
 }
