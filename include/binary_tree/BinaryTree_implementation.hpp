@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 10:35:38 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 10:49:35 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,7 @@ namespace ft
         m_allocator(allocator),
         m_node_allocator(allocator)
     {
-        m_superRoot = m_node_allocator.allocate(sizeof(node_type));
-        m_superRoot->parent = NULL;
-        m_superRoot->leftChild = NULL;
-        m_superRoot->rightChild = NULL;
-        m_allocator.construct(&m_superRoot->data, T());
+        m_superRoot = create_node(T());
     }
 
     template <class T, class Compare, class Alloc>
@@ -136,6 +132,28 @@ namespace ft
         return const_iterator(m_superRoot);
     }
 
+    /*
+     * Node utilities
+    */
+
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::node_pointer
+    BinaryTree<T, Compare, Alloc>::create_node(const_reference value)
+    {
+        node_pointer node = m_node_allocator.allocate(sizeof(node_type));
+        m_allocator.construct(&node->data, value);
+        node->parent = NULL;
+        node->leftChild = NULL;
+        node->rightChild = NULL;
+        return node;
+    }
+
+    template <class T, class Compare, class Alloc>
+    void BinaryTree<T, Compare, Alloc>::destroy_node(node_pointer node)
+    {
+        m_allocator.destroy(&node->data);
+        m_node_allocator.deallocate(node);
+    }
 }
 
 #endif
