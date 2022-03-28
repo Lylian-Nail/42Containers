@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 07:46:18 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 09:17:35 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 09:25:08 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,6 +240,23 @@ static int testMoreThanOrEqualOperator()
     return 0;
 }
 
+static int testMakePair()
+{
+    {
+        ft::pair<int, int> pair;
+
+        pair = ft::make_pair(21, 42);
+        ASSERT(pair.first == 21 && pair.second == 42);
+    }
+    {
+        ft::pair<int, int> pair;
+
+        pair = ft::make_pair(21.5, 42.5);
+        ASSERT(pair.first == 21 && pair.second == 42);
+    }
+    return 0;
+}
+
 TestSuite *testUnitUtility()
 {
     TestSuite *utility = new TestSuite("utility");
@@ -290,6 +307,9 @@ TestSuite *testUnitUtility()
             "test pair more than or equal operator",
             testMoreThanOrEqualOperator
         )
+    );
+    utility->addTest(
+        new TestCase("test make pair", testMakePair)
     );
 
     return utility;
