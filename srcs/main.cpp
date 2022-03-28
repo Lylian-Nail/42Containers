@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/28 16:04:01 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 07:49:23 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int main()
     containers.addTest(testUnitTypeTraits());
     containers.addTest(testUnitVector());
     containers.addTest(testUnitStack());
+    containers.addTest(testUnitUtility());
     containers.addTest(testUnitBinaryTree());
 
     return containers.run();

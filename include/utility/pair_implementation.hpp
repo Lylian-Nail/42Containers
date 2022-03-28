@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.hpp                                           :+:      :+:    :+:   */
+/*   pair_implementation.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/25 15:02:32 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 07:46:29 by lperson-         ###   ########.fr       */
+/*   Created: 2022/03/28 07:49:46 by lperson-          #+#    #+#             */
+/*   Updated: 2022/03/28 07:51:29 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_HPP
+#ifndef PAIR_IMPLEMENTATION_HPP
 
-# define TEST_HPP
+# define PAIR_IMPLEMENTATION_HPP
 
-# include "test/basic_test.hpp"
-# include "test/TestCase.hpp"
-# include "test/TestSuite.hpp"
+namespace ft
+{
 
-TestSuite *testUnitIterator();
-TestSuite *testUnitTypeTraits();
-TestSuite *testUnitVector();
-TestSuite *testUnitStack();
-TestSuite *testUnitUtility();
-TestSuite *testUnitBinaryTree();
+    template <class T1, class T2>
+    pair<T1, T2>::pair():
+        first(),
+        second()
+    {
+    }
+
+    template <class T1, class T2>
+    pair<T1, T2>::~pair()
+    {
+    }
+
+};
 
 #endif
