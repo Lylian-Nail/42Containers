@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 07:46:18 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 08:31:38 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 09:05:35 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,29 @@ static int testPairDifferenceOperator()
     return 0;
 }
 
+static int testPairLessThanOperator()
+{
+    {
+        ft::pair<int, int> pair(24, 42);
+        ft::pair<int, int> otherPair(24, 24);
+
+        ASSERT(otherPair < pair);
+    }
+    {
+        ft::pair<int, int> pair(21, 42);
+        ft::pair<int, int> otherPair(24, 42);
+
+        ASSERT(pair < otherPair);
+    }
+    {
+        ft::pair<int, int> const pair(24, 42);
+        ft::pair<int, int> otherPair(24, 24);
+
+        ASSERT(otherPair < pair);
+    }
+    return 0;
+}
+
 TestSuite *testUnitUtility()
 {
     TestSuite *utility = new TestSuite("utility");
@@ -168,6 +191,9 @@ TestSuite *testUnitUtility()
             "test pair difference operator",
             testPairDifferenceOperator
         )
+    );
+    utility->addTest(
+        new TestCase("test pair less than operator", testPairLessThanOperator)
     );
 
     return utility;
