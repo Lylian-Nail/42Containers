@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:25:13 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 12:26:01 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 13:08:14 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ namespace ft
 
     template <class T, class Compare, class Alloc>
     BinaryTree<T, Compare, Alloc>::Node::Node(Node const &copy):
-        data(copy.getData()),
-        parent(copy.getParent()),
-        leftChild(copy.getLeftChild()),
-        rightChild(copy.getRightChild())
+        data(copy.data),
+        parent(copy.parent),
+        leftChild(copy.leftChild),
+        rightChild(copy.rightChild)
     {
     }
 
