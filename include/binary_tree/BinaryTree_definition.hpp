@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 07:27:13 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 09:29:55 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 # include <memory>
 # include <functional>
+# include "utility.hpp"
 
 namespace ft
 {
@@ -88,6 +89,7 @@ namespace ft
          * Setters
         */
 
+        pair<iterator, bool> insert(value_type const &value);
         void clear();
 
         /*
@@ -109,6 +111,5 @@ namespace ft
         node_allocator_type m_node_allocator;
 
     };
-
 }
 #endif

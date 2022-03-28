@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:22:40 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/15 14:24:59 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 09:36:03 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,15 @@ namespace ft
         ~Node();
 
         /*
-        * Getters
-        */
-
-        const_reference getData() const;
-        pointer         getParent() const;
-        pointer         getLeftChild() const;
-        pointer         getRightChild() const;
-
-        /*
         * Assignement
         */
 
         Node &operator=(Node const &rhs);
 
-        value_type  m_data;
-        Node *      m_parent;
-        Node *      m_leftChild;
-        Node *      m_rightChild;
+        value_type  data;
+        Node *      parent;
+        Node *      leftChild;
+        Node *      rightChild;
     };
 }
 

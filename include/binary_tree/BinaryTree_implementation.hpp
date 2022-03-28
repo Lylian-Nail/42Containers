@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 07:27:32 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 09:39:46 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ namespace ft
         m_node_allocator(allocator)
     {
         m_superRoot = m_node_allocator.allocate(sizeof(node_type));
-        m_superRoot->m_parent = NULL;
-        m_superRoot->m_leftChild = NULL;
-        m_superRoot->m_rightChild = NULL;
-        m_allocator.construct(&m_superRoot->m_data, T());
+        m_superRoot->parent = NULL;
+        m_superRoot->leftChild = NULL;
+        m_superRoot->rightChild = NULL;
+        m_allocator.construct(&m_superRoot->data, T());
     }
 
     template <class T, class Compare, class Alloc>
@@ -87,6 +87,18 @@ namespace ft
     */
 
     template <class T, class Compare, class Alloc>
+    pair<typename BinaryTree<T, Compare, Alloc>::iterator, bool>
+    BinaryTree<T, Compare, Alloc>::insert(value_type const &value)
+    {
+        node_pointer first = m_root;
+
+        while (m_root != NULL)
+        {
+            if (m_root.)
+        }
+    }
+
+    template <class T, class Compare, class Alloc>
     void BinaryTree<T, Compare, Alloc>::clear()
     {
         iterator first = begin();
@@ -107,8 +119,8 @@ namespace ft
    BinaryTree<T, Compare, Alloc>::begin()
     {
         node_pointer first = m_superRoot;
-        while (first->m_leftChild)
-            first = first->m_leftChild;
+        while (first->leftChild)
+            first = first->leftChild;
         return iterator(first);
     }
 

@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:25:13 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/15 14:26:31 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 09:39:51 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,35 +23,35 @@ namespace ft
 
     template <class T, class Compare, class Alloc>
     BinaryTree<T, Compare, Alloc>::Node::Node():
-        m_data(),
-        m_parent(NULL),
-        m_leftChild(NULL),
-        m_rightChild(NULL)
+        data(),
+        parent(NULL),
+        leftChild(NULL),
+        rightChild(NULL)
     {
     }
 
     template <class T, class Compare, class Alloc>
     BinaryTree<T, Compare, Alloc>::Node::Node(const_reference data):
-        m_data(data),
-        m_parent(NULL),
-        m_leftChild(NULL),
-        m_rightChild(NULL)
+        data(data),
+        parent(NULL),
+        leftChild(NULL),
+        rightChild(NULL)
     {
     }
 
     template <class T, class Compare, class Alloc>
     BinaryTree<T, Compare, Alloc>::Node::Node(Node const &copy):
-        m_data(copy.getData()),
-        m_parent(copy.getParent()),
-        m_leftChild(copy.getLeftChild()),
-        m_rightChild(copy.getRightChild())
+        data(copy.getData()),
+        parent(copy.getParent()),
+        leftChild(copy.getLeftChild()),
+        rightChild(copy.getRightChild())
     {
     }
 
     template <class T, class Compare, class Alloc>
     BinaryTree<T, Compare, Alloc>::Node::~Node()
     {
-        m_allocator.destroy(m_data);
+        m_allocator.destroy(data);
     }
 
     /*
@@ -64,10 +64,10 @@ namespace ft
     {
         if (this != &rhs)
         {
-            m_data = rhs.getData();
-            m_parent = rhs.getParent();
-            m_leftChild = rhs.getLeftChild();
-            m_rightChild = rhs.getRightChild();
+            data = rhs.getData();
+            parent = rhs.getParent();
+            leftChild = rhs.getLeftChild();
+            rightChild = rhs.getRightChild();
         }
         return *this;
     }
