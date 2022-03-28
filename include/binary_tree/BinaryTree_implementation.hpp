@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 10:59:02 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 15:42:23 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ namespace ft
     template <class T, class Compare, class Alloc>
     BinaryTree<T, Compare, Alloc>::~BinaryTree()
     {
-        this->clear();
+        if (!empty())
+            this->clear();
+        destroy_node(m_superRoot);
     }
 
     /*
@@ -83,17 +85,23 @@ namespace ft
     */
 
     template <class T, class Compare, class Alloc>
+    pair<typename BinaryTree<T, Compare, Alloc>::iterator, bool>
+    BinaryTree<T, Compare, Alloc>::insert(const_reference value)
+    {
+        if (m_root == NULL)
+        {
+            m_superRoot->rightChild = create_node(value, m_superRoot);
+            m_root = m_superRoot->rightChild;
+            m_size++;
+            return make_pair(iterator(m_root), true);
+        }
+        return insert_node(m_root, value);
+    }
+
+    template <class T, class Compare, class Alloc>
     void BinaryTree<T, Compare, Alloc>::clear()
     {
-        iterator first = begin();
-        const_iterator last = end();
-        for (; first != last;)
-        {
-            iterator actual(first);
-            ++first;
-            destroy_node(actual.base());
-        }
-        destroy_node(m_superRoot);
+        clear_node(m_root);
     }
 
     /*
@@ -104,7 +112,10 @@ namespace ft
    typename BinaryTree<T, Compare, Alloc>::iterator
    BinaryTree<T, Compare, Alloc>::begin()
     {
-        node_pointer first = m_superRoot;
+        if (!m_root)
+            return iterator(m_superRoot);
+
+        node_pointer first = m_root;
         while (first->leftChild)
             first = first->leftChild;
         return iterator(first);
@@ -114,7 +125,10 @@ namespace ft
     typename BinaryTree<T, Compare, Alloc>::const_iterator
     BinaryTree<T, Compare, Alloc>::begin() const
     {
-        node_pointer first = m_superRoot;
+        if (!m_root)
+            return iterator(m_superRoot);
+
+        node_pointer first = m_root;
         while (first->m_leftChild)
             first = first->m_leftChild;
         return const_iterator(first);
@@ -140,11 +154,13 @@ namespace ft
 
     template <class T, class Compare, class Alloc>
     typename BinaryTree<T, Compare, Alloc>::node_pointer
-    BinaryTree<T, Compare, Alloc>::create_node(const_reference value)
+    BinaryTree<T, Compare, Alloc>::create_node(
+        const_reference value, node_pointer parent
+    )
     {
         node_pointer node = m_node_allocator.allocate(sizeof(node_type));
         m_allocator.construct(&node->data, value);
-        node->parent = NULL;
+        node->parent = parent;
         node->leftChild = NULL;
         node->rightChild = NULL;
         return node;
@@ -155,6 +171,46 @@ namespace ft
     {
         m_allocator.destroy(&node->data);
         m_node_allocator.deallocate(node, sizeof(node_type));
+    }
+
+    template <class T, class Compare, class Alloc>
+    pair<typename BinaryTree<T, Compare, Alloc>::iterator, bool>
+    BinaryTree<T, Compare, Alloc>::insert_node(
+        node_pointer root, const_reference value
+    )
+    {
+        node_pointer parent;
+        bool compare;
+        while (root != NULL)
+        {
+            parent = root;
+            compare = m_compare(value, root->data);
+            if (root->data == value)
+                return make_pair(iterator(root), false);
+            else if (compare)
+                root = root->leftChild;
+            else
+                root = root->rightChild;
+        }
+
+        node_pointer newNode = create_node(value, parent);
+        m_size++;
+        if (compare)
+            parent->leftChild = newNode;
+        else
+            parent->rightChild = newNode;
+        return make_pair(iterator(newNode), true);
+    }
+
+    template <class T, class Compare, class Alloc>
+    void BinaryTree<T, Compare, Alloc>::clear_node(node_pointer root)
+    {
+        if (root == NULL)
+            return ;
+
+        clear_node(root->leftChild);
+        clear_node(root->rightChild);
+        destroy_node(root);
     }
 }
 

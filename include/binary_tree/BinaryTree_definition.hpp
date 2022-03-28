@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 10:46:43 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 15:36:56 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ namespace ft
          * Setters
         */
 
+        pair<iterator, bool> insert(const_reference value);
         void clear();
 
         /*
@@ -109,8 +110,18 @@ namespace ft
         allocator_type      m_allocator;
         node_allocator_type m_node_allocator;
 
-        node_pointer create_node(const_reference value);
-        void destroy_node(node_pointer node);
+        /*
+         * Node utilities
+        */
+
+        virtual node_pointer create_node(
+            const_reference value, node_pointer parent = NULL
+        );
+        virtual void destroy_node(node_pointer node);
+        virtual pair<iterator, bool> insert_node(
+            node_pointer root, const_reference value
+        );
+        virtual void clear_node(node_pointer root);
 
     };
 }

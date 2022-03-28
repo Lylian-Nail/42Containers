@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:30:13 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 13:07:32 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 14:27:50 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,12 +123,12 @@ namespace ft
         {
             // If we are right child of parent we ascend the branch
             Node parent = m_node->parent;
-            while (parent->rightChild == m_node)
+            while (parent && parent->rightChild == m_node)
             {
                 m_node = parent;
                 parent = m_node->parent;
             }
-            if (m_node->rightChild != parent)
+            if (parent != NULL && m_node->rightChild != parent)
                 m_node = parent;
         }
     }
