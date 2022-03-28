@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:30:13 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 12:47:36 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 13:07:32 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ namespace ft
     typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::reference
     BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::operator*() const
     {
-        return m_node->data;
+        return *m_node;
     }
 
     template <class T, class Compare, class Alloc>
@@ -85,7 +85,7 @@ namespace ft
     typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::pointer
     BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::operator->() const
     {
-        return m_node.data;
+        return m_node;
     }
 
     template <class T, class Compare, class Alloc>

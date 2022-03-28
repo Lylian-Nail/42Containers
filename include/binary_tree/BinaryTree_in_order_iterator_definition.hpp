@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:28:33 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 12:53:52 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 13:06:47 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ namespace ft
                                                 iterator_category;
         typedef typename iterator_traits<Node>::difference_type
                                                 difference_type;
-        typedef BinaryTree<T, Compare, Alloc>::value_type
+        typedef typename iterator_traits<Node>::value_type
                                                 value_type;
-        typedef BinaryTree<T, Compare, Alloc>::pointer
+        typedef typename iterator_traits<Node>::pointer
                                                 pointer;
-        typedef BinaryTree<T, Compare, Alloc>::reference
+        typedef typename iterator_traits<Node>::reference
                                                 reference;
 
         in_order_iterator();
