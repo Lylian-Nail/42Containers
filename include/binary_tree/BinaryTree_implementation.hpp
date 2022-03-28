@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 09:39:46 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 10:35:38 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,18 +85,6 @@ namespace ft
     /*
      * Setters
     */
-
-    template <class T, class Compare, class Alloc>
-    pair<typename BinaryTree<T, Compare, Alloc>::iterator, bool>
-    BinaryTree<T, Compare, Alloc>::insert(value_type const &value)
-    {
-        node_pointer first = m_root;
-
-        while (m_root != NULL)
-        {
-            if (m_root.)
-        }
-    }
 
     template <class T, class Compare, class Alloc>
     void BinaryTree<T, Compare, Alloc>::clear()
