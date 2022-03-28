@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:28:33 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/23 12:18:53 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 12:53:52 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,18 @@ namespace ft
     template <class T, class Compare, class Alloc>
     template <class Node>
     class BinaryTree<T, Compare, Alloc>::in_order_iterator :
-        public ft::iterator<
-            std::bidirectional_iterator_tag,
-            typename iterator_traits<Node>::value_type,
-            typename iterator_traits<Node>::difference_type,
-            typename iterator_traits<Node>::pointer,
-            typename iterator_traits<Node>::reference
-        >,
         public IteratorRelationnalOperator<in_order_iterator<Node> >
     {
     public:
         typedef typename std::bidirectional_iterator_tag
                                                 iterator_category;
-        typedef typename iterator_traits<Node>::value_type
-                                                value_type;
         typedef typename iterator_traits<Node>::difference_type
                                                 difference_type;
-        typedef typename iterator_traits<Node>::pointer
+        typedef BinaryTree<T, Compare, Alloc>::value_type
+                                                value_type;
+        typedef BinaryTree<T, Compare, Alloc>::pointer
                                                 pointer;
-        typedef typename iterator_traits<Node>::reference
+        typedef BinaryTree<T, Compare, Alloc>::reference
                                                 reference;
 
         in_order_iterator();
