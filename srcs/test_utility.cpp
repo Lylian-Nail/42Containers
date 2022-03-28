@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 07:46:18 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 08:07:20 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 08:15:21 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,20 @@ static int testPairInitializationConstructor()
     return 0;
 }
 
+static int testPairOperatorCopyAssignement()
+{
+    {
+        ft::pair<bool, int> pair(true, 42);
+
+        ft::pair<bool, int> pairAssignement(false, 24);
+        pairAssignement = pair;
+
+        ASSERT(pair.first == pairAssignement.first);
+        ASSERT(pair.second == pairAssignement.second)
+    }
+    return 0;
+}
+
 TestSuite *testUnitUtility()
 {
     TestSuite *utility = new TestSuite("utility");
@@ -79,6 +93,12 @@ TestSuite *testUnitUtility()
         new TestCase(
             "test pair initialization constructor",
             testPairInitializationConstructor
+        )
+    );
+    utility->addTest(
+        new TestCase(
+            "test pair operator copy assignement",
+            testPairOperatorCopyAssignement
         )
     );
 

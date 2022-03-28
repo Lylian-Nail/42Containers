@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 07:40:59 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 07:45:24 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 08:11:09 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,18 @@ namespace ft
         /*
          * Constructor and destructor
         */
+
         pair();
         template <class U, class V>
         pair(pair<U, V> const &copy);
         pair(first_type const &first, second_type const &second);
         ~pair();
+
+        /*
+         * Operators overloads
+        */
+
+        pair &operator=(pair const &rhs);
 
     };
 };
