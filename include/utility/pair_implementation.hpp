@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 07:49:46 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 07:51:29 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 07:57:04 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ namespace ft
     pair<T1, T2>::pair():
         first(),
         second()
+    {
+    }
+
+    template <class T1, class T2>
+    template <class U, class V>
+    pair<T1, T2>::pair(pair<U, V> const &copy):
+        first(copy.first),
+        second(copy.second)
     {
     }
 
