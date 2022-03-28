@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 07:46:18 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 08:25:42 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 08:31:38 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,36 @@ static int testPairEqualityOperator()
     return 0;
 }
 
+static int testPairDifferenceOperator()
+{
+    {
+        ft::pair<bool, int> pair(true, 42);
+        ft::pair<bool, int> copyPair(pair);
+
+        ASSERT(!(pair != copyPair));
+    }
+    {
+        ft::pair<bool, int> pair(true, 42);
+        ft::pair<bool, int> otherPair(false, 24);
+
+        ASSERT(pair != otherPair);
+    }
+    {
+        ft::pair<bool, int> pair(true, 42);
+        ft::pair<bool, int> otherPair(true, 24);
+
+        ASSERT(pair != otherPair);
+    }
+    {
+        ft::pair<bool, int> const pair(true, 42);
+        ft::pair<bool, int> copyPair(pair);
+        copyPair.second = 24;
+
+        ASSERT(pair != copyPair);
+    }
+    return 0;
+}
+
 TestSuite *testUnitUtility()
 {
     TestSuite *utility = new TestSuite("utility");
@@ -132,6 +162,12 @@ TestSuite *testUnitUtility()
     );
     utility->addTest(
         new TestCase("test pair equality operator", testPairEqualityOperator)
+    );
+    utility->addTest(
+        new TestCase(
+            "test pair difference operator",
+            testPairDifferenceOperator
+        )
     );
 
     return utility;
