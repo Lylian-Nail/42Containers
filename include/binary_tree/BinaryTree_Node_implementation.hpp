@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:25:13 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 10:40:55 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 12:26:01 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    BinaryTree<T, Compare, Alloc>::Node::Node(const_reference data):
+    BinaryTree<T, Compare, Alloc>::Node::Node(
+        const_reference data, node_pointer parent
+    ):
         data(data),
-        parent(NULL),
+        parent(parent),
         leftChild(NULL),
         rightChild(NULL)
     {

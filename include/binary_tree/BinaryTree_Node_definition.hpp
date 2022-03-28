@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:22:40 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 09:36:03 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 12:25:32 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ namespace ft
         */
 
         Node();
-        explicit Node(const_reference data);
+        explicit Node(const_reference data, node_pointer parent = NULL);
         Node(Node const &copy);
         ~Node();
 
