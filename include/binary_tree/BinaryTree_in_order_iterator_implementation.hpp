@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:30:13 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 14:27:50 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 15:51:19 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,11 @@ namespace ft
         in_order_iterator const &rhs
     )
     {
-        if (this != rhs)
+        if (this != &rhs)
         {
             m_node = rhs.base();
         }
+        return *this;
     }
 
     template <class T, class Compare, class Alloc>

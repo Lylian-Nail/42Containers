@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 15:42:53 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/03/28 15:50:37 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,11 @@ static int testBinaryTreeInsertSingleElement()
         std::size_t arraySize = sizeof(values) / sizeof(values[0]);
         ft::BinaryTree<int> intTree;
         for (std::size_t i(0); i < arraySize; ++i)
-            intTree.insert(values[i]);
+        {
+            ft::pair<typename ft::BinaryTree<int>::iterator, bool> r;
+            r = intTree.insert(values[i]);
+            ASSERT(r.first->data == values[i] && r.second == true);
+        }
 
         std::sort(values, values + arraySize);
         ft::BinaryTree<int>::iterator first = intTree.begin();
@@ -72,6 +76,11 @@ static int testBinaryTreeInsertSingleElement()
             ASSERT(first->data == values[i]);
         }
         ASSERT(first == intTree.end());
+        ASSERT(intTree.size() == arraySize);
+
+        ft::pair<typename ft::BinaryTree<int>::iterator, bool> r;
+        r = intTree.insert(35);
+        ASSERT(r.first->data == 35 && r.second == false);
     }
     return 0;
 }
