@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:30:13 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 09:43:00 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 12:40:24 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,19 @@ namespace ft
     */
 
     template <class T, class Compare, class Alloc>
-    template <class Node>
-    BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::in_order_iterator():
+    template <class Node, class Type>
+    BinaryTree<
+        T, Compare, Alloc
+    >::in_order_iterator<Node, Type>::in_order_iterator():
         m_node(NULL)
     {
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node>
-    BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::in_order_iterator(
+    template <class Node, class Type>
+    BinaryTree<
+        T, Compare, Alloc
+    >::in_order_iterator<Node, Type>::in_order_iterator(
         Node const &node
     ):
         m_node(node)
@@ -37,25 +41,31 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node>
-    template <class Node2>
-    BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::in_order_iterator(
-        in_order_iterator<Node2> const &copy
+    template <class Node, class Type>
+    template <class Node2, class Type2>
+    BinaryTree<
+        T, Compare, Alloc
+    >::in_order_iterator<Node, Type>::in_order_iterator(
+        in_order_iterator<Node2, Type2> const &copy
     ):
         m_node(copy.base())
     {
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node>
-    BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::~in_order_iterator()
+    template <class Node, class Type>
+    BinaryTree<
+        T, Compare, Alloc
+    >::in_order_iterator<Node, Type>::~in_order_iterator()
     {
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node>
-    typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node> &
-    BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::operator=(
+    template <class Node, class Type>
+    typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node, Type> &
+    BinaryTree<
+        T, Compare, Alloc
+    >::in_order_iterator<Node, Type>::operator=(
         in_order_iterator const &rhs
     )
     {
@@ -67,41 +77,51 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node>
-    Node BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::base() const
+    template <class Node, class Type>
+    Node BinaryTree<T, Compare, Alloc>::in_order_iterator<Node, Type>::base() const
     {
         return m_node;
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node>
-    typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::reference
-    BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::operator*() const
+    template <class Node, class Type>
+    typename BinaryTree<
+        T, Compare, Alloc
+    >::in_order_iterator<Node, Type>::reference
+    BinaryTree<T, Compare, Alloc>::in_order_iterator<Node, Type>::operator*() const
     {
         return m_node->data;
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node>
-    typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::pointer
-    BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::operator->() const
+    template <class Node, class Type>
+    typename BinaryTree<
+        T, Compare, Alloc
+    >::in_order_iterator<Node, Type>::pointer
+    BinaryTree<T, Compare, Alloc>::in_order_iterator<Node, Type>::operator->() const
     {
         return &m_node->data;
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node>
-    typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node> &
-    BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::operator++()
+    template <class Node, class Type>
+    typename BinaryTree<
+        T, Compare, Alloc
+    >::in_order_iterator<Node, Type> &
+    BinaryTree<T, Compare, Alloc>::in_order_iterator<Node, Type>::operator++()
     {
         increment();
         return *this;
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node>
-    typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>
-    BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::operator++(int)
+    template <class Node, class Type>
+    typename BinaryTree<
+        T, Compare, Alloc
+    >::in_order_iterator<Node, Type>
+    BinaryTree<
+        T, Compare, Alloc
+    >::in_order_iterator<Node, Type>::operator++(int)
     {
         in_order_iterator copy(*this);
         ++(*this);
@@ -109,8 +129,10 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node>
-    void BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::increment()
+    template <class Node, class Type>
+    void BinaryTree<
+        T, Compare, Alloc
+    >::in_order_iterator<Node, Type>::increment()
     {
         // If parent and has right child
         if (m_node->rightChild)
@@ -135,18 +157,20 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node>
-    typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node> &
-    BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::operator--()
+    template <class Node, class Type>
+    typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node, Type> &
+    BinaryTree<T, Compare, Alloc>::in_order_iterator<Node, Type>::operator--()
     {
         decrement();
         return *this;
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node>
-    typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>
-    BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::operator--(int)
+    template <class Node, class Type>
+    typename BinaryTree<T, Compare, Alloc>::in_order_iterator<Node, Type>
+    BinaryTree<
+        T, Compare, Alloc
+    >::in_order_iterator<Node, Type>::operator--(int)
     {
         in_order_iterator copy(*this);
         --(*this);
@@ -154,8 +178,10 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node>
-    void BinaryTree<T, Compare, Alloc>::in_order_iterator<Node>::decrement()
+    template <class Node, class Type>
+    void BinaryTree<
+        T, Compare, Alloc
+    >::in_order_iterator<Node, Type>::decrement()
     {
         // If parent has a left child
         if (m_node->leftChild)

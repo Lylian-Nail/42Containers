@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 09:24:03 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 12:29:06 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ namespace ft
     {
     private:
         class Node;
-        template <class Node>
+        template <class Node, class Type>
         class in_order_iterator;
 
     public:
@@ -63,8 +63,10 @@ namespace ft
                                         node_const_reference;
 
     public:
-        typedef in_order_iterator<node_pointer>         iterator;
-        typedef in_order_iterator<node_const_pointer>   const_iterator;
+        typedef in_order_iterator<node_pointer, pointer>
+                                                iterator;
+        typedef in_order_iterator<node_const_pointer, const_pointer>
+                                                const_iterator;
 
         /*
          * Constructors and destructors

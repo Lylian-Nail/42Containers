@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:28:33 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 09:44:26 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 12:35:58 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,26 @@ namespace ft
     */
 
     template <class T, class Compare, class Alloc>
-    template <class Node>
+    template <class Node, class Type>
     class BinaryTree<T, Compare, Alloc>::in_order_iterator :
-        public IteratorRelationnalOperator<in_order_iterator<Node> >
+        public IteratorRelationnalOperator<in_order_iterator<Node, Type> >
     {
     public:
         typedef typename std::bidirectional_iterator_tag
                                                 iterator_category;
         typedef typename iterator_traits<Node>::difference_type
                                                 difference_type;
-        typedef typename BinaryTree::value_type             value_type;
-        typedef typename BinaryTree::pointer                pointer;
-        typedef typename BinaryTree::reference              reference;
+        typedef typename iterator_traits<Type>::value_type
+                                                value_type;
+        typedef typename iterator_traits<Type>::pointer
+                                                pointer;
+        typedef typename iterator_traits<Type>::reference
+                                                reference;
 
         in_order_iterator();
         in_order_iterator(Node const &node);
-        template <class Node2>
-        in_order_iterator(in_order_iterator<Node2> const &copy);
+        template <class Node2, class Type2>
+        in_order_iterator(in_order_iterator<Node2, Type2> const &copy);
         ~in_order_iterator();
 
         in_order_iterator &operator=(in_order_iterator const &rhs);
