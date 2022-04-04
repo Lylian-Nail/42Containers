@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 12:29:06 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:34:06 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,12 @@ namespace ft
 
         iterator end();
         const_iterator end() const;
+
+        /*
+         * Operator overload
+        */
+
+        BinaryTree &operator=(BinaryTree const &rhs);
 
     private:
         node_pointer        m_superRoot;

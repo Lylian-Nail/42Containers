@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 09:42:35 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:47:37 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,29 @@ static int testBinaryTreeInsertRange()
     return 0;
 }
 
+static int testBinaryTreeAssignementOperator()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+
+        ft::BinaryTree<int> intTree(values, values + arraySize);
+        ft::BinaryTree<int> assignedTree;
+        assignedTree.insert(99);
+        assignedTree = intTree;
+        ft::BinaryTree<int>::iterator first = intTree.begin();
+        ft::BinaryTree<int>::iterator last = intTree.end();
+        ft::BinaryTree<int>::iterator firstCopy = assignedTree.begin();
+        for (; first != last; ++first, ++firstCopy)
+        {
+            ASSERT(*first == *firstCopy);
+        }
+        ASSERT(intTree.size() == assignedTree.size());
+        ASSERT(firstCopy == assignedTree.end());
+    }
+    return 0;
+}
+
 TestSuite *testUnitBinaryTree()
 {
     TestSuite *binaryTree = new TestSuite("binary tree");
@@ -242,6 +265,12 @@ TestSuite *testUnitBinaryTree()
     );
     binaryTree->addTest(
         new TestCase("test binary tree insert range", testBinaryTreeInsertRange)
+    );
+    binaryTree->addTest(
+        new TestCase(
+            "test binary tree assignement operator",
+            testBinaryTreeAssignementOperator
+        )
     );
 
     return binaryTree;

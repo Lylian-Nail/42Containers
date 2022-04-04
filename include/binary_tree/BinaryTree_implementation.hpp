@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 09:44:46 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:47:33 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,13 +168,16 @@ namespace ft
     )
     {
         for (; first != last; ++first)
+        {
             insert(*first);
+        }
     }
 
     template <class T, class Compare, class Alloc>
     void BinaryTree<T, Compare, Alloc>::clear()
     {
         clear_node(m_root);
+        m_root = NULL;
     }
 
     /*
@@ -202,8 +205,8 @@ namespace ft
             return iterator(m_superRoot);
 
         node_pointer first = m_root;
-        while (first->m_leftChild)
-            first = first->m_leftChild;
+        while (first->leftChild)
+            first = first->leftChild;
         return const_iterator(first);
     }
 
@@ -219,6 +222,25 @@ namespace ft
     BinaryTree<T, Compare, Alloc>::end() const
     {
         return const_iterator(m_superRoot);
+    }
+
+    /*
+     * Operator overload
+    */
+
+    template <class T, class Compare, class Alloc>
+    BinaryTree<T, Compare, Alloc> &
+    BinaryTree<T, Compare, Alloc>::operator=(BinaryTree const &rhs)
+    {
+        if (this != &rhs)
+        {
+            // TODO: erase only already existing nodes
+            m_compare = rhs.value_comp();
+            if (!empty())
+                clear();
+            insert(rhs.begin(), rhs.end());
+        }
+        return *this;
     }
 
     /*
@@ -284,6 +306,7 @@ namespace ft
         clear_node(root->leftChild);
         clear_node(root->rightChild);
         destroy_node(root);
+        m_size--;
     }
 }
 
