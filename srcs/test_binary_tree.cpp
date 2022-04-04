@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 09:32:24 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 09:42:35 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int testBinaryTreeRangeConstructor()
         ft::BinaryTree<int>::iterator first = intTree.begin();
         for (std::size_t i(0); i < arraySize; ++i, ++first)
         {
-            ASSERT(first->data == values[i]);
+            ASSERT(*first == values[i]);
         }
         ASSERT(first == intTree.end());
         ASSERT(intTree.size() == arraySize);
@@ -58,7 +58,7 @@ static int testBinaryTreeCopyConstructor()
         ft::BinaryTree<int>::iterator copyFirst = copyTree.begin();
         for (; first != last; ++first, ++copyFirst)
         {
-            ASSERT(first->data == copyFirst->data);
+            ASSERT(*first == *copyFirst);
         }
         ASSERT(copyFirst == copyTree.end());
         ASSERT(copyTree.size() == intTree.size());
@@ -106,21 +106,21 @@ static int testBinaryTreeInsertSingleElement()
         {
             ft::pair<typename ft::BinaryTree<int>::iterator, bool> r;
             r = intTree.insert(values[i]);
-            ASSERT(r.first->data == values[i] && r.second == true);
+            ASSERT(*r.first == values[i] && r.second == true);
         }
 
         std::sort(values, values + arraySize);
         ft::BinaryTree<int>::iterator first = intTree.begin();
         for (std::size_t i(0); i < arraySize; ++i, ++first)
         {
-            ASSERT(first->data == values[i]);
+            ASSERT(*first == values[i]);
         }
         ASSERT(first == intTree.end());
         ASSERT(intTree.size() == arraySize);
 
         ft::pair<typename ft::BinaryTree<int>::iterator, bool> r;
         r = intTree.insert(35);
-        ASSERT(r.first->data == 35 && r.second == false);
+        ASSERT(*r.first == 35 && r.second == false);
     }
     return 0;
 }
@@ -136,20 +136,20 @@ static int testBinaryTreeInsertWithHint()
         for (std::size_t i(0); i < arraySize; ++i)
         {
             insertedPosition = intTree.insert(insertedPosition, values[i]);
-            ASSERT(insertedPosition->data == values[i]);
+            ASSERT(*insertedPosition == values[i]);
         }
 
         std::sort(values, values + arraySize);
         ft::BinaryTree<int>::iterator first = intTree.begin();
         for (std::size_t i(0); i < arraySize; ++i, ++first)
         {
-            ASSERT(first->data == values[i]);
+            ASSERT(*first== values[i]);
         }
         ASSERT(first == intTree.end());
         ASSERT(intTree.size() == arraySize);
 
         insertedPosition = intTree.insert(intTree.begin(), 35);
-        ASSERT(insertedPosition->data == 35);
+        ASSERT(*insertedPosition == 35);
     }
     {
         int sortedValues[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
@@ -163,12 +163,12 @@ static int testBinaryTreeInsertWithHint()
             insertedPosition = intTree.insert(
                 insertedPosition, sortedValues[i]
             );
-            ASSERT(insertedPosition->data == sortedValues[i]);
+            ASSERT(*insertedPosition == sortedValues[i]);
         }
         ft::BinaryTree<int>::iterator first = intTree.begin();
         for (std::size_t i(0); i < arraySize; ++i, ++first)
         {
-            ASSERT(first->data == sortedValues[i]);
+            ASSERT(*first == sortedValues[i]);
         }
         ASSERT(first == intTree.end());
         ASSERT(intTree.size() == arraySize);
@@ -189,7 +189,7 @@ static int testBinaryTreeInsertRange()
         ft::BinaryTree<int>::iterator first = intTree.begin();
         for (std::size_t i(0); i < arraySize; ++i, ++first)
         {
-            ASSERT(first->data == values[i]);
+            ASSERT(*first == values[i]);
         }
         ASSERT(first == intTree.end());
         ASSERT(intTree.size() == arraySize);

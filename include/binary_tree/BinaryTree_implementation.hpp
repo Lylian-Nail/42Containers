@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 09:32:05 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 09:44:46 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,11 +149,11 @@ namespace ft
             return insert(value).first;
         iterator precedent = position;
         --precedent;
-        if (begin() != position && m_compare(value, precedent->data))
+        if (begin() != position && m_compare(value, *precedent))
             return insert_node(m_root, value).first;
         iterator next = position;
         ++next;
-        if (end() != position && m_compare(next->data, value))
+        if (end() != position && m_compare(*next, value))
             return insert_node(m_root, value).first;
         return insert_node(position.base(), value).first;
     }
