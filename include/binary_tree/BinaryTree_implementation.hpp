@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 13:47:33 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:52:58 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,22 +275,24 @@ namespace ft
     )
     {
         node_pointer parent;
-        bool compare;
+        bool lesser;
+        bool greater;
         while (root != NULL)
         {
             parent = root;
-            compare = m_compare(value, root->data);
-            if (root->data == value)
-                return make_pair(iterator(root), false);
-            else if (compare)
+            lesser = m_compare(value, root->data);
+            greater = m_compare(root->data, value);
+            if (lesser)
                 root = root->leftChild;
-            else
+            else if (greater)
                 root = root->rightChild;
+            else
+                return make_pair(iterator(root), false);
         }
 
         node_pointer newNode = create_node(value, parent);
         m_size++;
-        if (compare)
+        if (lesser)
             parent->leftChild = newNode;
         else
             parent->rightChild = newNode;
