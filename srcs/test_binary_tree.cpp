@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 08:59:14 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 09:11:54 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,27 @@ static int testBinaryTreeInsertWithHint()
     return 0;
 }
 
+static int testBinaryTreeInsertRange()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+
+        ft::BinaryTree<int> intTree;
+        intTree.insert(values, values + arraySize);
+
+        std::sort(values, values + arraySize);
+        ft::BinaryTree<int>::iterator first = intTree.begin();
+        for (std::size_t i(0); i < arraySize; ++i, ++first)
+        {
+            ASSERT(first->data == values[i]);
+        }
+        ASSERT(first == intTree.end());
+        ASSERT(intTree.size() == arraySize);
+    }
+    return 0;
+}
+
 TestSuite *testUnitBinaryTree()
 {
     TestSuite *binaryTree = new TestSuite("binary tree");
@@ -163,6 +184,9 @@ TestSuite *testUnitBinaryTree()
             "test binary tree insert with hint",
             testBinaryTreeInsertWithHint
         )
+    );
+    binaryTree->addTest(
+        new TestCase("test binary tree insert range", testBinaryTreeInsertRange)
     );
 
     return binaryTree;

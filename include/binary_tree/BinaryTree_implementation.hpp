@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 08:55:13 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 09:12:32 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,19 @@ namespace ft
         if (end() != position && m_compare(next->data, value))
             return insert_node(m_root, value).first;
         return insert_node(position.base(), value).first;
+    }
+
+    template <class T, class Compare, class Alloc>
+    template <class InputIterator>
+    void BinaryTree<T, Compare, Alloc>::insert(
+        typename enable_if<
+            !is_integral<InputIterator>::value, InputIterator
+        >::type first,
+        InputIterator last
+    )
+    {
+        for (; first != last; ++first)
+            insert(*first);
     }
 
     template <class T, class Compare, class Alloc>

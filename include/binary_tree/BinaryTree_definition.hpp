@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 08:38:46 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 09:12:04 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <memory>
 # include <functional>
 # include "utility.hpp"
+# include "type_traits.hpp"
 
 namespace ft
 {
@@ -91,6 +92,13 @@ namespace ft
 
         pair<iterator, bool> insert(const_reference value);
         iterator insert(iterator position, const_reference value);
+        template <class InputIterator>
+        void insert(
+            typename enable_if<
+                !is_integral<InputIterator>::value, InputIterator
+            >::type first,
+            InputIterator last
+        );
         void clear();
 
         /*
