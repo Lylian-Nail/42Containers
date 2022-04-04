@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 09:12:04 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 09:17:03 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,15 @@ namespace ft
         */
 
         explicit BinaryTree(
+            value_compare const &compare = value_compare(),
+            allocator_type const &allocator = allocator_type()
+        );
+        template <class InputIterator>
+        BinaryTree(
+            typename enable_if<
+                !is_integral<InputIterator>::value, InputIterator
+            >::type first,
+            InputIterator last,
             value_compare const &compare = value_compare(),
             allocator_type const &allocator = allocator_type()
         );

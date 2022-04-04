@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 09:12:32 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 09:19:22 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,27 @@ namespace ft
         m_allocator(allocator),
         m_node_allocator(allocator)
     {
-        m_superRoot = create_node(T());
+        m_superRoot = create_node(value_type());
+    }
+
+    template <class T, class Compare, class Alloc>
+    template <class InputIterator>
+    BinaryTree<T, Compare, Alloc>::BinaryTree(
+        typename enable_if<
+            !is_integral<InputIterator>::value, InputIterator
+        >::type first,
+        InputIterator last,
+        value_compare const &compare,
+        allocator_type const &allocator
+    ):
+        m_root(NULL),
+        m_size(0),
+        m_compare(compare),
+        m_allocator(allocator),
+        m_node_allocator(allocator)
+    {
+        m_superRoot = create_node(value_type());
+        insert(first, last);
     }
 
     template <class T, class Compare, class Alloc>

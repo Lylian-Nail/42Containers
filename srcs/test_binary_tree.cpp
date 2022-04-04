@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 09:11:54 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 09:22:31 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "test.hpp"
 #include "binary_tree/BinaryTree.hpp"
 
-static int testBinaryTreeConstructor()
+static int testBinaryTreeDefaultConstructor()
 {
     {
         ft::BinaryTree<int> intTree;
@@ -22,6 +22,25 @@ static int testBinaryTreeConstructor()
         ASSERT(intTree.get_allocator() == std::allocator<int>());
         std::less<int> comp = intTree.value_comp();
         ASSERT(comp(1, 10));
+    }
+    return 0;
+}
+
+static int testBinaryTreeRangeConstructor()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+
+        ft::BinaryTree<int> intTree(values, values + arraySize);
+        std::sort(values, values + arraySize);
+        ft::BinaryTree<int>::iterator first = intTree.begin();
+        for (std::size_t i(0); i < arraySize; ++i, ++first)
+        {
+            ASSERT(first->data == values[i]);
+        }
+        ASSERT(first == intTree.end());
+        ASSERT(intTree.size() == arraySize);
     }
     return 0;
 }
@@ -162,7 +181,16 @@ TestSuite *testUnitBinaryTree()
     TestSuite *binaryTree = new TestSuite("binary tree");
 
     binaryTree->addTest(
-        new TestCase("test binary tree contructor", testBinaryTreeConstructor)
+        new TestCase(
+            "test binary tree default contructor",
+            testBinaryTreeDefaultConstructor
+        )
+    );
+    binaryTree->addTest(
+        new TestCase(
+            "test binary tree range constructor",
+            testBinaryTreeRangeConstructor
+        )
     );
     binaryTree->addTest(
         new TestCase("test binary tree empty", testBinaryTreeEmpty)
