@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 15:36:56 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 08:38:46 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ namespace ft
         */
 
         pair<iterator, bool> insert(const_reference value);
+        iterator insert(iterator position, const_reference value);
         void clear();
 
         /*

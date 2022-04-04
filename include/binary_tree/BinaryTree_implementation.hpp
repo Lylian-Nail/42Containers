@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 15:42:23 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 08:55:13 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,34 @@ namespace ft
             return make_pair(iterator(m_root), true);
         }
         return insert_node(m_root, value);
+    }
+
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::iterator
+    BinaryTree<T, Compare, Alloc>::insert(
+        iterator position, const_reference value
+    )
+    {
+        /*
+         * If empty OR
+         * precedent > position
+         * OR
+         * next < position
+         *
+         * position is not valid and insertion is done from root.
+        */
+
+        if (empty())
+            return insert(value).first;
+        iterator precedent = position;
+        --precedent;
+        if (begin() != position && m_compare(value, precedent->data))
+            return insert_node(m_root, value).first;
+        iterator next = position;
+        ++next;
+        if (end() != position && m_compare(next->data, value))
+            return insert_node(m_root, value).first;
+        return insert_node(position.base(), value).first;
     }
 
     template <class T, class Compare, class Alloc>
