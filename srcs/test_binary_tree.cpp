@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 13:47:37 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 14:07:47 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,21 @@ static int testBinaryTreeInsertRange()
     return 0;
 }
 
+static int testBinaryTreeFind()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+
+        ft::BinaryTree<int> intTree(values, values + arraySize);
+        ft::BinaryTree<int>::const_iterator found = intTree.find(42);
+        ASSERT(*found == 42);
+        found = intTree.find(99999);
+        ASSERT(found == intTree.end());
+    }
+    return 0;
+}
+
 static int testBinaryTreeAssignementOperator()
 {
     {
@@ -250,6 +265,9 @@ TestSuite *testUnitBinaryTree()
     );
     binaryTree->addTest(
         new TestCase("test binary tree max size", testBinaryTreeMaxSize)
+    );
+    binaryTree->addTest(
+        new TestCase("test binary tree find", testBinaryTreeFind)
     );
     binaryTree->addTest(
         new TestCase(
