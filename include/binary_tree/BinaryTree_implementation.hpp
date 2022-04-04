@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 14:07:09 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 14:21:24 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::const_iterator
+    typename BinaryTree<T, Compare, Alloc>::iterator
     BinaryTree<T, Compare, Alloc>::find(const_reference value) const
     {
         node_pointer current = m_root;
@@ -126,7 +126,7 @@ namespace ft
             else
                 return iterator(current);
         }
-        return end();
+        return iterator(m_superRoot);
     }
 
     /*

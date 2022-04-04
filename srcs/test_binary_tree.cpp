@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 14:07:47 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 14:13:21 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,7 @@ static int testBinaryTreeFind()
         std::size_t arraySize = sizeof(values) / sizeof(values[0]);
 
         ft::BinaryTree<int> intTree(values, values + arraySize);
-        ft::BinaryTree<int>::const_iterator found = intTree.find(42);
+        ft::BinaryTree<int>::iterator found = intTree.find(42);
         ASSERT(*found == 42);
         found = intTree.find(99999);
         ASSERT(found == intTree.end());

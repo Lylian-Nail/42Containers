@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 14:07:19 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 14:13:13 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ namespace ft
         bool empty() const;
         size_type size() const;
         size_type max_size() const;
-        const_iterator find(const_reference value) const;
+        iterator find(const_reference value) const;
 
         /*
          * Setters
