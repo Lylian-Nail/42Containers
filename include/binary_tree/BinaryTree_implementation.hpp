@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 14:21:24 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 18:49:10 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,25 @@ namespace ft
                 return iterator(current);
         }
         return iterator(m_superRoot);
+    }
+
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::iterator
+    BinaryTree<T, Compare, Alloc>::lower_bound(const_reference value) const
+    {
+        node_pointer current = m_root;
+        node_pointer lower_bound = m_superRoot;
+        while (current != NULL)
+        {
+            if (!m_compare(current->data, value))
+            {
+                lower_bound = current;
+                current = current->leftChild;
+            }
+            else
+                current = current->rightChild;
+        }
+        return iterator(lower_bound);
     }
 
     /*

@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 14:13:21 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 18:48:25 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,29 @@ static int testBinaryTreeFind()
     return 0;
 }
 
+#include <iostream>
+
+static int testBinaryTreeLowerBound()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+
+        ft::BinaryTree<int> intTree(values, values + arraySize);
+        ft::BinaryTree<int>::iterator lowerBound = intTree.lower_bound(12);
+std::cout << *lowerBound << std::endl;
+        ASSERT(*lowerBound == 24);
+std::cout << *lowerBound << std::endl;
+        lowerBound = intTree.lower_bound(9);
+        ASSERT(*lowerBound == 9);
+        lowerBound = intTree.lower_bound(90);
+        ASSERT(*lowerBound == 101)
+        lowerBound = intTree.lower_bound(80);
+        ASSERT(*lowerBound == 89);
+    }
+    return 0;
+}
+
 static int testBinaryTreeAssignementOperator()
 {
     {
@@ -268,6 +291,9 @@ TestSuite *testUnitBinaryTree()
     );
     binaryTree->addTest(
         new TestCase("test binary tree find", testBinaryTreeFind)
+    );
+    binaryTree->addTest(
+        new TestCase("test binary tree lower bound", testBinaryTreeLowerBound)
     );
     binaryTree->addTest(
         new TestCase(
