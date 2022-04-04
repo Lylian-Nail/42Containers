@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 09:22:31 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 09:32:24 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,27 @@ static int testBinaryTreeRangeConstructor()
         }
         ASSERT(first == intTree.end());
         ASSERT(intTree.size() == arraySize);
+    }
+    return 0;
+}
+
+static int testBinaryTreeCopyConstructor()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+
+        ft::BinaryTree<int> intTree(values, values + arraySize);
+        ft::BinaryTree<int> copyTree(intTree.begin(), intTree.end());
+        ft::BinaryTree<int>::iterator first = intTree.begin();
+        ft::BinaryTree<int>::iterator last = intTree.end();
+        ft::BinaryTree<int>::iterator copyFirst = copyTree.begin();
+        for (; first != last; ++first, ++copyFirst)
+        {
+            ASSERT(first->data == copyFirst->data);
+        }
+        ASSERT(copyFirst == copyTree.end());
+        ASSERT(copyTree.size() == intTree.size());
     }
     return 0;
 }
@@ -190,6 +211,12 @@ TestSuite *testUnitBinaryTree()
         new TestCase(
             "test binary tree range constructor",
             testBinaryTreeRangeConstructor
+        )
+    );
+    binaryTree->addTest(
+        new TestCase(
+            "test binary tree Copy Constructor",
+            testBinaryTreeCopyConstructor
         )
     );
     binaryTree->addTest(

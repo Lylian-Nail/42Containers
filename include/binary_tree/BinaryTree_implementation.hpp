@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 09:19:22 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/04 09:32:05 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,18 @@ namespace ft
     {
         m_superRoot = create_node(value_type());
         insert(first, last);
+    }
+
+    template <class T, class Compare, class Alloc>
+    BinaryTree<T, Compare, Alloc>::BinaryTree(BinaryTree const &copy):
+        m_root(NULL),
+        m_size(0),
+        m_compare(copy.value_comp()),
+        m_allocator(copy.get_allocator()),
+        m_node_allocator(copy.get_allocator())
+    {
+        m_superRoot = create_node(value_type());
+        insert(copy.begin(), copy.last());
     }
 
     template <class T, class Compare, class Alloc>
