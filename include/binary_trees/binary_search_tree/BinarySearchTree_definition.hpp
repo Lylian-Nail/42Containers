@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 11:13:02 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:37:02 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ namespace ft
             >::type first,
             InputIterator last
         );
+        void erase(iterator position);
         void clear();
 
         /*
@@ -164,9 +165,11 @@ namespace ft
             const_reference value, node_pointer parent = NULL
         );
         virtual void destroy_node(node_pointer node);
+
         virtual pair<iterator, bool> insert_node(
             node_pointer root, const_reference value
         );
+        virtual void erase_node(node_pointer root, iterator position);
         virtual void clear_node(node_pointer root);
 
     };

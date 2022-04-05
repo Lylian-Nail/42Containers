@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 11:13:04 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:40:59 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,6 +250,16 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
+    void BinarySearchTree<T, Compare, Alloc>::erase(iterator position)
+    {
+        erase_node(m_root, position);
+        if (m_superRoot->leftChild != m_root)
+        {
+            m_root = m_superRoot->rightChild;
+        }
+    }
+
+    template <class T, class Compare, class Alloc>
     void BinarySearchTree<T, Compare, Alloc>::clear()
     {
         clear_node(m_root);
@@ -401,6 +411,38 @@ namespace ft
         else
             parent->rightChild = newNode;
         return make_pair(iterator(newNode), true);
+    }
+
+    template <class T, class Compare, class Alloc>
+    void BinarySearchTree<T, Compare, Alloc>::erase_node(
+        node_pointer root, iterator position
+    )
+    {
+        (void)root;
+        node_pointer node = position.base();
+        if (node->leftChild && node->rightChild)
+        {
+            iterator successor = position;
+            successor++;
+            node->data = successor.base()->data;
+            return erase_node(root, successor);
+        }
+
+        node_pointer parent = node->parent;
+        node_pointer child = NULL;
+        if (node->leftChild)
+            child = node->leftChild;
+        else if (node->rightChild)
+            child = node->rightChild;
+
+        if (child)
+            child->parent = parent;
+
+        if (parent->leftChild == node)
+            parent->leftChild = child;
+        if (parent->rightChild == node)
+            parent->rightChild = child;
+        destroy_node(node);
     }
 
     template <class T, class Compare, class Alloc>
