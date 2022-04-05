@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BinaryTree_Node_implementation.hpp                 :+:      :+:    :+:   */
+/*   BinarySearchTree_Node_implementation.hpp           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:25:13 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 11:03:03 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:14:48 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BINARY_TREE_NODE_IMPLEMENTATION_HPP
+#ifndef BINARY_SEARCH_TREE_NODE_IMPLEMENTATION_HPP
 
-# define BINARY_TREE_NODE_IMPLEMENTATION_HPP
+# define BINARY_SEARCH_TREE_NODE_IMPLEMENTATION_HPP
 
 namespace ft
 {
