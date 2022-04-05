@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 09:09:48 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 09:38:52 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,6 +297,34 @@ namespace ft
     BinaryTree<T, Compare, Alloc>::end() const
     {
         return const_iterator(m_superRoot);
+    }
+
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::reverse_iterator
+    BinaryTree<T, Compare, Alloc>::rbegin()
+    {
+        return reverse_iterator(end());
+    }
+
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::const_reverse_iterator
+    BinaryTree<T, Compare, Alloc>::rbegin() const
+    {
+        return reverse_iterator(end());
+    }
+
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::reverse_iterator
+    BinaryTree<T, Compare, Alloc>::rend()
+    {
+        return reverse_iterator(begin());
+    }
+
+    template <class T, class Compare, class Alloc>
+    typename BinaryTree<T, Compare, Alloc>::const_reverse_iterator
+    BinaryTree<T, Compare, Alloc>::rend() const
+    {
+        return reverse_iterator(begin());
     }
 
     /*

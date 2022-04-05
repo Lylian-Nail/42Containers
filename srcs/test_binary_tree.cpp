@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 09:11:43 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 09:46:43 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,8 +281,6 @@ static int testBinaryTreeUpperBound()
     return 0;
 }
 
-#include <iostream>
-
 static int testBinaryTreeEqualRange()
 {
     {
@@ -314,6 +312,26 @@ static int testBinaryTreeEqualRange()
             ft::BinaryTree<int>::iterator
         > range = intTree.equal_range(42);
         ASSERT(range.first == intTree.end() && range.second == intTree.end());
+    }
+    return 0;
+}
+
+static int testBinaryTreeReverseIterator()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+
+        ft::BinaryTree<int> intTree(values, values + arraySize);
+        std::sort(values, values + arraySize);
+        ft::BinaryTree<int>::reverse_iterator first = intTree.rbegin();
+        ft::BinaryTree<int>::const_reverse_iterator last = intTree.rend();
+        std::size_t i;
+        for (i = arraySize - 1; first != last; ++first, --i)
+        {
+            ASSERT(*first == i);
+        }
+        ASSERT(i == 0);
     }
     return 0;
 }
@@ -401,6 +419,12 @@ TestSuite *testUnitBinaryTree()
     );
     binaryTree->addTest(
         new TestCase("test binary tree insert range", testBinaryTreeInsertRange)
+    );
+    binaryTree->addTest(
+        new TestCase(
+            "test binary tree reverse iterator",
+            testBinaryTreeReverseIterator
+        )
     );
     binaryTree->addTest(
         new TestCase(

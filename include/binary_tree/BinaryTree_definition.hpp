@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 08:59:46 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 09:45:43 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <memory>
 # include <functional>
 # include "utility.hpp"
+# include "iterator.hpp"
 # include "type_traits.hpp"
 
 namespace ft
@@ -53,20 +54,27 @@ namespace ft
 
     private:
         typedef typename allocator_type::rebind<Node>::other
-                                        node_allocator_type;
-        typedef typename node_allocator_type::value_type        node_type;
-        typedef typename node_allocator_type::pointer            node_pointer;
+                                            node_allocator_type;
+        typedef typename node_allocator_type::value_type 
+                                            node_type;
+        typedef typename node_allocator_type::pointer
+                                            node_pointer;
         typedef typename node_allocator_type::const_pointer
                                             node_const_pointer;
-        typedef typename node_allocator_type::reference          node_reference;
+        typedef typename node_allocator_type::reference
+                                            node_reference;
         typedef typename node_allocator_type::const_reference
-                                        node_const_reference;
+                                            node_const_reference;
 
     public:
         typedef in_order_iterator<node_pointer, pointer>
-                                                iterator;
+                                            iterator;
         typedef in_order_iterator<node_const_pointer, const_pointer>
-                                                const_iterator;
+                                            const_iterator;
+        typedef ft::reverse_iterator<iterator>
+                                            reverse_iterator;
+        typedef ft::reverse_iterator<const_iterator>
+                                            const_reverse_iterator;
 
         /*
          * Constructors and destructors
@@ -127,6 +135,12 @@ namespace ft
 
         iterator end();
         const_iterator end() const;
+
+        reverse_iterator rbegin();
+        const_reverse_iterator rbegin() const;
+
+        reverse_iterator rend();
+        const_reverse_iterator rend() const;
 
         /*
          * Operator overload
