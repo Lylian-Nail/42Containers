@@ -6,13 +6,15 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 18:47:09 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:56:50 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <algorithm>
 #include "test.hpp"
 #include "binary_trees/BinarySearchTree.hpp"
+
+#include <iostream>
 
 static int testBinarySearchTreeDefaultConstructor()
 {
@@ -368,6 +370,64 @@ static int testBinarySearchTreeErasePosition()
                 ++first;
             }
         }
+        ASSERT(intTree.size() == arraySize - 4);
+    }
+    return 0;
+}
+
+static int testBinarySearchTreeEraseValue()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+
+        ft::BinarySearchTree<int> intTree;
+        intTree.insert(values, values + arraySize);
+        std::sort(values, values + arraySize);
+        ASSERT(intTree.erase(70) == 1);
+        ft::BinarySearchTree<int>::iterator first = intTree.begin();
+        ft::BinarySearchTree<int>::iterator last = intTree.end();
+        for (int i = 0; first != last; ++i)
+        {
+            if (values[i] != 70)
+            {
+                ASSERT(*first == values[i]);
+                ++first;
+            }
+        }
+        ASSERT(intTree.erase(101) == 1);
+        first = intTree.begin();
+        for (int i = 0; first != last; ++i)
+        {
+            if (values[i] != 101 && values[i] != 70)
+            {
+                ASSERT(*first == values[i]);
+                ++first;
+            }
+        }
+        ASSERT(intTree.erase(24) == 1);
+        first = intTree.begin();
+        for (int i = 0; first != last; ++i)
+        {
+            if (values[i] != 101 && values[i] != 70 && values[i] != 24)
+            {
+                ASSERT(*first == values[i]);
+                ++first;
+            }
+        }
+        ASSERT(intTree.erase(42) == 1);
+        first = intTree.begin();
+        for (int i = 0; first != last; ++i)
+        {
+            if (values[i] != 101 && values[i] != 70
+                && values[i] != 24 && values[i] != 42)
+            {
+                ASSERT(*first == values[i]);
+                ++first;
+            }
+        }
+        ASSERT(intTree.erase(10000) == 0);
+        ASSERT(intTree.size() == arraySize - 4);
     }
     return 0;
 }
@@ -489,6 +549,12 @@ TestSuite *testUnitBinarySearchTree()
         new TestCase(
             "test binary search tree erase position",
             testBinarySearchTreeErasePosition
+        )
+    );
+    BinarySearchTree->addTest(
+        new TestCase(
+            "test binary search tree erase value",
+            testBinarySearchTreeEraseValue
         )
     );
     BinarySearchTree->addTest(

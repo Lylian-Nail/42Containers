@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 11:37:02 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:49:46 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ namespace ft
             InputIterator last
         );
         void erase(iterator position);
+        size_type erase(const_reference value);
         void clear();
 
         /*
