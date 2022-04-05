@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 09:45:43 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:05:31 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 namespace ft
 {
     /*
-     * The binary tree class
-     * A simple and naive binary tree class
+     * The binary search tree class
+     * A simple and naive binary search tree class
     */
 
     template <
@@ -32,7 +32,7 @@ namespace ft
         class Compare = std::less<T>,
         class Alloc = std::allocator<T>
     >
-    class BinaryTree
+    class BinarySearchTree
     {
     private:
         class Node;
@@ -80,12 +80,12 @@ namespace ft
          * Constructors and destructors
         */
 
-        explicit BinaryTree(
+        explicit BinarySearchTree(
             value_compare const &compare = value_compare(),
             allocator_type const &allocator = allocator_type()
         );
         template <class InputIterator>
-        BinaryTree(
+        BinarySearchTree(
             typename enable_if<
                 !is_integral<InputIterator>::value, InputIterator
             >::type first,
@@ -93,8 +93,8 @@ namespace ft
             value_compare const &compare = value_compare(),
             allocator_type const &allocator = allocator_type()
         );
-        BinaryTree(BinaryTree const &copy);
-        ~BinaryTree();
+        BinarySearchTree(BinarySearchTree const &copy);
+        ~BinarySearchTree();
 
         /*
          * Getters
@@ -146,7 +146,7 @@ namespace ft
          * Operator overload
         */
 
-        BinaryTree &operator=(BinaryTree const &rhs);
+        BinarySearchTree &operator=(BinarySearchTree const &rhs);
 
     private:
         node_pointer        m_superRoot;

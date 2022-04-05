@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:22:40 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 12:25:32 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:05:27 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 namespace ft
 {
     /*
-    * Create Binary Tree Node class
+    * Create binary search tree Node class
     * that contains data and pointer to parent, left child and right child.
     *
     * A node can be inserted in a tree,
@@ -27,7 +27,7 @@ namespace ft
     */
 
     template <class T, class Compare, class Alloc>
-    class BinaryTree<T, Compare, Alloc>::Node
+    class BinarySearchTree<T, Compare, Alloc>::Node
     {
     public:
         /*

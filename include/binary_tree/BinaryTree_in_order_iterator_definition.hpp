@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:28:33 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 12:35:58 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:05:19 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 namespace ft
 {
     /*
-     * Create an iterator for binary tree class
+     * Create an iterator for binary search tree class
     */
 
     template <class T, class Compare, class Alloc>
     template <class Node, class Type>
-    class BinaryTree<T, Compare, Alloc>::in_order_iterator :
+    class BinarySearchTree<T, Compare, Alloc>::in_order_iterator :
         public IteratorRelationnalOperator<in_order_iterator<Node, Type> >
     {
     public:

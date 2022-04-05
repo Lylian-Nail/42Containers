@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:25:13 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 13:08:14 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:03:03 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ namespace ft
     */
 
     template <class T, class Compare, class Alloc>
-    BinaryTree<T, Compare, Alloc>::Node::Node():
+    BinarySearchTree<T, Compare, Alloc>::Node::Node():
         data(),
         parent(NULL),
         leftChild(NULL),
@@ -31,7 +31,7 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    BinaryTree<T, Compare, Alloc>::Node::Node(
+    BinarySearchTree<T, Compare, Alloc>::Node::Node(
         const_reference data, node_pointer parent
     ):
         data(data),
@@ -42,7 +42,7 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    BinaryTree<T, Compare, Alloc>::Node::Node(Node const &copy):
+    BinarySearchTree<T, Compare, Alloc>::Node::Node(Node const &copy):
         data(copy.data),
         parent(copy.parent),
         leftChild(copy.leftChild),
@@ -51,7 +51,7 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    BinaryTree<T, Compare, Alloc>::Node::~Node()
+    BinarySearchTree<T, Compare, Alloc>::Node::~Node()
     {
     }
 
@@ -60,8 +60,8 @@ namespace ft
     */
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::Node &
-    BinaryTree<T, Compare, Alloc>::Node::operator=(Node const &rhs)
+    typename BinarySearchTree<T, Compare, Alloc>::Node &
+    BinarySearchTree<T, Compare, Alloc>::Node::operator=(Node const &rhs)
     {
         if (this != &rhs)
         {

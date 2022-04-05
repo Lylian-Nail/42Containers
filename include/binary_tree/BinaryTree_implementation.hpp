@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 10:30:09 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:04:28 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ namespace ft
     */
 
     template <class T, class Compare, class Alloc>
-    BinaryTree<T, Compare, Alloc>::BinaryTree(
+    BinarySearchTree<T, Compare, Alloc>::BinarySearchTree(
         value_compare const &compare,
         allocator_type const &allocator
     ):
@@ -36,7 +36,7 @@ namespace ft
 
     template <class T, class Compare, class Alloc>
     template <class InputIterator>
-    BinaryTree<T, Compare, Alloc>::BinaryTree(
+    BinarySearchTree<T, Compare, Alloc>::BinarySearchTree(
         typename enable_if<
             !is_integral<InputIterator>::value, InputIterator
         >::type first,
@@ -55,7 +55,7 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    BinaryTree<T, Compare, Alloc>::BinaryTree(BinaryTree const &copy):
+    BinarySearchTree<T, Compare, Alloc>::BinarySearchTree(BinarySearchTree const &copy):
         m_root(NULL),
         m_size(0),
         m_compare(copy.value_comp()),
@@ -67,7 +67,7 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    BinaryTree<T, Compare, Alloc>::~BinaryTree()
+    BinarySearchTree<T, Compare, Alloc>::~BinarySearchTree()
     {
         if (!empty())
             this->clear();
@@ -79,42 +79,42 @@ namespace ft
     */
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::value_compare
-    BinaryTree<T, Compare, Alloc>::value_comp() const
+    typename BinarySearchTree<T, Compare, Alloc>::value_compare
+    BinarySearchTree<T, Compare, Alloc>::value_comp() const
     {
         return m_compare;
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::allocator_type
-    BinaryTree<T, Compare, Alloc>::get_allocator() const
+    typename BinarySearchTree<T, Compare, Alloc>::allocator_type
+    BinarySearchTree<T, Compare, Alloc>::get_allocator() const
     {
         return m_allocator;
     }
 
     template <class T, class Compare, class Alloc>
-    bool BinaryTree<T, Compare, Alloc>::empty() const
+    bool BinarySearchTree<T, Compare, Alloc>::empty() const
     {
         return m_size == 0;
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::size_type
-    BinaryTree<T, Compare, Alloc>::size() const
+    typename BinarySearchTree<T, Compare, Alloc>::size_type
+    BinarySearchTree<T, Compare, Alloc>::size() const
     {
         return m_size;
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::size_type
-    BinaryTree<T, Compare, Alloc>::max_size() const
+    typename BinarySearchTree<T, Compare, Alloc>::size_type
+    BinarySearchTree<T, Compare, Alloc>::max_size() const
     {
         return m_allocator.max_size();
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::size_type
-    BinaryTree<T, Compare, Alloc>::count(const_reference value) const
+    typename BinarySearchTree<T, Compare, Alloc>::size_type
+    BinarySearchTree<T, Compare, Alloc>::count(const_reference value) const
     {
         if (find(value) != end())
             return 1;
@@ -122,8 +122,8 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::iterator
-    BinaryTree<T, Compare, Alloc>::find(const_reference value) const
+    typename BinarySearchTree<T, Compare, Alloc>::iterator
+    BinarySearchTree<T, Compare, Alloc>::find(const_reference value) const
     {
         node_pointer current = m_root;
         while (current != NULL)
@@ -139,8 +139,8 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::iterator
-    BinaryTree<T, Compare, Alloc>::lower_bound(const_reference value) const
+    typename BinarySearchTree<T, Compare, Alloc>::iterator
+    BinarySearchTree<T, Compare, Alloc>::lower_bound(const_reference value) const
     {
         node_pointer current = m_root;
         node_pointer lower_bound = m_superRoot;
@@ -158,8 +158,8 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::iterator
-    BinaryTree<T, Compare, Alloc>::upper_bound(const_reference value) const
+    typename BinarySearchTree<T, Compare, Alloc>::iterator
+    BinarySearchTree<T, Compare, Alloc>::upper_bound(const_reference value) const
     {
         node_pointer current = m_root;
         node_pointer upper_bound = m_superRoot;
@@ -178,10 +178,10 @@ namespace ft
 
     template <class T, class Compare, class Alloc>
     pair<
-        typename BinaryTree<T, Compare, Alloc>::iterator,
-        typename BinaryTree<T, Compare, Alloc>::iterator
+        typename BinarySearchTree<T, Compare, Alloc>::iterator,
+        typename BinarySearchTree<T, Compare, Alloc>::iterator
     >
-    BinaryTree<T, Compare, Alloc>::equal_range(const_reference value) const
+    BinarySearchTree<T, Compare, Alloc>::equal_range(const_reference value) const
     {
         iterator lower_bound = this->lower_bound(value);
         return make_pair(lower_bound, lower_bound);
@@ -192,8 +192,8 @@ namespace ft
     */
 
     template <class T, class Compare, class Alloc>
-    pair<typename BinaryTree<T, Compare, Alloc>::iterator, bool>
-    BinaryTree<T, Compare, Alloc>::insert(const_reference value)
+    pair<typename BinarySearchTree<T, Compare, Alloc>::iterator, bool>
+    BinarySearchTree<T, Compare, Alloc>::insert(const_reference value)
     {
         if (m_root == NULL)
         {
@@ -207,8 +207,8 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::iterator
-    BinaryTree<T, Compare, Alloc>::insert(
+    typename BinarySearchTree<T, Compare, Alloc>::iterator
+    BinarySearchTree<T, Compare, Alloc>::insert(
         iterator position, const_reference value
     )
     {
@@ -236,7 +236,7 @@ namespace ft
 
     template <class T, class Compare, class Alloc>
     template <class InputIterator>
-    void BinaryTree<T, Compare, Alloc>::insert(
+    void BinarySearchTree<T, Compare, Alloc>::insert(
         typename enable_if<
             !is_integral<InputIterator>::value, InputIterator
         >::type first,
@@ -250,7 +250,7 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    void BinaryTree<T, Compare, Alloc>::clear()
+    void BinarySearchTree<T, Compare, Alloc>::clear()
     {
         clear_node(m_root);
         m_root = NULL;
@@ -261,8 +261,8 @@ namespace ft
     */
 
    template <class T, class Compare, class Alloc>
-   typename BinaryTree<T, Compare, Alloc>::iterator
-   BinaryTree<T, Compare, Alloc>::begin()
+   typename BinarySearchTree<T, Compare, Alloc>::iterator
+   BinarySearchTree<T, Compare, Alloc>::begin()
     {
         if (!m_root)
             return iterator(m_superRoot);
@@ -274,8 +274,8 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::const_iterator
-    BinaryTree<T, Compare, Alloc>::begin() const
+    typename BinarySearchTree<T, Compare, Alloc>::const_iterator
+    BinarySearchTree<T, Compare, Alloc>::begin() const
     {
         if (!m_root)
             return iterator(m_superRoot);
@@ -287,43 +287,43 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::iterator
-    BinaryTree<T, Compare, Alloc>::end()
+    typename BinarySearchTree<T, Compare, Alloc>::iterator
+    BinarySearchTree<T, Compare, Alloc>::end()
     {
         return iterator(m_superRoot);
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::const_iterator
-    BinaryTree<T, Compare, Alloc>::end() const
+    typename BinarySearchTree<T, Compare, Alloc>::const_iterator
+    BinarySearchTree<T, Compare, Alloc>::end() const
     {
         return const_iterator(m_superRoot);
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::reverse_iterator
-    BinaryTree<T, Compare, Alloc>::rbegin()
+    typename BinarySearchTree<T, Compare, Alloc>::reverse_iterator
+    BinarySearchTree<T, Compare, Alloc>::rbegin()
     {
         return reverse_iterator(end());
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::const_reverse_iterator
-    BinaryTree<T, Compare, Alloc>::rbegin() const
+    typename BinarySearchTree<T, Compare, Alloc>::const_reverse_iterator
+    BinarySearchTree<T, Compare, Alloc>::rbegin() const
     {
         return reverse_iterator(end());
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::reverse_iterator
-    BinaryTree<T, Compare, Alloc>::rend()
+    typename BinarySearchTree<T, Compare, Alloc>::reverse_iterator
+    BinarySearchTree<T, Compare, Alloc>::rend()
     {
         return reverse_iterator(begin());
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::const_reverse_iterator
-    BinaryTree<T, Compare, Alloc>::rend() const
+    typename BinarySearchTree<T, Compare, Alloc>::const_reverse_iterator
+    BinarySearchTree<T, Compare, Alloc>::rend() const
     {
         return reverse_iterator(begin());
     }
@@ -333,8 +333,8 @@ namespace ft
     */
 
     template <class T, class Compare, class Alloc>
-    BinaryTree<T, Compare, Alloc> &
-    BinaryTree<T, Compare, Alloc>::operator=(BinaryTree const &rhs)
+    BinarySearchTree<T, Compare, Alloc> &
+    BinarySearchTree<T, Compare, Alloc>::operator=(BinarySearchTree const &rhs)
     {
         if (this != &rhs)
         {
@@ -352,8 +352,8 @@ namespace ft
     */
 
     template <class T, class Compare, class Alloc>
-    typename BinaryTree<T, Compare, Alloc>::node_pointer
-    BinaryTree<T, Compare, Alloc>::create_node(
+    typename BinarySearchTree<T, Compare, Alloc>::node_pointer
+    BinarySearchTree<T, Compare, Alloc>::create_node(
         const_reference value, node_pointer parent
     )
     {
@@ -366,15 +366,15 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    void BinaryTree<T, Compare, Alloc>::destroy_node(node_pointer node)
+    void BinarySearchTree<T, Compare, Alloc>::destroy_node(node_pointer node)
     {
         m_allocator.destroy(&node->data);
         m_node_allocator.deallocate(node, sizeof(node_type));
     }
 
     template <class T, class Compare, class Alloc>
-    pair<typename BinaryTree<T, Compare, Alloc>::iterator, bool>
-    BinaryTree<T, Compare, Alloc>::insert_node(
+    pair<typename BinarySearchTree<T, Compare, Alloc>::iterator, bool>
+    BinarySearchTree<T, Compare, Alloc>::insert_node(
         node_pointer root, const_reference value
     )
     {
@@ -404,7 +404,7 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    void BinaryTree<T, Compare, Alloc>::clear_node(node_pointer root)
+    void BinarySearchTree<T, Compare, Alloc>::clear_node(node_pointer root)
     {
         if (root == NULL)
             return ;

@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 15:02:32 by lperson-          #+#    #+#             */
-/*   Updated: 2022/03/28 07:46:29 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:04:08 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ TestSuite *testUnitTypeTraits();
 TestSuite *testUnitVector();
 TestSuite *testUnitStack();
 TestSuite *testUnitUtility();
-TestSuite *testUnitBinaryTree();
+TestSuite *testUnitBinarySearchTree();
 
 #endif

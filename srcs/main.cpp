@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 10:36:50 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:03:21 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main()
     containers.addTest(testUnitVector());
     containers.addTest(testUnitStack());
     containers.addTest(testUnitUtility());
-    containers.addTest(testUnitBinaryTree());
+    containers.addTest(testUnitBinarySearchTree());
 
     return containers.run();
 }
