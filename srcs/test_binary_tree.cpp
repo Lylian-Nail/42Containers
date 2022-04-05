@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 18:48:25 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 08:36:08 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,8 +212,6 @@ static int testBinaryTreeFind()
     return 0;
 }
 
-#include <iostream>
-
 static int testBinaryTreeLowerBound()
 {
     {
@@ -222,15 +220,18 @@ static int testBinaryTreeLowerBound()
 
         ft::BinaryTree<int> intTree(values, values + arraySize);
         ft::BinaryTree<int>::iterator lowerBound = intTree.lower_bound(12);
-std::cout << *lowerBound << std::endl;
         ASSERT(*lowerBound == 24);
-std::cout << *lowerBound << std::endl;
         lowerBound = intTree.lower_bound(9);
         ASSERT(*lowerBound == 9);
         lowerBound = intTree.lower_bound(90);
         ASSERT(*lowerBound == 101)
         lowerBound = intTree.lower_bound(80);
         ASSERT(*lowerBound == 89);
+    }
+    {
+        ft::BinaryTree<int> intTree;
+        ft::BinaryTree<int>::iterator lowerBound = intTree.lower_bound(42);
+        ASSERT(lowerBound == intTree.end());
     }
     return 0;
 }

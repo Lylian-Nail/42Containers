@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 17:58:39 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 08:35:09 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ namespace ft
         size_type max_size() const;
         iterator find(const_reference value) const;
         iterator lower_bound(const_reference value) const;
+        iterator upper_bound(const_reference value) const;
 
         /*
          * Setters
