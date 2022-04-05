@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:30:13 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/04 14:06:42 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 10:35:55 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ namespace ft
         T, Compare, Alloc
     >::in_order_iterator<Node, Type>::decrement()
     {
-        // If parent has a left child
+        // If node has a left child
         if (m_node->leftChild)
         {
             // we reach end of right branch of left child
@@ -195,12 +195,12 @@ namespace ft
         {
             // If we are left child of parent we ascend the branch
             Node parent = m_node->parent;
-            while (parent == m_node->leftChild)
+            while (parent && parent->leftChild == m_node)
             {
                 m_node = parent;
                 parent = m_node->parent;
             }
-            if (m_node->leftChild != parent)
+            if (parent && m_node->leftChild != parent)
                 m_node = parent;
         }
     }

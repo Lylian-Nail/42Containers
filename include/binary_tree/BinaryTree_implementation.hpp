@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 09:51:15 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 10:30:09 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,7 @@ namespace ft
         if (m_root == NULL)
         {
             m_superRoot->rightChild = create_node(value, m_superRoot);
+            m_superRoot->leftChild = m_superRoot->rightChild;
             m_root = m_superRoot->rightChild;
             m_size++;
             return make_pair(iterator(m_root), true);

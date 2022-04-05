@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 09:50:38 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 10:39:18 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -329,9 +329,9 @@ static int testBinaryTreeReverseIterator()
         int i;
         for (i = arraySize - 1; first != last; ++first, --i)
         {
-            ASSERT(*first == i);
+            ASSERT(*first == values[i]);
         }
-        ASSERT(i == 0);
+        ASSERT(i == -1);
     }
     return 0;
 }
