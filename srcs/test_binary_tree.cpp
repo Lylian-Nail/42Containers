@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 08:44:26 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 08:56:15 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,25 @@ static int testBinaryTreeInsertRange()
     return 0;
 }
 
+static int testBinaryTreeCount()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+
+        ft::BinaryTree<int> intTree(values, values + arraySize);
+        ASSERT(intTree.count(42) == 1);
+        ASSERT(*intTree.find(10) == 10);
+        ASSERT(intTree.count(10) == 1);
+        ASSERT(intTree.count(100) == 0);
+    }
+    {
+        ft::BinaryTree<int> intTree;
+        ASSERT(intTree.count(42) == 0);
+    }
+    return 0;
+}
+
 static int testBinaryTreeFind()
 {
     {
@@ -206,6 +225,8 @@ static int testBinaryTreeFind()
         ft::BinaryTree<int> intTree(values, values + arraySize);
         ft::BinaryTree<int>::iterator found = intTree.find(42);
         ASSERT(*found == 42);
+        ASSERT(*intTree.find(24) == 24);
+        ASSERT(*intTree.find(101) == 101);
         found = intTree.find(99999);
         ASSERT(found == intTree.end());
     }
@@ -313,6 +334,9 @@ TestSuite *testUnitBinaryTree()
     );
     binaryTree->addTest(
         new TestCase("test binary tree max size", testBinaryTreeMaxSize)
+    );
+    binaryTree->addTest(
+        new TestCase("test binary tree count", testBinaryTreeCount)
     );
     binaryTree->addTest(
         new TestCase("test binary tree find", testBinaryTreeFind)
