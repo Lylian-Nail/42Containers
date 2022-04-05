@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 08:45:58 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 08:59:46 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ namespace ft
         iterator find(const_reference value) const;
         iterator lower_bound(const_reference value) const;
         iterator upper_bound(const_reference value) const;
+        pair<iterator, iterator> equal_range(const_reference value) const;
 
         /*
          * Setters

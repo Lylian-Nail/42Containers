@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:00:58 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 14:42:30 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 09:09:07 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ namespace iterator_implementation
             )
     {
         typename ft::iterator_traits<InputIterator>::difference_type    i;
-        for (i = 0; first < last; first++, ++i)
+        for (i = 0; first != last; first++, ++i)
             ;
         return i;
     }

@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 08:56:15 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 09:11:43 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,7 +259,7 @@ static int testBinaryTreeLowerBound()
 
 static int testBinaryTreeUpperBound()
 {
-        {
+    {
         int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
         std::size_t arraySize = sizeof(values) / sizeof(values[0]);
 
@@ -277,6 +277,43 @@ static int testBinaryTreeUpperBound()
         ft::BinaryTree<int> intTree;
         ft::BinaryTree<int>::iterator lowerBound = intTree.upper_bound(42);
         ASSERT(lowerBound == intTree.end());
+    }
+    return 0;
+}
+
+#include <iostream>
+
+static int testBinaryTreeEqualRange()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+
+        ft::BinaryTree<int> intTree(values, values + arraySize);
+        ft::pair<
+            ft::BinaryTree<int>::iterator,
+            ft::BinaryTree<int>::iterator
+        > range = intTree.equal_range(24);
+
+        ASSERT(*range.first == 24 && *range.second == 24);
+        ASSERT(ft::distance(range.first, range.second) == 0);
+        range = intTree.equal_range(101);
+        ASSERT(*range.first == 101 && *range.second == 101);
+        ASSERT(ft::distance(range.first, range.second) == 0);
+        range = intTree.equal_range(9);
+        ASSERT(*range.first == 9 && *range.second == 9);
+        ASSERT(ft::distance(range.first, range.second) == 0);
+        range = intTree.equal_range(13);
+        ASSERT(*range.first == 24 && *range.second == 24);
+        ASSERT(ft::distance(range.first, range.second) == 0);
+    }
+    {
+        ft::BinaryTree<int> intTree;
+        ft::pair<
+            ft::BinaryTree<int>::iterator,
+            ft::BinaryTree<int>::iterator
+        > range = intTree.equal_range(42);
+        ASSERT(range.first == intTree.end() && range.second == intTree.end());
     }
     return 0;
 }
@@ -346,6 +383,9 @@ TestSuite *testUnitBinaryTree()
     );
     binaryTree->addTest(
         new TestCase("test binary tree upper bound", testBinaryTreeUpperBound)
+    );
+    binaryTree->addTest(
+        new TestCase("test binary tree equal range", testBinaryTreeEqualRange)
     );
     binaryTree->addTest(
         new TestCase(
