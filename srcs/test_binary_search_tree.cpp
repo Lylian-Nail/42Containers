@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 11:56:54 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:58:38 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,26 +216,6 @@ static int testBinarySearchTreeEqualRange()
     return 0;
 }
 
-static int testBinarySearchTreeReverseIterator()
-{
-    {
-        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
-        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
-
-        ft::BinarySearchTree<int> intTree(values, values + arraySize);
-        std::sort(values, values + arraySize);
-        ft::BinarySearchTree<int>::reverse_iterator first = intTree.rbegin();
-        ft::BinarySearchTree<int>::const_reverse_iterator last = intTree.rend();
-        int i;
-        for (i = arraySize - 1; first != last; ++first, --i)
-        {
-            ASSERT(*first == values[i]);
-        }
-        ASSERT(i == -1);
-    }
-    return 0;
-}
-
 static int testBinarySearchTreeInsertSingleElement()
 {
     {
@@ -333,6 +313,26 @@ static int testBinarySearchTreeInsertRange()
         }
         ASSERT(first == intTree.end());
         ASSERT(intTree.size() == arraySize);
+    }
+    return 0;
+}
+
+static int testBinarySearchTreeReverseIterator()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+
+        ft::BinarySearchTree<int> intTree(values, values + arraySize);
+        std::sort(values, values + arraySize);
+        ft::BinarySearchTree<int>::reverse_iterator first = intTree.rbegin();
+        ft::BinarySearchTree<int>::const_reverse_iterator last = intTree.rend();
+        int i;
+        for (i = arraySize - 1; first != last; ++first, --i)
+        {
+            ASSERT(*first == values[i]);
+        }
+        ASSERT(i == -1);
     }
     return 0;
 }
