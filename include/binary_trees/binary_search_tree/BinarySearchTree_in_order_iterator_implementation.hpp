@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BinaryTree_in_order_iterator_implementation        :+:      :+:    :+:   */
+/*   BinarySearchTree_in_order_iterator_implemen        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:30:13 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 11:05:22 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:13:08 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BINARY_TREE_IN_ORDER_IMPLEMENTATION_HPP
+#ifndef BINARY_SEARCH_TREE_IN_ORDER_IMPLEMENTATION_HPP
 
-# define BINARY_TREE_IN_ORDER_IMPLEMENTATION_HPP
+# define BINARY_SEARCH_TREE_IN_ORDER_IMPLEMENTATION_HPP
 
 namespace ft
 {

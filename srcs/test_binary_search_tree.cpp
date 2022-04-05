@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_binary_tree.cpp                               :+:      :+:    :+:   */
+/*   test_binary_search_tree.cpp                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 11:06:50 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:26:17 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <algorithm>
 #include "test.hpp"
-#include "binary_tree/BinaryTree.hpp"
+#include "binary_trees/BinarySearchTree.hpp"
 
 static int testBinarySearchTreeDefaultConstructor()
 {

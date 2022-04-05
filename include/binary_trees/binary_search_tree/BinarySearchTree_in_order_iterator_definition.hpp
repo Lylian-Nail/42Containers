@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BinaryTree_in_order_iterator_definition.hpp        :+:      :+:    :+:   */
+/*   BinarySearchTree_in_order_iterator_definiti        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:28:33 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 11:05:19 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:13:06 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BINARY_TREE_IN_ORDER_ITERATOR_DEFINITION_HPP
+#ifndef BINARY_SEARCH_TREE_IN_ORDER_ITERATOR_DEFINITION_HPP
 
-# define BINARY_TREE_IN_ORDER_ITERATOR_DEFINITION_HPP
+# define BINARY_SEARCH_TREE_IN_ORDER_ITERATOR_DEFINITION_HPP
 
 # include "iterator.hpp"
 
