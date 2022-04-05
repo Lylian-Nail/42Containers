@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 09:46:43 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 09:50:38 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,7 +326,7 @@ static int testBinaryTreeReverseIterator()
         std::sort(values, values + arraySize);
         ft::BinaryTree<int>::reverse_iterator first = intTree.rbegin();
         ft::BinaryTree<int>::const_reverse_iterator last = intTree.rend();
-        std::size_t i;
+        int i;
         for (i = arraySize - 1; first != last; ++first, --i)
         {
             ASSERT(*first == i);
