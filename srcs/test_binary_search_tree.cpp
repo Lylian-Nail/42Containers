@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 11:26:59 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:56:54 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,106 +96,6 @@ static int testBinarySearchTreeMaxSize()
     return 0;
 }
 
-static int testBinarySearchTreeInsertSingleElement()
-{
-    {
-        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
-        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
-        ft::BinarySearchTree<int> intTree;
-        for (std::size_t i(0); i < arraySize; ++i)
-        {
-            ft::pair<typename ft::BinarySearchTree<int>::iterator, bool> r;
-            r = intTree.insert(values[i]);
-            ASSERT(*r.first == values[i] && r.second == true);
-        }
-
-        std::sort(values, values + arraySize);
-        ft::BinarySearchTree<int>::iterator first = intTree.begin();
-        for (std::size_t i(0); i < arraySize; ++i, ++first)
-        {
-            ASSERT(*first == values[i]);
-        }
-        ASSERT(first == intTree.end());
-        ASSERT(intTree.size() == arraySize);
-
-        ft::pair<typename ft::BinarySearchTree<int>::iterator, bool> r;
-        r = intTree.insert(35);
-        ASSERT(*r.first == 35 && r.second == false);
-    }
-    return 0;
-}
-
-static int testBinarySearchTreeInsertWithHint()
-{
-    {
-        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
-        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
-
-        ft::BinarySearchTree<int> intTree;
-        ft::BinarySearchTree<int>::iterator insertedPosition = intTree.begin();
-        for (std::size_t i(0); i < arraySize; ++i)
-        {
-            insertedPosition = intTree.insert(insertedPosition, values[i]);
-            ASSERT(*insertedPosition == values[i]);
-        }
-
-        std::sort(values, values + arraySize);
-        ft::BinarySearchTree<int>::iterator first = intTree.begin();
-        for (std::size_t i(0); i < arraySize; ++i, ++first)
-        {
-            ASSERT(*first== values[i]);
-        }
-        ASSERT(first == intTree.end());
-        ASSERT(intTree.size() == arraySize);
-
-        insertedPosition = intTree.insert(intTree.begin(), 35);
-        ASSERT(*insertedPosition == 35);
-    }
-    {
-        int sortedValues[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
-        std::size_t arraySize = sizeof(sortedValues) / sizeof(sortedValues[0]);
-        std::sort(sortedValues, sortedValues + arraySize);
-
-        ft::BinarySearchTree<int> intTree;
-        ft::BinarySearchTree<int>::iterator insertedPosition = intTree.begin();
-        for (std::size_t i(0); i < arraySize; ++i)
-        {
-            insertedPosition = intTree.insert(
-                insertedPosition, sortedValues[i]
-            );
-            ASSERT(*insertedPosition == sortedValues[i]);
-        }
-        ft::BinarySearchTree<int>::iterator first = intTree.begin();
-        for (std::size_t i(0); i < arraySize; ++i, ++first)
-        {
-            ASSERT(*first == sortedValues[i]);
-        }
-        ASSERT(first == intTree.end());
-        ASSERT(intTree.size() == arraySize);
-    }
-    return 0;
-}
-
-static int testBinarySearchTreeInsertRange()
-{
-    {
-        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
-        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
-
-        ft::BinarySearchTree<int> intTree;
-        intTree.insert(values, values + arraySize);
-
-        std::sort(values, values + arraySize);
-        ft::BinarySearchTree<int>::iterator first = intTree.begin();
-        for (std::size_t i(0); i < arraySize; ++i, ++first)
-        {
-            ASSERT(*first == values[i]);
-        }
-        ASSERT(first == intTree.end());
-        ASSERT(intTree.size() == arraySize);
-    }
-    return 0;
-}
 
 static int testBinarySearchTreeCount()
 {
@@ -332,6 +232,107 @@ static int testBinarySearchTreeReverseIterator()
             ASSERT(*first == values[i]);
         }
         ASSERT(i == -1);
+    }
+    return 0;
+}
+
+static int testBinarySearchTreeInsertSingleElement()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+        ft::BinarySearchTree<int> intTree;
+        for (std::size_t i(0); i < arraySize; ++i)
+        {
+            ft::pair<typename ft::BinarySearchTree<int>::iterator, bool> r;
+            r = intTree.insert(values[i]);
+            ASSERT(*r.first == values[i] && r.second == true);
+        }
+
+        std::sort(values, values + arraySize);
+        ft::BinarySearchTree<int>::iterator first = intTree.begin();
+        for (std::size_t i(0); i < arraySize; ++i, ++first)
+        {
+            ASSERT(*first == values[i]);
+        }
+        ASSERT(first == intTree.end());
+        ASSERT(intTree.size() == arraySize);
+
+        ft::pair<typename ft::BinarySearchTree<int>::iterator, bool> r;
+        r = intTree.insert(35);
+        ASSERT(*r.first == 35 && r.second == false);
+    }
+    return 0;
+}
+
+static int testBinarySearchTreeInsertWithHint()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+
+        ft::BinarySearchTree<int> intTree;
+        ft::BinarySearchTree<int>::iterator insertedPosition = intTree.begin();
+        for (std::size_t i(0); i < arraySize; ++i)
+        {
+            insertedPosition = intTree.insert(insertedPosition, values[i]);
+            ASSERT(*insertedPosition == values[i]);
+        }
+
+        std::sort(values, values + arraySize);
+        ft::BinarySearchTree<int>::iterator first = intTree.begin();
+        for (std::size_t i(0); i < arraySize; ++i, ++first)
+        {
+            ASSERT(*first== values[i]);
+        }
+        ASSERT(first == intTree.end());
+        ASSERT(intTree.size() == arraySize);
+
+        insertedPosition = intTree.insert(intTree.begin(), 35);
+        ASSERT(*insertedPosition == 35);
+    }
+    {
+        int sortedValues[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(sortedValues) / sizeof(sortedValues[0]);
+        std::sort(sortedValues, sortedValues + arraySize);
+
+        ft::BinarySearchTree<int> intTree;
+        ft::BinarySearchTree<int>::iterator insertedPosition = intTree.begin();
+        for (std::size_t i(0); i < arraySize; ++i)
+        {
+            insertedPosition = intTree.insert(
+                insertedPosition, sortedValues[i]
+            );
+            ASSERT(*insertedPosition == sortedValues[i]);
+        }
+        ft::BinarySearchTree<int>::iterator first = intTree.begin();
+        for (std::size_t i(0); i < arraySize; ++i, ++first)
+        {
+            ASSERT(*first == sortedValues[i]);
+        }
+        ASSERT(first == intTree.end());
+        ASSERT(intTree.size() == arraySize);
+    }
+    return 0;
+}
+
+static int testBinarySearchTreeInsertRange()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+
+        ft::BinarySearchTree<int> intTree;
+        intTree.insert(values, values + arraySize);
+
+        std::sort(values, values + arraySize);
+        ft::BinarySearchTree<int>::iterator first = intTree.begin();
+        for (std::size_t i(0); i < arraySize; ++i, ++first)
+        {
+            ASSERT(*first == values[i]);
+        }
+        ASSERT(first == intTree.end());
+        ASSERT(intTree.size() == arraySize);
     }
     return 0;
 }
