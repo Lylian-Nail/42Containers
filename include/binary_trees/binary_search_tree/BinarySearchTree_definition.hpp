@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 09:00:18 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:24:03 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ namespace ft
     {
     protected:
         class Node;
-        template <class Node, class Type>
-        class in_order_iterator;
 
     public:
+        template <class Node, class Type>
+        class in_order_iterator;
         /*
         * Template base public aliases
         */

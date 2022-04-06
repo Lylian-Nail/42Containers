@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:45:35 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 15:44:47 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:14:30 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,34 @@ namespace ft
     map<Key, T, Compare, Alloc>::end() const
     {
         return m_tree.end();
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    typename map<Key, T, Compare, Alloc>::reverse_iterator
+    map<Key, T, Compare, Alloc>::rbegin()
+    {
+        return m_tree.rbegin();
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    typename map<Key, T, Compare, Alloc>::const_reverse_iterator
+    map<Key, T, Compare, Alloc>::rbegin() const
+    {
+        return m_tree.rbegin();
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    typename map<Key, T, Compare, Alloc>::reverse_iterator
+    map<Key, T, Compare, Alloc>::rend()
+    {
+        return m_tree.rend();
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    typename map<Key, T, Compare, Alloc>::const_reverse_iterator
+    map<Key, T, Compare, Alloc>::rend() const
+    {
+        return m_tree.rend();
     }
 }
 

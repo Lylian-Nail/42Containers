@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:21:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 09:57:19 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:00:41 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ namespace ft
             {
                 _base = rhs.base();
             }
+            return *this;
         }
 
         reference operator*() const

@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:44:10 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 15:40:36 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:27:33 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ namespace ft
                                     const_reverse_iterator;
         typedef typename iterator_traits<iterator>::difference_type
                                                     difference_type;
-        typedef std::size_t                                  size_type;
+        typedef std::size_t                                 size_type;
 
         /*
          * Constructors and destructor
@@ -100,6 +100,12 @@ namespace ft
 
         iterator end();
         const_iterator end() const;
+
+        reverse_iterator rbegin();
+        const_reverse_iterator rbegin() const;
+
+        reverse_iterator rend();
+        const_reverse_iterator rend() const;
 
     private:
         key_compare     m_key_compare;
