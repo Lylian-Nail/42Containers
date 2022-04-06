@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 08:55:48 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 12:49:40 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -449,7 +449,7 @@ namespace ft
             else if (greater)
                 root = root->rightChild;
             else
-                return make_pair(iterator(root), false);
+                return ft::make_pair(iterator(root), false);
         }
 
         node_pointer newNode = create_node(value, parent);
@@ -458,7 +458,7 @@ namespace ft
             parent->leftChild = newNode;
         else
             parent->rightChild = newNode;
-        return make_pair(iterator(newNode), true);
+        return ft::make_pair(iterator(newNode), true);
     }
 
     template <class T, class Compare, class Alloc>
@@ -472,7 +472,7 @@ namespace ft
         {
             iterator successor = position;
             successor++;
-            node->data = successor.base()->data;
+            m_allocator.construct(&node->data, successor.base()->data);
             return erase_node(root, successor);
         }
 

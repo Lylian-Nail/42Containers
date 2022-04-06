@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:44:10 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 11:21:34 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 12:35:33 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ namespace ft
          * Member types definitions
         */
     public:
-        struct value_compare;
+        class   value_compare;
 
         typedef Key                                         key_type;
         typedef T                                           mapped_type;
@@ -61,6 +61,28 @@ namespace ft
         typedef typename iterator_traits<iterator>::difference_type
                                                     difference_type;
         typedef std::size_t                                  size_type;
+
+        /*
+         * Constructors and destructor
+        */
+
+        explicit map(
+            key_compare const &key_compare = key_compare(),
+            allocator_type const &allocator = allocator_type()
+        );
+
+        /*
+         * Getters
+        */
+
+        key_compare key_comp() const;
+        value_compare value_comp() const;
+
+    private:
+        key_compare     m_key_compare;
+        value_compare   m_value_compare;
+        tree_type       m_tree;
+
     };
 }
 
