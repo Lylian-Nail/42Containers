@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:44:10 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 12:35:33 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 13:40:06 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,12 @@ namespace ft
          * Getters
         */
 
+        bool empty() const;
+        size_type size() const;
+        size_type max_size() const;
         key_compare key_comp() const;
         value_compare value_comp() const;
+        allocator_type get_allocator() const;
 
     private:
         key_compare     m_key_compare;
