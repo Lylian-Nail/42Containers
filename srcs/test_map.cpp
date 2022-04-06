@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   test_map.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/06 16:16:12 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 10:48:33 by lperson-         ###   ########.fr       */
+/*   Created: 2022/04/06 10:46:59 by lperson-          #+#    #+#             */
+/*   Updated: 2022/04/06 10:48:21 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.hpp"
 
-int main()
+#ifdef STD
+
+# include <map>
+namespace ft = std;
+
+#else
+
+# include "stack.hpp"
+
+#endif
+
+TestSuite *testUnitMap()
 {
-    TestSuite containers("ft_containers");
+    TestSuite *map = new TestSuite("map");
 
-    containers.addTest(testUnitIterator());
-    containers.addTest(testUnitTypeTraits());
-    containers.addTest(testUnitVector());
-    containers.addTest(testUnitStack());
-    containers.addTest(testUnitUtility());
-    containers.addTest(testUnitBinarySearchTree());
-    containers.addTest(testUnitMap());
-
-    return containers.run();
+    return map;
 }

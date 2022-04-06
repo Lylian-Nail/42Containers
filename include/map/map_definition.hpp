@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.hpp                                           :+:      :+:    :+:   */
+/*   map_definition.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/25 15:02:32 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 10:46:21 by lperson-         ###   ########.fr       */
+/*   Created: 2022/04/06 10:44:10 by lperson-          #+#    #+#             */
+/*   Updated: 2022/04/06 10:45:10 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_HPP
+#ifndef MAP_DEFINITION_HPP
 
-# define TEST_HPP
+# define MAP_DEFINITION_HPP
 
-# include "test/basic_test.hpp"
-# include "test/TestCase.hpp"
-# include "test/TestSuite.hpp"
+# include "binary_trees/BinarySearchTree.hpp"
 
-TestSuite *testUnitIterator();
-TestSuite *testUnitTypeTraits();
-TestSuite *testUnitVector();
-TestSuite *testUnitStack();
-TestSuite *testUnitUtility();
-TestSuite *testUnitBinarySearchTree();
-TestSuite *testUnitMap();
+namespace ft
+{
+    class map
+    {
+    };
+}
 
 #endif
