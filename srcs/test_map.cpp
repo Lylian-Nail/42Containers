@@ -6,13 +6,14 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:46:59 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 15:38:47 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:48:05 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.hpp"
 #include <string>
 #include <cstdlib>
+# include <algorithm>
 
 #ifdef STD
 
@@ -48,7 +49,16 @@ static int testMapRangeConstructor()
         }
 
         ft::map<int, std::string> stringMap(paired.begin(), paired.end());
+        std::sort(values, values + arraySize);
+
         ASSERT(stringMap.size() == paired.size());
+        ft::map<int, std::string>::iterator first = stringMap.begin();
+        ft::map<int, std::string>::const_iterator last = stringMap.end();
+        for (int i = 0; first != last; ++i, ++first)
+        {
+            ASSERT(first->first == values[i]);
+            ASSERT(first->second.compare("World") == 0);
+        }
     }
     return 0;
 }

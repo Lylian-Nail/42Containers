@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:45:35 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 15:37:25 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:44:47 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,38 @@ namespace ft
     map<Key, T, Compare, Alloc>::get_allocator() const
     {
         return m_tree.get_allocator();
+    }
+
+    /*
+     * Iterators
+    */
+
+    template <class Key, class T, class Compare, class Alloc>
+    typename map<Key, T, Compare, Alloc>::iterator
+    map<Key, T, Compare, Alloc>::begin()
+    {
+        return m_tree.begin();
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    typename map<Key, T, Compare, Alloc>::const_iterator
+    map<Key, T, Compare, Alloc>::begin() const
+    {
+        return m_tree.begin();
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    typename map<Key, T, Compare, Alloc>::iterator
+    map<Key, T, Compare, Alloc>::end()
+    {
+        return m_tree.end();
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    typename map<Key, T, Compare, Alloc>::const_iterator
+    map<Key, T, Compare, Alloc>::end() const
+    {
+        return m_tree.end();
     }
 }
 
