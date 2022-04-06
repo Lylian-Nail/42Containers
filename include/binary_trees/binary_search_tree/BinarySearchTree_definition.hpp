@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 08:46:11 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 09:00:18 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ namespace ft
     >
     class BinarySearchTree
     {
-    private:
+    protected:
         class Node;
         template <class Node, class Type>
         class in_order_iterator;
@@ -52,7 +52,7 @@ namespace ft
         typedef size_t                                      size_type;
         typedef typename allocator_type::const_pointer      const_pointer;
 
-    private:
+    protected:
         typedef typename allocator_type::rebind<Node>::other
                                             node_allocator_type;
         typedef typename node_allocator_type::value_type 
@@ -94,7 +94,7 @@ namespace ft
             allocator_type const &allocator = allocator_type()
         );
         BinarySearchTree(BinarySearchTree const &copy);
-        ~BinarySearchTree();
+        virtual ~BinarySearchTree();
 
         /*
          * Getters
@@ -152,7 +152,7 @@ namespace ft
 
         BinarySearchTree &operator=(BinarySearchTree const &rhs);
 
-    private:
+    protected:
         node_pointer        m_superRoot;
         node_pointer        m_root;
         size_type           m_size;
@@ -162,6 +162,7 @@ namespace ft
 
         /*
          * Node utilities
+         * Theses node utilites can be override in inheritance
         */
 
         virtual node_pointer create_node(
