@@ -6,7 +6,7 @@
 #    By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/09 19:59:42 by lperson-          #+#    #+#              #
-#    Updated: 2022/04/06 10:48:57 by lperson-         ###   ########.fr        #
+#    Updated: 2022/04/06 16:11:01 by lperson-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 CXXFLAGS += ${addprefix -I , ${PATHI}}
 CXXFLAGS += -g
 DFLAGS = -MMD -MT $@ -MF ${PATHD}/$*.d
-LD := c++
+LD := g++
 LDFLAGS :=
 
 SRCS_DIR = ${shell find ${PATHS} -type d}
