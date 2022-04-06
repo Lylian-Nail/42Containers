@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:43:48 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/24 13:26:24 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 10:51:59 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ namespace ft = std;
 # include "stack.hpp"
 
 #endif
-
-# include <iostream>
 
 static int testStackDefaultConstructor()
 {
