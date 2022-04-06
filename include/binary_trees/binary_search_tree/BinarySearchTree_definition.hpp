@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 18:58:14 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 08:46:11 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ namespace ft
         size_type erase(const_reference value);
         void erase(iterator first, iterator last);
         void clear();
+        void swap(BinarySearchTree &swapped);
 
         /*
          * Iterators

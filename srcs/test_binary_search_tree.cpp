@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 08:39:38 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 08:55:36 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -467,6 +467,34 @@ static int testBinarySearchTreeEraseRange()
     return 0;
 }
 
+static int testBinarySearchTreeSwap()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+
+        ft::BinarySearchTree<int> intTree;
+        intTree.insert(values, values + arraySize);
+
+        ft::BinarySearchTree<int> emptyTree;
+        emptyTree.swap(intTree);
+
+        ASSERT(intTree.size() == 0);
+        ASSERT(intTree.begin() == intTree.end());
+
+        std::sort(values, values + arraySize);
+        ft::BinarySearchTree<int>::iterator first = emptyTree.begin();
+        ft::BinarySearchTree<int>::iterator last = emptyTree.end();
+        std::size_t i = 0;
+        for (; first != last; ++first, ++i)
+        {
+            ASSERT(values[i] == *first);
+        }
+        ASSERT(i == arraySize);
+    }
+    return 0;
+}
+
 static int testBinarySearchTreeReverseIterator()
 {
     {
@@ -597,6 +625,9 @@ TestSuite *testUnitBinarySearchTree()
             "test binary search tree erase range",
             testBinarySearchTreeEraseRange
         )
+    );
+    BinarySearchTree->addTest(
+        new TestCase("test binary search tree swap", testBinarySearchTreeSwap)
     );
     BinarySearchTree->addTest(
         new TestCase(

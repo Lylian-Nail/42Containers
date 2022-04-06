@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 08:41:41 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 08:55:48 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,6 +293,25 @@ namespace ft
         clear_node(m_root);
         m_root = NULL;
         m_size = 0;
+    }
+
+    template <class T, class Compare, class Alloc>
+    void BinarySearchTree<T, Compare, Alloc>::swap(BinarySearchTree &swapped)
+    {
+        if (this != &swapped)
+        {
+            size_type size = this->size();
+            node_pointer superRoot = m_superRoot;
+            node_pointer root = m_root;
+
+            m_superRoot = swapped.m_superRoot;
+            m_root = swapped.m_root;
+            m_size = swapped.m_size;
+
+            swapped.m_superRoot = superRoot;
+            swapped.m_root = root;
+            swapped.m_size = size;
+        }
     }
 
     /*
