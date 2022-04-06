@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:44:10 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 13:40:06 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 13:47:07 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,15 @@ namespace ft
         */
 
         explicit map(
+            key_compare const &key_compare = key_compare(),
+            allocator_type const &allocator = allocator_type()
+        );
+        template <class InputIterator>
+        map(
+            typename enable_if<
+                !is_integral<InputIterator>::value, InputIterator
+            >::type first,
+            InputIterator last,
             key_compare const &key_compare = key_compare(),
             allocator_type const &allocator = allocator_type()
         );

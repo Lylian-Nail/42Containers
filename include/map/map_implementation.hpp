@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:45:35 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 13:40:58 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:37:25 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,22 @@ namespace ft
         m_key_compare(key_compare),
         m_value_compare(key_compare),
         m_tree(m_value_compare, allocator)
+    {
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    template <class InputIterator>
+    map<Key, T, Compare, Alloc>::map(
+        typename enable_if<
+            !is_integral<InputIterator>::value, InputIterator
+        >::type first,
+        InputIterator last,
+        key_compare const &key_compare,
+        allocator_type const &allocator
+    ):
+        m_key_compare(key_compare),
+        m_value_compare(key_compare),
+        m_tree(first, last, m_value_compare, allocator)
     {
     }
 
