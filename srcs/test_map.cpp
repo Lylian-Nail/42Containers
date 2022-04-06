@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:46:59 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 16:29:38 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:41:14 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ static int testMapReverseIterator()
 
         ASSERT(stringMap.size() == paired.size());
         ft::map<int, std::string>::reverse_iterator first = stringMap.rbegin();
-        ft::map<int, std::string>::reverse_iterator last = stringMap.rend();
+        ft::map<int, std::string>::const_reverse_iterator last;
+        last = stringMap.rend();
         for (std::size_t i = arraySize -1; first != last; ++first, --i)
         {
             ASSERT(first->first == values[i]);

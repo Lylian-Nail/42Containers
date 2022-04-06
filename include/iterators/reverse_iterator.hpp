@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:21:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 16:00:41 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:39:51 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ namespace ft
         typedef typename iterator_traits<Iterator>::reference
                                                     reference;
 
-        reverse_iterator();
+        reverse_iterator() {};
         explicit reverse_iterator(iterator_type it): _base(it) {}
         template <class Iter>
         reverse_iterator(reverse_iterator<Iter> const &copy):
