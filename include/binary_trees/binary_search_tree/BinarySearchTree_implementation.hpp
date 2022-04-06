@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 08:40:13 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 08:41:41 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -483,7 +483,6 @@ namespace ft
         clear_node(root->leftChild);
         clear_node(root->rightChild);
         destroy_node(root);
-        m_size--;
     }
 }
 
