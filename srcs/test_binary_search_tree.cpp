@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 08:55:36 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 08:58:24 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -467,6 +467,21 @@ static int testBinarySearchTreeEraseRange()
     return 0;
 }
 
+static int testBinarySearchTreeClear()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+
+        ft::BinarySearchTree<int> intTree;
+        intTree.insert(values, values + arraySize);
+        intTree.clear();
+        ASSERT(intTree.begin() == intTree.end());
+        ASSERT(intTree.size() == 0);
+    }
+    return 0;
+}
+
 static int testBinarySearchTreeSwap()
 {
     {
@@ -625,6 +640,9 @@ TestSuite *testUnitBinarySearchTree()
             "test binary search tree erase range",
             testBinarySearchTreeEraseRange
         )
+    );
+    BinarySearchTree->addTest(
+        new TestCase("test binary search tree clear", testBinarySearchTreeClear)
     );
     BinarySearchTree->addTest(
         new TestCase("test binary search tree swap", testBinarySearchTreeSwap)
