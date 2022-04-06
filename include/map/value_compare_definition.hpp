@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.hpp                                            :+:      :+:    :+:   */
+/*   value_compare_definition.hpp                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/06 10:43:34 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 11:23:28 by lperson-         ###   ########.fr       */
+/*   Created: 2022/04/06 11:22:48 by lperson-          #+#    #+#             */
+/*   Updated: 2022/04/06 11:25:47 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_HPP
+#ifndef VALUE_COMPARE_DEFINITION_HPP
 
-# define MAP_HPP
+# define VALUE_COMPARE_DEFINITION_HPP
 
-# include "map/map_definition.hpp"
-# include "map/map_implementation.hpp"
-# include "map/value_compare_definition.hpp"
+namespace ft
+{
+    template <class Key, class T, class Compare, class Alloc>
+    struct map<Key, T, Compare, Alloc>::value_compare
+    {
+    };
+}
 
 #endif
