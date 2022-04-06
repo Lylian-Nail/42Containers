@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 18:56:50 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 08:39:38 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -432,6 +432,41 @@ static int testBinarySearchTreeEraseValue()
     return 0;
 }
 
+static int testBinarySearchTreeEraseRange()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+
+        ft::BinarySearchTree<int> intTree;
+        intTree.insert(values, values + arraySize);
+        std::sort(values, values + arraySize);
+        ft::BinarySearchTree<int>::iterator first = intTree.begin();
+        std::size_t i;
+        for (i = 0; i < 4; ++i)
+            first++;
+        intTree.erase(intTree.begin(), first);
+        ft::BinarySearchTree<int>::iterator last = intTree.end();
+        for (first = intTree.begin(); first != last; ++first, ++i)
+        {
+            ASSERT(*first == values[i]);
+        }
+        ASSERT(i == arraySize);
+        ASSERT(intTree.size() == arraySize - 4);
+    }
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+
+        ft::BinarySearchTree<int> intTree;
+        intTree.insert(values, values + arraySize);
+        intTree.erase(intTree.begin(), intTree.end());
+        ASSERT(intTree.begin() == intTree.end());
+        ASSERT(intTree.size() == 0);
+    }
+    return 0;
+}
+
 static int testBinarySearchTreeReverseIterator()
 {
     {
@@ -555,6 +590,12 @@ TestSuite *testUnitBinarySearchTree()
         new TestCase(
             "test binary search tree erase value",
             testBinarySearchTreeEraseValue
+        )
+    );
+    BinarySearchTree->addTest(
+        new TestCase(
+            "test binary search tree erase range",
+            testBinarySearchTreeEraseRange
         )
     );
     BinarySearchTree->addTest(

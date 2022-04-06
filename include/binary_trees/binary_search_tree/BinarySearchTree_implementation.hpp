@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/05 18:56:14 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/06 08:40:13 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,10 +274,25 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
+    void BinarySearchTree<T, Compare, Alloc>::erase(
+        iterator first, iterator last
+    )
+    {
+        for (;first != last;)
+        {
+            iterator next = first;
+            ++next;
+            erase(first);
+            first = next;
+        }
+    }
+
+    template <class T, class Compare, class Alloc>
     void BinarySearchTree<T, Compare, Alloc>::clear()
     {
         clear_node(m_root);
         m_root = NULL;
+        m_size = 0;
     }
 
     /*
