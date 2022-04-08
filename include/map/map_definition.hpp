@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:44:10 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 13:29:34 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 13:37:30 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ namespace ft
         allocator_type get_allocator() const;
         const_iterator find(key_type const &key) const;
         const_iterator lower_bound(key_type const &key) const;
+        const_iterator upper_bound(key_type const &key) const;
 
         /*
          * Setters
@@ -100,6 +101,7 @@ namespace ft
 
         iterator find(key_type const &key);
         iterator lower_bound(key_type const &key);
+        iterator upper_bound(key_type const &key);
 
         /*
          * Iterators

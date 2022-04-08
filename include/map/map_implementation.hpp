@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:45:35 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 13:35:31 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 13:38:38 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,15 @@ namespace ft
         );
     }
 
+    template <class Key, class T, class Compare, class Alloc>
+    typename map<Key, T, Compare, Alloc>::const_iterator
+    map<Key, T, Compare, Alloc>::upper_bound(key_type const &key) const
+    {
+        return m_tree.upper_bound(
+            ft::make_pair<key_type const, mapped_type const>(key, mapped_type())
+        );
+    }
+
     /*
      * Setters
     */
@@ -135,6 +144,15 @@ namespace ft
     map<Key, T, Compare, Alloc>::lower_bound(key_type const &key)
     {
         return m_tree.lower_bound(
+            ft::make_pair<key_type const, mapped_type>(key, mapped_type())
+        );
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    typename map<Key, T, Compare, Alloc>::iterator
+    map<Key, T, Compare, Alloc>::upper_bound(key_type const &key)
+    {
+        return m_tree.upper_bound(
             ft::make_pair<key_type const, mapped_type>(key, mapped_type())
         );
     }
