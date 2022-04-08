@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:45:35 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 12:23:20 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:50:13 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,24 @@ namespace ft
     map<Key, T, Compare, Alloc>::rend() const
     {
         return m_tree.rend();
+    }
+
+    /*
+     * Operators overload
+    */
+
+    template <class Key, class T, class Compare, class Alloc>
+    map<Key, T, Compare, Alloc> &map<Key, T, Compare, Alloc>::operator=(
+        map const &rhs
+    )
+    {
+        if (this != &rhs)
+        {
+            m_key_compare = rhs.key_comp();
+            m_value_compare = rhs.value_comp();
+            m_tree = rhs.m_tree;
+        }
+        return *this;
     }
 }
 

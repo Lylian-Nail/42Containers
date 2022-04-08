@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:46:59 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 12:37:26 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:49:51 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,38 @@ static int testMapValueComp()
     return 0;
 }
 
+static int testMapAssignementOperator()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+        ft::vector<ft::pair<int, std::string> > paired;
+        for (std::size_t i(0); i < arraySize; ++i)
+        {
+            paired.push_back(
+                ft::make_pair<int, std::string>(values[i], "World")
+            );
+        }
+
+        ft::map<int, std::string> stringMap(paired.begin(), paired.end());
+        std::sort(values, values + arraySize);
+        ft::map<int, std::string> copyMap(paired.begin(), paired.begin() + 5);
+        ASSERT(copyMap.size() == 5);
+        copyMap = stringMap;
+        ft::map<int, std::string>::const_iterator firstCopy = copyMap.begin();
+        ft::map<int, std::string>::const_iterator first = stringMap.begin();
+        ft::map<int, std::string>::const_iterator last = stringMap.end();
+        for (; first != last; ++first, ++firstCopy)
+        {
+            ASSERT(first->first == firstCopy->first);
+            ASSERT(first->second.compare(firstCopy->second) == 0);
+        }
+        ASSERT(firstCopy == copyMap.end());
+        ASSERT(copyMap.size() == copyMap.size());
+    }
+    return 0;
+}
+
 TestSuite *testUnitMap()
 {
     TestSuite *map = new TestSuite("map");
@@ -155,6 +187,12 @@ TestSuite *testUnitMap()
     );
     map->addTest(
         new TestCase("test map value comp", testMapValueComp)
+    );
+    map->addTest(
+        new TestCase(
+            "test map assignement operator",
+            testMapAssignementOperator
+        )
     );
 
     return map;

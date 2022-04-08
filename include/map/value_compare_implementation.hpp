@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 11:32:24 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 12:41:38 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:50:04 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ namespace ft
         value_compare const &
     )
     {
+        return *this;
     }
 }

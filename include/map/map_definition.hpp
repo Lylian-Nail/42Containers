@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:44:10 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 12:20:35 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:45:15 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,12 @@ namespace ft
 
         reverse_iterator rend();
         const_reverse_iterator rend() const;
+
+        /*
+         * Operator overload
+        */
+
+        map &operator=(map const &rhs);
 
     private:
         key_compare     m_key_compare;
