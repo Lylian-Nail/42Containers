@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/24 10:46:24 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:41:57 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -886,6 +886,15 @@ int testVectorEqualOperator()
         vectorEmpty.push_back(42);
         ASSERT(!(vectorEmpty == vectorEmptyToo));
     }
+    {
+        ft::vector<int> vectorOfInts;
+
+        for (int i = 0; i < 100; ++i)
+            vectorOfInts.push_back(i);
+
+        ft::vector<int> const vectorCopy(vectorOfInts);
+        ASSERT(vectorOfInts == vectorCopy);
+    }
     return 0;
 }
 
@@ -909,6 +918,16 @@ int testVectorDifferenceOperator()
 
         ASSERT(!(vectorEmpty != vectorEmptyToo));
     }
+    {
+        ft::vector<int> vectorOfInts;
+
+        for (int i = 0; i < 100; ++i)
+            vectorOfInts.push_back(i);
+
+        ft::vector<int> const vectorCopy(vectorOfInts);
+        vectorOfInts.push_back(1);
+        ASSERT(vectorOfInts != vectorCopy);
+    }
     return 0;
 }
 
@@ -929,6 +948,16 @@ int testVectorLessThanOperator()
         ft::vector<int> vectorOfInts(1, 42);
 
         ASSERT(vectorEmpty < vectorOfInts);
+    }
+    {
+        ft::vector<int> vectorOfInts;
+
+        for (int i = 0; i < 100; ++i)
+            vectorOfInts.push_back(i);
+
+        ft::vector<int> const vectorCopy(vectorOfInts);
+        vectorOfInts.back() = vectorCopy.back() - 1;
+        ASSERT(vectorOfInts < vectorCopy);
     }
     return 0;
 }
@@ -954,6 +983,16 @@ int testVectorLessThanOrEqualOperator()
         vectorEmptyToo.push_back(42);
         ASSERT(vectorEmpty <= vectorEmptyToo);
     }
+    {
+        ft::vector<int> vectorOfInts;
+
+        for (int i = 0; i < 100; ++i)
+            vectorOfInts.push_back(i);
+
+        ft::vector<int> const vectorCopy(vectorOfInts);
+        vectorOfInts.back() = vectorCopy.back() - 1;
+        ASSERT(vectorOfInts < vectorCopy);
+    }
     return 0;
 }
 
@@ -974,6 +1013,16 @@ int testVectorGreaterThanOperator()
         ft::vector<int> vectorEmpty;
 
         ASSERT(vectorOfInts > vectorEmpty);
+    }
+    {
+        ft::vector<int> vectorOfInts;
+
+        for (int i = 0; i < 100; ++i)
+            vectorOfInts.push_back(i);
+
+        ft::vector<int> const vectorCopy(vectorOfInts);
+        vectorOfInts.back() = vectorCopy.back() + 1;
+        ASSERT(vectorOfInts > vectorCopy);
     }
     return 0;
 }
@@ -998,6 +1047,16 @@ int testVectorGreaterThanOrEqualOperator()
         ASSERT(vectorEmpty >= vectorEmptyToo);
         vectorEmpty.push_back(42);
         ASSERT(vectorEmpty >= vectorEmptyToo);
+    }
+    {
+        ft::vector<int> vectorOfInts;
+
+        for (int i = 0; i < 100; ++i)
+            vectorOfInts.push_back(i);
+
+        ft::vector<int> const vectorCopy(vectorOfInts);
+        vectorOfInts.back() = vectorCopy.back() + 1;
+        ASSERT(vectorOfInts > vectorCopy);
     }
     return 0;
 }
