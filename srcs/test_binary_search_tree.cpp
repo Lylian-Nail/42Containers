@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 13:08:48 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 14:02:58 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ static int testBinarySearchTreeEqualRange()
         int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
         std::size_t arraySize = sizeof(values) / sizeof(values[0]);
 
-        ft::BinarySearchTree<int> intTree(values, values + arraySize);
+        ft::BinarySearchTree<int> const intTree(values, values + arraySize);
         ft::pair<
             ft::BinarySearchTree<int>::const_iterator,
             ft::BinarySearchTree<int>::const_iterator

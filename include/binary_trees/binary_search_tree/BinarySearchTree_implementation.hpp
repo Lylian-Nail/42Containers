@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 13:13:22 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 14:05:16 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,8 +189,8 @@ namespace ft
         const_reference value
     ) const
     {
-        iterator lower_bound = this->lower_bound(value);
-        return make_pair(lower_bound, lower_bound);
+        const_iterator lower_bound = this->lower_bound(value);
+        return ft::make_pair(lower_bound, lower_bound);
     }
 
     /*
@@ -383,7 +383,7 @@ namespace ft
     BinarySearchTree<T, Compare, Alloc>::equal_range(const_reference value)
     {
         iterator lower_bound = this->lower_bound(value);
-        return make_pair(lower_bound, lower_bound);
+        return ft::make_pair(lower_bound, lower_bound);
     }
 
     /*

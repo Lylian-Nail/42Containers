@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:46:59 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 13:41:14 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 14:05:38 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,49 @@ static int testMapUpperBound()
     return 0;
 }
 
+static int testMapEqualRange()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+        ft::vector<ft::pair<int, std::string> > paired;
+        for (std::size_t i(0); i < arraySize; ++i)
+        {
+            paired.push_back(
+                ft::make_pair<int, std::string>(values[i], "World")
+            );
+        }
+
+        ft::map<int, std::string> const stringMap(paired.begin(), paired.end());
+        ft::pair<
+            ft::map<int, std::string>::const_iterator,
+            ft::map<int, std::string>::const_iterator
+        > equal_range = stringMap.equal_range(33);
+        ASSERT(equal_range.first == equal_range.second);
+        ASSERT(equal_range.first->first == 35);
+        {
+            int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+            std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+            ft::vector<ft::pair<int, std::string> > paired;
+            for (std::size_t i(0); i < arraySize; ++i)
+            {
+                paired.push_back(
+                    ft::make_pair<int, std::string>(values[i], "World")
+                );
+            }
+
+            ft::map<int, std::string> stringMap(paired.begin(), paired.end());
+            ft::pair<
+                ft::map<int, std::string>::iterator,
+                ft::map<int, std::string>::iterator
+            > equal_range = stringMap.equal_range(33);
+            equal_range.first->second = "Hello";
+            ASSERT(equal_range.second->second.compare("Hello") == 0);
+        }
+    }
+    return 0;
+}
+
 static int testMapAssignementOperator()
 {
     {
@@ -317,6 +360,9 @@ TestSuite *testUnitMap()
     );
     map->addTest(
         new TestCase("test map upper bound", testMapUpperBound)
+    );
+    map->addTest(
+        new TestCase("test map equal range", testMapEqualRange)
     );
     map->addTest(
         new TestCase(
