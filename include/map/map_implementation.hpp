@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:45:35 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 13:46:15 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 14:08:18 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,15 @@ namespace ft
     map<Key, T, Compare, Alloc>::get_allocator() const
     {
         return m_tree.get_allocator();
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    typename map<Key, T, Compare, Alloc>::size_type
+    map<Key, T, Compare, Alloc>::count(key_type const &key) const
+    {
+        return m_tree.count(
+            ft::make_pair<key_type const, mapped_type const>(key, mapped_type())
+        );
     }
 
     template <class Key, class T, class Compare, class Alloc>

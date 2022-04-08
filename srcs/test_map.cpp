@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:46:59 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 14:05:38 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 14:10:25 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,28 @@ static int testMapValueComp()
 
     ASSERT(comp(lhs, rhs));
     ASSERT(!comp(rhs, lhs));
+    return 0;
+}
+
+static int testMapCount()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+        ft::vector<ft::pair<int, std::string> > paired;
+        for (std::size_t i(0); i < arraySize; ++i)
+        {
+            paired.push_back(
+                ft::make_pair<int, std::string>(values[i], "World")
+            );
+        }
+
+        ft::map<int, std::string> stringMap(paired.begin(), paired.end());
+        ASSERT(stringMap.count(42) == 1);
+        ASSERT(stringMap.count(11000) == 0);
+        ASSERT(stringMap.count(101) == 1);
+        ASSERT(stringMap.count(8) == 1);
+    }
     return 0;
 }
 
@@ -351,6 +373,9 @@ TestSuite *testUnitMap()
     );
     map->addTest(
         new TestCase("test map value comp", testMapValueComp)
+    );
+    map->addTest(
+        new TestCase("test map count", testMapCount)
     );
     map->addTest(
         new TestCase("test map find", testMapFind)
