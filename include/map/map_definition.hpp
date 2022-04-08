@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:44:10 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 12:45:15 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 13:27:14 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,13 @@ namespace ft
         key_compare key_comp() const;
         value_compare value_comp() const;
         allocator_type get_allocator() const;
+        const_iterator find(key_type const &key) const;
+
+        /*
+         * Setters
+        */
+
+        iterator find(key_type const &key);
 
         /*
          * Iterators

@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:45:35 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 12:50:13 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 13:26:28 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,28 @@ namespace ft
     map<Key, T, Compare, Alloc>::get_allocator() const
     {
         return m_tree.get_allocator();
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    typename map<Key, T, Compare, Alloc>::const_iterator
+    map<Key, T, Compare, Alloc>::find(key_type const &key) const
+    {
+        return m_tree.find(
+            ft::make_pair<key_type const, mapped_type const>(key, mapped_type())
+        );
+    }
+
+    /*
+     * Setters
+    */
+
+    template <class Key, class T, class Compare, class Alloc>
+    typename map<Key, T, Compare, Alloc>::iterator
+    map<Key, T, Compare, Alloc>::find(key_type const &key)
+    {
+        return m_tree.find(
+            ft::make_pair<const key_type, mapped_type>(key, mapped_type())
+        );
     }
 
     /*
