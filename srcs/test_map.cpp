@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:46:59 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 16:41:14 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:37:26 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,38 @@ static int testMapRangeConstructor()
             ASSERT(first->first == values[i]);
             ASSERT(first->second.compare("World") == 0);
         }
+        ASSERT(stringMap.size() == arraySize);
+    }
+    return 0;
+}
+
+static int testMapCopyConstructor()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+        ft::vector<ft::pair<int, std::string> > paired;
+        for (std::size_t i(0); i < arraySize; ++i)
+        {
+            paired.push_back(
+                ft::make_pair<int, std::string>(values[i], "World")
+            );
+        }
+
+        ft::map<int, std::string> stringMap(paired.begin(), paired.end());
+        std::sort(values, values + arraySize);
+        ft::map<int, std::string> copyMap(stringMap);
+        ft::map<int, std::string>::const_iterator firstCopy = copyMap.begin();
+        ft::map<int, std::string>::const_iterator first = stringMap.begin();
+        ft::map<int, std::string>::const_iterator last = stringMap.end();
+        for (; first != last; ++first, ++firstCopy)
+        {
+            ASSERT(first->first == firstCopy->first);
+            ASSERT(first->second.compare(firstCopy->second) == 0);
+        }
+        ASSERT(firstCopy == copyMap.end());
+        ASSERT(copyMap.get_allocator() == stringMap.get_allocator());
+        ASSERT(copyMap.size() == copyMap.size());
     }
     return 0;
 }
@@ -114,6 +146,9 @@ TestSuite *testUnitMap()
     );
     map->addTest(
         new TestCase("test map range constructor", testMapRangeConstructor)
+    );
+    map->addTest(
+        new TestCase("test map copy constructor", testMapCopyConstructor)
     );
     map->addTest(
         new TestCase("test map reverse iterator", testMapReverseIterator)

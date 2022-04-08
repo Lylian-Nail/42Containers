@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:45:35 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 16:14:30 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:23:20 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,14 @@ namespace ft
         m_key_compare(key_compare),
         m_value_compare(key_compare),
         m_tree(first, last, m_value_compare, allocator)
+    {
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    map<Key, T, Compare, Alloc>::map(map const &copy):
+        m_key_compare(copy.key_comp()),
+        m_value_compare(copy.value_comp()),
+        m_tree(copy.begin(), copy.end(), m_value_compare, copy.get_allocator())
     {
     }
 

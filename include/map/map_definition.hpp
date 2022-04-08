@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:44:10 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 12:18:33 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:20:35 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ namespace ft
             key_compare const &key_comp = key_compare(),
             allocator_type const &allocator = allocator_type()
         );
+        map(map const &copy);
 
         /*
          * Getters
