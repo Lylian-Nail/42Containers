@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:46:59 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 13:22:56 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 13:35:45 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,49 @@ static int testMapFind()
     return 0;
 }
 
+static int testMapLowerBound()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+        ft::vector<ft::pair<int, std::string> > paired;
+        for (std::size_t i(0); i < arraySize; ++i)
+        {
+            paired.push_back(
+                ft::make_pair<int, std::string>(values[i], "World")
+            );
+        }
+
+        ft::map<int, std::string> const stringMap(paired.begin(), paired.end());
+        ft::map<int, std::string>::const_iterator lower_bound;
+        lower_bound = stringMap.lower_bound(101);
+        ASSERT(lower_bound->first == 101);
+        lower_bound = stringMap.lower_bound(102);
+        ASSERT(lower_bound == stringMap.end());
+        lower_bound = stringMap.lower_bound(43);
+        ASSERT(lower_bound->first == 70);
+    }
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+        ft::vector<ft::pair<int, std::string> > paired;
+        for (std::size_t i(0); i < arraySize; ++i)
+        {
+            paired.push_back(
+                ft::make_pair<int, std::string>(values[i], "World")
+            );
+        }
+
+        ft::map<int, std::string> stringMap(paired.begin(), paired.end());
+        ft::map<int, std::string>::iterator lower_bound;
+        lower_bound = stringMap.lower_bound(101);
+        ASSERT(lower_bound->first == 101);
+        lower_bound->second = "Hello";
+        ASSERT(stringMap.find(101)->second.compare("Hello") == 0);
+    }
+    return 0;
+}
+
 static int testMapAssignementOperator()
 {
     {
@@ -227,6 +270,9 @@ TestSuite *testUnitMap()
     );
     map->addTest(
         new TestCase("test map find", testMapFind)
+    );
+    map->addTest(
+        new TestCase("test map lower bound", testMapLowerBound)
     );
     map->addTest(
         new TestCase(
