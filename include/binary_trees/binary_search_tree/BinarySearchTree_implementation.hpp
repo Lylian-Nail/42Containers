@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 15:37:58 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 13:13:22 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinarySearchTree<T, Compare, Alloc>::iterator
+    typename BinarySearchTree<T, Compare, Alloc>::const_iterator
     BinarySearchTree<T, Compare, Alloc>::find(const_reference value) const
     {
         node_pointer current = m_root;
@@ -133,14 +133,16 @@ namespace ft
             else if (m_compare(current->data, value))
                 current = current->rightChild;
             else
-                return iterator(current);
+                return const_iterator(current);
         }
-        return iterator(m_superRoot);
+        return const_iterator(m_superRoot);
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinarySearchTree<T, Compare, Alloc>::iterator
-    BinarySearchTree<T, Compare, Alloc>::lower_bound(const_reference value) const
+    typename BinarySearchTree<T, Compare, Alloc>::const_iterator
+    BinarySearchTree<T, Compare, Alloc>::lower_bound(
+        const_reference value
+    ) const
     {
         node_pointer current = m_root;
         node_pointer lower_bound = m_superRoot;
@@ -154,12 +156,14 @@ namespace ft
             else
                 current = current->rightChild;
         }
-        return iterator(lower_bound);
+        return const_iterator(lower_bound);
     }
 
     template <class T, class Compare, class Alloc>
-    typename BinarySearchTree<T, Compare, Alloc>::iterator
-    BinarySearchTree<T, Compare, Alloc>::upper_bound(const_reference value) const
+    typename BinarySearchTree<T, Compare, Alloc>::const_iterator
+    BinarySearchTree<T, Compare, Alloc>::upper_bound(
+        const_reference value
+    ) const
     {
         node_pointer current = m_root;
         node_pointer upper_bound = m_superRoot;
@@ -173,15 +177,17 @@ namespace ft
             else
                 current = current->rightChild;
         }
-        return iterator(upper_bound);
+        return const_iterator(upper_bound);
     }
 
     template <class T, class Compare, class Alloc>
-    pair<
-        typename BinarySearchTree<T, Compare, Alloc>::iterator,
-        typename BinarySearchTree<T, Compare, Alloc>::iterator
+    ft::pair<
+        typename BinarySearchTree<T, Compare, Alloc>::const_iterator,
+        typename BinarySearchTree<T, Compare, Alloc>::const_iterator
     >
-    BinarySearchTree<T, Compare, Alloc>::equal_range(const_reference value) const
+    BinarySearchTree<T, Compare, Alloc>::equal_range(
+        const_reference value
+    ) const
     {
         iterator lower_bound = this->lower_bound(value);
         return make_pair(lower_bound, lower_bound);
@@ -312,6 +318,72 @@ namespace ft
             swapped.m_root = root;
             swapped.m_size = size;
         }
+    }
+
+    template <class T, class Compare, class Alloc>
+    typename BinarySearchTree<T, Compare, Alloc>::iterator
+    BinarySearchTree<T, Compare, Alloc>::find(const_reference value)
+    {
+        node_pointer current = m_root;
+        while (current != NULL)
+        {
+            if (m_compare(value, current->data))
+                current = current->leftChild;
+            else if (m_compare(current->data, value))
+                current = current->rightChild;
+            else
+                return iterator(current);
+        }
+        return iterator(m_superRoot);
+    }
+
+    template <class T, class Compare, class Alloc>
+    typename BinarySearchTree<T, Compare, Alloc>::iterator
+    BinarySearchTree<T, Compare, Alloc>::lower_bound(const_reference value)
+    {
+        node_pointer current = m_root;
+        node_pointer lower_bound = m_superRoot;
+        while (current != NULL)
+        {
+            if (!m_compare(current->data, value))
+            {
+                lower_bound = current;
+                current = current->leftChild;
+            }
+            else
+                current = current->rightChild;
+        }
+        return iterator(lower_bound);
+    }
+
+    template <class T, class Compare, class Alloc>
+    typename BinarySearchTree<T, Compare, Alloc>::iterator
+    BinarySearchTree<T, Compare, Alloc>::upper_bound(const_reference value)
+    {
+        node_pointer current = m_root;
+        node_pointer upper_bound = m_superRoot;
+        while (current != NULL)
+        {
+            if (m_compare(value, current->data))
+            {
+                upper_bound = current;
+                current = current->leftChild;
+            }
+            else
+                current = current->rightChild;
+        }
+        return iterator(upper_bound);
+    }
+
+    template <class T, class Compare, class Alloc>
+    ft::pair<
+        typename BinarySearchTree<T, Compare, Alloc>::iterator,
+        typename BinarySearchTree<T, Compare, Alloc>::iterator
+    >
+    BinarySearchTree<T, Compare, Alloc>::equal_range(const_reference value)
+    {
+        iterator lower_bound = this->lower_bound(value);
+        return make_pair(lower_bound, lower_bound);
     }
 
     /*

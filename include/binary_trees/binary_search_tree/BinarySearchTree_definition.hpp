@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 16:40:46 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 13:11:30 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,12 @@ namespace ft
         size_type size() const;
         size_type max_size() const;
         size_type count(const_reference value) const;
-        iterator find(const_reference value) const;
-        iterator lower_bound(const_reference value) const;
-        iterator upper_bound(const_reference value) const;
-        pair<iterator, iterator> equal_range(const_reference value) const;
+        const_iterator find(const_reference value) const;
+        const_iterator lower_bound(const_reference value) const;
+        const_iterator upper_bound(const_reference value) const;
+        ft::pair<const_iterator, const_iterator> equal_range(
+            const_reference value
+        ) const;
 
         /*
          * Setters
@@ -129,6 +131,10 @@ namespace ft
         void erase(iterator first, iterator last);
         void clear();
         void swap(BinarySearchTree &swapped);
+        iterator find(const_reference value);
+        iterator lower_bound(const_reference value);
+        iterator upper_bound(const_reference value);
+        ft::pair<iterator, iterator> equal_range(const_reference value);
 
         /*
          * Iterators
