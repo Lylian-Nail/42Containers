@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:44:10 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 16:44:19 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:51:52 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ namespace ft
         */
 
         map &operator=(map const &rhs);
+        mapped_type &operator[](key_type const &key);
 
     private:
         key_compare     m_key_compare;

@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:45:35 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 16:48:51 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:54:36 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -325,6 +325,15 @@ namespace ft
             m_tree = rhs.m_tree;
         }
         return *this;
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    typename map<Key, T, Compare, Alloc>::mapped_type &
+    map<Key, T, Compare, Alloc>::operator[](key_type const &key)
+    {
+        return this->insert(
+            ft::make_pair(key, mapped_type())
+        ).first->second;
     }
 }
 

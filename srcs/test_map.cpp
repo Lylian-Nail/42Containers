@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:46:59 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 16:48:37 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:02:14 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -681,6 +681,39 @@ static int testMapAssignementOperator()
     return 0;
 }
 
+static int testMapAccessOperator()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+        ft::map<int, std::string> stringMap = getStringMap(
+            values, "World", arraySize
+        );
+
+        stringMap[42] = "Hello";
+        ASSERT(stringMap[42].compare("Hello") == 0);
+        stringMap[1000] = "World";
+        ASSERT(stringMap.size() == arraySize + 1);
+        ASSERT(stringMap[1000].compare("World") == 0);
+
+        std::sort(values, values + arraySize);
+        ft::map<int, std::string>::iterator first = stringMap.begin();
+        ft::map<int, std::string>::iterator last = stringMap.end();
+        for (int i = 0; first != last; ++first, ++i)
+        {
+            if (first->first == 42)
+            {
+                ASSERT(first->second.compare("Hello") == 0);
+            }
+            if (first->first == 1000)
+                ASSERT(first->second.compare("World") == 0)
+            else
+                ASSERT(values[i] == first->first);
+        }
+    }
+    return 0;
+}
+
 TestSuite *testUnitMap()
 {
     TestSuite *map = new TestSuite("map");
@@ -746,6 +779,9 @@ TestSuite *testUnitMap()
             "test map assignement operator",
             testMapAssignementOperator
         )
+    );
+    map->addTest(
+        new TestCase("test map access operator", testMapAccessOperator)
     );
 
     return map;
