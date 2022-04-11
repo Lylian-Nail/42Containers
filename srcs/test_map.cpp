@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:46:59 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 15:36:56 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:23:32 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -360,7 +360,7 @@ static int testMapErasePosition()
 
 static int testMapEraseKey()
 {
-        {
+    {
         int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
         std::size_t arraySize = sizeof(values) / sizeof(values[0]);
         ft::map<int, std::string> stringMap = getStringMap(
@@ -435,6 +435,59 @@ static int testMapEraseKey()
             }
         }
         ASSERT(stringMap.size() == arraySize - 4);
+    }
+    return 0;
+}
+
+static int testMapEraseRange()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+        ft::map<int, std::string> stringMap = getStringMap(
+            values, "World", arraySize
+        );
+
+        std::sort(values, values + arraySize);
+        ft::map<int, std::string>::iterator first = stringMap.begin();
+        for (int i = 0; i < 5; ++i)
+            ++first;
+        stringMap.erase(stringMap.begin() , first);
+        first = stringMap.begin();
+        ft::map<int, std::string>::iterator last = stringMap.end();
+        for (int i = 5; first != last; ++first, ++i)
+        {
+            ASSERT(values[i] == first->first);
+            ASSERT(first->second.compare("World") == 0);
+        }
+    }
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+        ft::map<int, std::string> stringMap = getStringMap(
+            values, "World", arraySize
+        );
+
+        stringMap.erase(stringMap.begin(), stringMap.end());
+        ASSERT(stringMap.size() == 0);
+        ASSERT(stringMap.begin() == stringMap.end());
+    }
+    return 0;
+}
+
+static int testMapClear()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+        ft::map<int, std::string> stringMap = getStringMap(
+            values, "World", arraySize
+        );
+        ASSERT(stringMap.size() == arraySize);
+
+        stringMap.clear();
+        ASSERT(stringMap.size() == 0);
+        ASSERT(stringMap.begin() == stringMap.end());
     }
     return 0;
 }
@@ -639,6 +692,12 @@ TestSuite *testUnitMap()
     );
     map->addTest(
         new TestCase("test map erase key", testMapEraseKey)
+    );
+    map->addTest(
+        new TestCase("test map erase range", testMapEraseRange)
+    );
+    map->addTest(
+        new TestCase("test map clear", testMapClear)
     );
     map->addTest(
         new TestCase("test map find", testMapFind)

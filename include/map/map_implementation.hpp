@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:45:35 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 15:23:46 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:21:05 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,18 @@ namespace ft
         return m_tree.erase(
             ft::make_pair(key, mapped_type())
         );
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    void map<Key, T, Compare, Alloc>::erase(iterator first, iterator last)
+    {
+        m_tree.erase(first, last);
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    void map<Key, T, Compare, Alloc>::clear()
+    {
+        m_tree.clear();
     }
 
     template <class Key, class T, class Compare, class Alloc>
