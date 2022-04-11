@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:46:59 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 14:10:25 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:27:25 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,28 @@ namespace ft = std;
 # include "map.hpp"
 
 #endif
+
+/*
+ * Value tested
+*/
+
+static ft::map<int, std::string> getStringMap(
+    int values[], std::string const &second, std::size_t arraySize
+)
+{
+    ft::vector<ft::pair<int, std::string> > paired;
+    for (std::size_t i = 0; i < arraySize; ++i)
+    {
+        paired.push_back(
+            ft::make_pair(values[i], second)
+        );
+    }
+    return ft::map<int, std::string>(paired.begin(), paired.end());
+}
+
+/*
+ * Tests
+*/
 
 static int testMapDefaultConstructor()
 {
@@ -100,18 +122,12 @@ static int testMapReverseIterator()
     {
         int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
         std::size_t arraySize = sizeof(values) / sizeof(values[0]);
-        ft::vector<ft::pair<int, std::string> > paired;
-        for (std::size_t i(0); i < arraySize; ++i)
-        {
-            paired.push_back(
-                ft::make_pair<int, std::string>(values[i], "World")
-            );
-        }
+        ft::map<int, std::string> stringMap = getStringMap(
+            values, "World", arraySize
+        );
+        ASSERT(stringMap.size() == arraySize);
 
-        ft::map<int, std::string> stringMap(paired.begin(), paired.end());
         std::sort(values, values + arraySize);
-
-        ASSERT(stringMap.size() == paired.size());
         ft::map<int, std::string>::reverse_iterator first = stringMap.rbegin();
         ft::map<int, std::string>::const_reverse_iterator last;
         last = stringMap.rend();
@@ -142,19 +158,40 @@ static int testMapCount()
     {
         int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
         std::size_t arraySize = sizeof(values) / sizeof(values[0]);
-        ft::vector<ft::pair<int, std::string> > paired;
-        for (std::size_t i(0); i < arraySize; ++i)
-        {
-            paired.push_back(
-                ft::make_pair<int, std::string>(values[i], "World")
-            );
-        }
+        ft::map<int, std::string> stringMap = getStringMap(
+            values, "World", arraySize
+        );
 
-        ft::map<int, std::string> stringMap(paired.begin(), paired.end());
         ASSERT(stringMap.count(42) == 1);
         ASSERT(stringMap.count(11000) == 0);
         ASSERT(stringMap.count(101) == 1);
         ASSERT(stringMap.count(8) == 1);
+    }
+    return 0;
+}
+
+static int testMapInsertSingleElement()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+        ft::map<int, std::string> mapString;
+
+        for (std::size_t i = 0; i < arraySize; ++i)
+        {
+            mapString.insert(ft::make_pair(values[i], "World"));
+        }
+        ASSERT(mapString.size() == arraySize);
+
+        std::sort(values, values + arraySize);
+        ft::map<int, std::string>::const_iterator first;
+        first = mapString.begin();
+        for (std::size_t i = 0; i < arraySize; ++i, ++first)
+        {
+            ASSERT(values[i] == first->first);
+            ASSERT(first->second.compare("World") == 0);
+        }
+        ASSERT(first == mapString.end());
     }
     return 0;
 }
@@ -164,30 +201,20 @@ static int testMapFind()
     {
         int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
         std::size_t arraySize = sizeof(values) / sizeof(values[0]);
-        ft::vector<ft::pair<int, std::string> > paired;
-        for (std::size_t i(0); i < arraySize; ++i)
-        {
-            paired.push_back(
-                ft::make_pair<int, std::string>(values[i], "World")
-            );
-        }
+        ft::map<int, std::string> stringMap = getStringMap(
+            values, "World", arraySize
+        );
 
-        ft::map<int, std::string> const stringMap(paired.begin(), paired.end());
         ft::map<int, std::string>::const_iterator found = stringMap.find(101);
         ASSERT(found->first == 101);
     }
     {
         int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
         std::size_t arraySize = sizeof(values) / sizeof(values[0]);
-        ft::vector<ft::pair<int, std::string> > paired;
-        for (std::size_t i(0); i < arraySize; ++i)
-        {
-            paired.push_back(
-                ft::make_pair<int, std::string>(values[i], "World")
-            );
-        }
+        ft::map<int, std::string> stringMap = getStringMap(
+            values, "World", arraySize
+        );
 
-        ft::map<int, std::string> stringMap(paired.begin(), paired.end());
         ft::map<int, std::string>::iterator found = stringMap.find(101);
         ASSERT(found->first == 101);
         found->second = "Hello";
@@ -201,15 +228,10 @@ static int testMapLowerBound()
     {
         int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
         std::size_t arraySize = sizeof(values) / sizeof(values[0]);
-        ft::vector<ft::pair<int, std::string> > paired;
-        for (std::size_t i(0); i < arraySize; ++i)
-        {
-            paired.push_back(
-                ft::make_pair<int, std::string>(values[i], "World")
-            );
-        }
+        ft::map<int, std::string> stringMap = getStringMap(
+            values, "World", arraySize
+        );
 
-        ft::map<int, std::string> const stringMap(paired.begin(), paired.end());
         ft::map<int, std::string>::const_iterator lower_bound;
         lower_bound = stringMap.lower_bound(101);
         ASSERT(lower_bound->first == 101);
@@ -221,15 +243,10 @@ static int testMapLowerBound()
     {
         int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
         std::size_t arraySize = sizeof(values) / sizeof(values[0]);
-        ft::vector<ft::pair<int, std::string> > paired;
-        for (std::size_t i(0); i < arraySize; ++i)
-        {
-            paired.push_back(
-                ft::make_pair<int, std::string>(values[i], "World")
-            );
-        }
+        ft::map<int, std::string> stringMap = getStringMap(
+            values, "World", arraySize
+        );
 
-        ft::map<int, std::string> stringMap(paired.begin(), paired.end());
         ft::map<int, std::string>::iterator lower_bound;
         lower_bound = stringMap.lower_bound(101);
         ASSERT(lower_bound->first == 101);
@@ -244,15 +261,10 @@ static int testMapUpperBound()
     {
         int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
         std::size_t arraySize = sizeof(values) / sizeof(values[0]);
-        ft::vector<ft::pair<int, std::string> > paired;
-        for (std::size_t i(0); i < arraySize; ++i)
-        {
-            paired.push_back(
-                ft::make_pair<int, std::string>(values[i], "World")
-            );
-        }
+        ft::map<int, std::string> stringMap = getStringMap(
+            values, "World", arraySize
+        );
 
-        ft::map<int, std::string> const stringMap(paired.begin(), paired.end());
         ft::map<int, std::string>::const_iterator upper_bound;
         upper_bound = stringMap.upper_bound(101);
         ASSERT(upper_bound == stringMap.end());
@@ -262,15 +274,10 @@ static int testMapUpperBound()
     {
         int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
         std::size_t arraySize = sizeof(values) / sizeof(values[0]);
-        ft::vector<ft::pair<int, std::string> > paired;
-        for (std::size_t i(0); i < arraySize; ++i)
-        {
-            paired.push_back(
-                ft::make_pair<int, std::string>(values[i], "World")
-            );
-        }
+        ft::map<int, std::string> stringMap = getStringMap(
+            values, "World", arraySize
+        );
 
-        ft::map<int, std::string> stringMap(paired.begin(), paired.end());
         ft::map<int, std::string>::iterator lower_bound;
         lower_bound = stringMap.upper_bound(42);
         ASSERT(lower_bound->first == 70);
@@ -285,15 +292,10 @@ static int testMapEqualRange()
     {
         int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
         std::size_t arraySize = sizeof(values) / sizeof(values[0]);
-        ft::vector<ft::pair<int, std::string> > paired;
-        for (std::size_t i(0); i < arraySize; ++i)
-        {
-            paired.push_back(
-                ft::make_pair<int, std::string>(values[i], "World")
-            );
-        }
+        ft::map<int, std::string> stringMap = getStringMap(
+            values, "World", arraySize
+        );
 
-        ft::map<int, std::string> const stringMap(paired.begin(), paired.end());
         ft::pair<
             ft::map<int, std::string>::const_iterator,
             ft::map<int, std::string>::const_iterator
@@ -328,21 +330,22 @@ static int testMapAssignementOperator()
     {
         int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
         std::size_t arraySize = sizeof(values) / sizeof(values[0]);
-        ft::vector<ft::pair<int, std::string> > paired;
-        for (std::size_t i(0); i < arraySize; ++i)
-        {
-            paired.push_back(
-                ft::make_pair<int, std::string>(values[i], "World")
-            );
-        }
+        ft::map<int, std::string> stringMap = getStringMap(
+            values, "World", arraySize
+        );
 
-        ft::map<int, std::string> stringMap(paired.begin(), paired.end());
-        std::sort(values, values + arraySize);
-        ft::map<int, std::string> copyMap(paired.begin(), paired.begin() + 5);
+        ft::map<int, std::string>::iterator first = stringMap.begin();
+        for (int i = 0; i < 5; ++i)
+            ++first;
+        ft::map<int, std::string> copyMap(
+            stringMap.begin(), first
+        );
         ASSERT(copyMap.size() == 5);
+
+        std::sort(values, values + arraySize);
         copyMap = stringMap;
         ft::map<int, std::string>::const_iterator firstCopy = copyMap.begin();
-        ft::map<int, std::string>::const_iterator first = stringMap.begin();
+        first = stringMap.begin();
         ft::map<int, std::string>::const_iterator last = stringMap.end();
         for (; first != last; ++first, ++firstCopy)
         {
@@ -376,6 +379,11 @@ TestSuite *testUnitMap()
     );
     map->addTest(
         new TestCase("test map count", testMapCount)
+    );
+    map->addTest(
+        new TestCase(
+            "test map insert single element", testMapInsertSingleElement
+        )
     );
     map->addTest(
         new TestCase("test map find", testMapFind)

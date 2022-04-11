@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:44:10 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 14:06:38 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:00:13 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ namespace ft
          * Setters
         */
 
+        ft::pair<iterator, bool> insert(const_reference value);
         iterator find(key_type const &key);
         iterator lower_bound(key_type const &key);
         iterator upper_bound(key_type const &key);
