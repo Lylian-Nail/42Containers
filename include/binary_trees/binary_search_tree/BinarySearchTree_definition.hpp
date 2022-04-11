@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 16:34:05 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 21:29:02 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,19 @@ namespace ft
         virtual void erase_node(node_pointer root, iterator position);
         virtual void clear_node(node_pointer root);
 
+        // DEBUG!
+        template <class T2, class Compare2, class Alloc2>
+        friend void debug_tree(
+            ft::BinarySearchTree<T2, Compare2, Alloc2> const &bst
+        );
+
+        template <class T2, class Compare2, class Alloc2>
+        friend bool print_level(
+            typename ft::BinarySearchTree<
+                T2, Compare2, Alloc2
+            >::node_pointer const root,
+            int level
+        );
     };
 }
 #endif
