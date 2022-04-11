@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:46:59 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 12:21:22 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 14:57:38 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,8 +277,6 @@ static int testMapInsertRange()
     return 0;
 }
 
-#include <iostream>
-
 static int testMapErasePosition()
 {
     {
@@ -293,24 +291,21 @@ static int testMapErasePosition()
         ft::map<int, std::string>::iterator last = stringMap.end();
         for (int i = 0; first != last; ++i, ++first)
         {
-std::cout << first->first << " " << values[i] << std::endl;
             ASSERT(values[i] == first->first);
             ASSERT(first->second.compare("World") == 0);
         }
         ASSERT(stringMap.size() == arraySize);
 
-std::cout << "Erase: " << 42 << std::endl;
-
         stringMap.erase(stringMap.find(42));
         first = stringMap.begin();
         last = stringMap.end();
-        for (int i = 0; first != last; ++i, ++first)
+        for (int i = 0; first != last; ++i)
         {
             if (values[i] != 42)
             {
-std::cout << first->first << " " << values[i] << std::endl;
                 ASSERT(values[i] == first->first);
                 ASSERT(first->second.compare("World") == 0);
+                ++first;
             }
         }
         ASSERT(stringMap.size() == arraySize - 1);
@@ -318,12 +313,13 @@ std::cout << first->first << " " << values[i] << std::endl;
         stringMap.erase(stringMap.find(101));
         first = stringMap.begin();
         last = stringMap.end();
-        for (int i = 0; first != last; ++i, ++first)
+        for (int i = 0; first != last; ++i)
         {
             if (values[i] != 42 && values[i] != 101)
             {
                 ASSERT(values[i] == first->first);
                 ASSERT(first->second.compare("World") == 0);
+                ++first;
             }
         }
         ASSERT(stringMap.size() == arraySize - 2);
@@ -331,12 +327,13 @@ std::cout << first->first << " " << values[i] << std::endl;
         stringMap.erase(stringMap.find(24));
         first = stringMap.begin();
         last = stringMap.end();
-        for (int i = 0; first != last; ++i, ++first)
+        for (int i = 0; first != last; ++i)
         {
             if (values[i] != 42 && values[i] != 101 && values[i] != 24)
             {
                 ASSERT(values[i] == first->first);
                 ASSERT(first->second.compare("World") == 0);
+                ++first;
             }
         }
         ASSERT(stringMap.size() == arraySize - 3);
@@ -344,7 +341,7 @@ std::cout << first->first << " " << values[i] << std::endl;
         stringMap.erase(stringMap.find(70));
         first = stringMap.begin();
         last = stringMap.end();
-        for (int i = 0; first != last; ++i, ++first)
+        for (int i = 0; first != last; ++i)
         {
             if (
                 values[i] != 70 && values[i] != 42
@@ -353,6 +350,7 @@ std::cout << first->first << " " << values[i] << std::endl;
             {
                 ASSERT(values[i] == first->first);
                 ASSERT(first->second.compare("World") == 0);
+                ++first;
             }
         }
         ASSERT(stringMap.size() == arraySize - 4);
