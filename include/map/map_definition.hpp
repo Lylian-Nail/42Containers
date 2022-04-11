@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:44:10 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 16:20:09 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:44:19 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ namespace ft
         size_type erase(key_type const &key);
         void erase(iterator first, iterator last);
         void clear();
+        void swap(map &swapped);
         iterator find(key_type const &key);
         iterator lower_bound(key_type const &key);
         iterator upper_bound(key_type const &key);

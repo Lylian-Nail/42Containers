@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:45:35 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 16:21:05 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:48:51 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,12 @@ namespace ft
     void map<Key, T, Compare, Alloc>::clear()
     {
         m_tree.clear();
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    void map<Key, T, Compare, Alloc>::swap(map &swapped)
+    {
+        m_tree.swap(swapped.m_tree);
     }
 
     template <class Key, class T, class Compare, class Alloc>

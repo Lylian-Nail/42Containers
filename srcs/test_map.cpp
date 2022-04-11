@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:46:59 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 16:23:32 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:48:37 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -492,6 +492,33 @@ static int testMapClear()
     return 0;
 }
 
+static int testMapSwap()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+        ft::map<int, std::string> stringMap = getStringMap(
+            values, "World", arraySize
+        );
+
+        ft::map<int, std::string> copyMap(stringMap);
+        copyMap.insert(ft::make_pair(1000, "World"));
+        copyMap.swap(stringMap);
+
+        ASSERT(copyMap.size() == arraySize);
+        ASSERT(stringMap.size() == arraySize + 1);
+        ft::map<int, std::string>::iterator first = copyMap.begin();
+        ft::map<int, std::string>::iterator last = copyMap.end();
+        ft::map<int, std::string>::iterator firstCopy = stringMap.begin();
+        for (; first != last; ++first, ++firstCopy)
+        {
+            ASSERT(first->first == firstCopy->first);
+        }
+        ASSERT(firstCopy->first == 1000);
+    }
+    return 0;
+}
+
 static int testMapFind()
 {
     {
@@ -698,6 +725,9 @@ TestSuite *testUnitMap()
     );
     map->addTest(
         new TestCase("test map clear", testMapClear)
+    );
+    map->addTest(
+        new TestCase("test map swap", testMapSwap)
     );
     map->addTest(
         new TestCase("test map find", testMapFind)

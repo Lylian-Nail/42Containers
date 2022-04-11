@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 13:11:30 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:34:05 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ namespace ft
         typedef typename allocator_type::const_pointer      const_pointer;
 
     protected:
-        typedef typename allocator_type::rebind<Node>::other
+        typedef typename allocator_type::template rebind<Node>::other
                                             node_allocator_type;
         typedef typename node_allocator_type::value_type 
                                             node_type;

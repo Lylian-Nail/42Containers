@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:21:51 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 14:58:58 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:33:41 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -544,6 +544,7 @@ namespace ft
         {
             iterator successor = position;
             successor++;
+            m_allocator.destroy(&node->data);
             m_allocator.construct(&node->data, successor.base()->data);
             return erase_node(root, successor);
         }
