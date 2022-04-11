@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:45:35 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 11:30:14 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:51:30 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,18 @@ namespace ft
     )
     {
         return m_tree.insert(position, value);
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    template <class InputIterator>
+    void map<Key, T, Compare, Alloc>::insert(
+        typename enable_if<
+            !is_integral<InputIterator>::value, InputIterator
+        >::type first,
+        InputIterator last
+    )
+    {
+        return m_tree.insert(first, last);
     }
 
     template <class Key, class T, class Compare, class Alloc>

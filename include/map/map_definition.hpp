@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:44:10 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 11:28:48 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:49:39 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,13 @@ namespace ft
 
         ft::pair<iterator, bool> insert(const_reference value);
         iterator insert(iterator position, const_reference value);
+        template <class InputIterator>
+        void insert(
+            typename enable_if<
+                !is_integral<InputIterator>::value, InputIterator
+            >::type first,
+            InputIterator last
+        );
         iterator find(key_type const &key);
         iterator lower_bound(key_type const &key);
         iterator upper_bound(key_type const &key);

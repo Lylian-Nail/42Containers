@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:46:59 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 11:45:05 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:59:36 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,38 @@ static int testMapInsertWithHint()
     return 0;
 }
 
+static int testMapInsertRange()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+        ft::map<int, std::string> mapString;
+        ft::vector<ft::pair<int, std::string> > paired;
+        for (std::size_t i = 0; i < arraySize; ++i)
+        {
+            paired.push_back(
+                ft::make_pair(values[i], "World")
+            );
+        }
+        ft::vector<ft::pair<int, std::string> >::iterator first;
+        first = paired.begin();
+        mapString.insert(first, paired.end());
+        ASSERT(paired.size() == mapString.size());
+
+        std::sort(first, paired.end());
+        first = paired.begin();
+        ft::map<int, std::string>::iterator firstCopy;
+        firstCopy = mapString.begin();
+        ft::map<int, std::string>::iterator lastCopy = mapString.end();
+        for (; firstCopy != lastCopy; ++firstCopy, ++first)
+        {
+            ASSERT(firstCopy->first == first->first);
+            ASSERT(firstCopy->second.compare(first->second) == 0);
+        }
+    }
+    return 0;
+}
+
 static int testMapFind()
 {
     {
@@ -433,6 +465,9 @@ TestSuite *testUnitMap()
         new TestCase(
             "test map insert single element", testMapInsertSingleElement
         )
+    );
+    map->addTest(
+        new TestCase("test map insert range", testMapInsertRange)
     );
     map->addTest(
         new TestCase("test map insert with hint", testMapInsertWithHint)
