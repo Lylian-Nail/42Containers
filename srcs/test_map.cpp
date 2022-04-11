@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:46:59 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 14:57:38 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 15:36:56 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -358,6 +358,87 @@ static int testMapErasePosition()
     return 0;
 }
 
+static int testMapEraseKey()
+{
+        {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+        ft::map<int, std::string> stringMap = getStringMap(
+            values, "World", arraySize
+        );
+
+        std::sort(values, values + arraySize);
+        ft::map<int, std::string>::iterator first = stringMap.begin();
+        ft::map<int, std::string>::iterator last = stringMap.end();
+        for (int i = 0; first != last; ++i, ++first)
+        {
+            ASSERT(values[i] == first->first);
+            ASSERT(first->second.compare("World") == 0);
+        }
+        ASSERT(stringMap.size() == arraySize);
+
+        stringMap.erase(42);
+        first = stringMap.begin();
+        last = stringMap.end();
+        for (int i = 0; first != last; ++i)
+        {
+            if (values[i] != 42)
+            {
+                ASSERT(values[i] == first->first);
+                ASSERT(first->second.compare("World") == 0);
+                ++first;
+            }
+        }
+        ASSERT(stringMap.size() == arraySize - 1);
+
+        stringMap.erase(101);
+        first = stringMap.begin();
+        last = stringMap.end();
+        for (int i = 0; first != last; ++i)
+        {
+            if (values[i] != 42 && values[i] != 101)
+            {
+                ASSERT(values[i] == first->first);
+                ASSERT(first->second.compare("World") == 0);
+                ++first;
+            }
+        }
+        ASSERT(stringMap.size() == arraySize - 2);
+
+        stringMap.erase(24);
+        first = stringMap.begin();
+        last = stringMap.end();
+        for (int i = 0; first != last; ++i)
+        {
+            if (values[i] != 42 && values[i] != 101 && values[i] != 24)
+            {
+                ASSERT(values[i] == first->first);
+                ASSERT(first->second.compare("World") == 0);
+                ++first;
+            }
+        }
+        ASSERT(stringMap.size() == arraySize - 3);
+
+        stringMap.erase(70);
+        first = stringMap.begin();
+        last = stringMap.end();
+        for (int i = 0; first != last; ++i)
+        {
+            if (
+                values[i] != 70 && values[i] != 42
+                && values[i] != 24 && values[i] != 101
+            )
+            {
+                ASSERT(values[i] == first->first);
+                ASSERT(first->second.compare("World") == 0);
+                ++first;
+            }
+        }
+        ASSERT(stringMap.size() == arraySize - 4);
+    }
+    return 0;
+}
+
 static int testMapFind()
 {
     {
@@ -555,6 +636,9 @@ TestSuite *testUnitMap()
     );
     map->addTest(
         new TestCase("test map erase position", testMapErasePosition)
+    );
+    map->addTest(
+        new TestCase("test map erase key", testMapEraseKey)
     );
     map->addTest(
         new TestCase("test map find", testMapFind)

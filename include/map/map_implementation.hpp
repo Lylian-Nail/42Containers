@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:45:35 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 12:02:47 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 15:23:46 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,15 @@ namespace ft
     void map<Key, T, Compare, Alloc>::erase(iterator position)
     {
         m_tree.erase(position);
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    typename map<Key, T, Compare, Alloc>::size_type
+    map<Key, T, Compare, Alloc>::erase(key_type const &key)
+    {
+        return m_tree.erase(
+            ft::make_pair(key, mapped_type())
+        );
     }
 
     template <class Key, class T, class Compare, class Alloc>
