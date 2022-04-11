@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:46:59 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 11:27:25 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:45:05 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,55 @@ static int testMapInsertSingleElement()
             ASSERT(first->second.compare("World") == 0);
         }
         ASSERT(first == mapString.end());
+    }
+    return 0;
+}
+
+static int testMapInsertWithHint()
+{
+    {
+        int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+        std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+        ft::map<int, std::string> mapString;
+
+        ft::map<int, std::string>::iterator first = mapString.begin();
+        for (std::size_t i = 0; i < arraySize; ++i)
+        {
+            first = mapString.insert(
+                first, ft::make_pair(values[i], "World")
+            );
+            ASSERT(first->first == values[i]);
+        }
+        ASSERT(mapString.size() == arraySize);
+
+        std::sort(values, values + arraySize);
+        first = mapString.begin();
+        for (std::size_t i = 0; i < arraySize; ++i)
+        {
+            ASSERT(values[i] = first->first);
+            ASSERT(first->second.compare("World") == 0);
+        }
+
+        first = mapString.begin();
+        ft::map<int, std::string>::iterator r = mapString.insert(
+            first, ft::make_pair(12, "World")
+        );
+        ASSERT(r->first == 12);
+        ++first;
+        r = mapString.insert(first, ft::make_pair(37, "World"));
+        ASSERT(r->first == 37);
+
+        first = mapString.begin();
+        ft::map<int, std::string>::const_iterator last = mapString.end();
+        for (; first != last; ++first)
+        {
+            ft::map<int, std::string>::iterator precedent = first;
+            if (precedent != mapString.begin())
+            {
+                --precedent;
+                ASSERT(precedent->first < first->first);
+            }
+        }
     }
     return 0;
 }
@@ -384,6 +433,9 @@ TestSuite *testUnitMap()
         new TestCase(
             "test map insert single element", testMapInsertSingleElement
         )
+    );
+    map->addTest(
+        new TestCase("test map insert with hint", testMapInsertWithHint)
     );
     map->addTest(
         new TestCase("test map find", testMapFind)

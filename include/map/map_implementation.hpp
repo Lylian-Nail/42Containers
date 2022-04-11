@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:45:35 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 11:01:45 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:30:14 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,15 @@ namespace ft
     map<Key, T, Compare, Alloc>::insert(const_reference value)
     {
         return m_tree.insert(value);
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    typename map<Key, T, Compare, Alloc>::iterator
+    map<Key, T, Compare, Alloc>::insert(
+        iterator position, const_reference value
+    )
+    {
+        return m_tree.insert(position, value);
     }
 
     template <class Key, class T, class Compare, class Alloc>
