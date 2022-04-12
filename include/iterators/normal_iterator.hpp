@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 13:04:56 by lperson-          #+#    #+#             */
-/*   Updated: 2022/01/31 14:21:52 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/12 11:07:32 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,7 @@ namespace ft
     template<typename IteratorL, typename IteratorR, typename Container>
     inline bool operator<=(
         normal_iterator<IteratorL, Container> const &lhs,
-        normal_iterator<IteratorL, Container> const &rhs
+        normal_iterator<IteratorR, Container> const &rhs
     )
     {
         return lhs.getBase() <= rhs.getBase();
