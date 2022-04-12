@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:30:13 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/12 13:04:00 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:06:57 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,109 +21,117 @@ namespace ft
     */
 
     template <class T, class Compare, class Alloc>
-    template <class Node, class Type>
+    template <class Container, class Type>
     BinarySearchTree<
         T, Compare, Alloc
-    >::in_order_iterator<Node, Type>::in_order_iterator():
-        m_node(NULL)
+    >::template in_order_iterator<Container, Type>::in_order_iterator():
+        m_container(NULL)
     {
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node, class Type>
+    template <class Container, class Type>
     BinarySearchTree<
         T, Compare, Alloc
-    >::in_order_iterator<Node, Type>::in_order_iterator(
-        Node const &node
+    >::template in_order_iterator<Container, Type>::in_order_iterator(
+        Container const &container
     ):
-        m_node(node)
+        m_container(container)
     {
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node, class Type>
-    template <class Node2, class Type2>
+    template <class Container, class Type>
+    template <class Container2, class Type2>
     BinarySearchTree<
         T, Compare, Alloc
-    >::in_order_iterator<Node, Type>::in_order_iterator(
-        in_order_iterator<Node2, Type2> const &copy
+    >::template in_order_iterator<Container, Type>::in_order_iterator(
+        in_order_iterator<Container2, Type2> const &copy
     ):
-        m_node(copy.base())
+        m_container(copy.base())
     {
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node, class Type>
+    template <class Container, class Type>
     BinarySearchTree<
         T, Compare, Alloc
-    >::in_order_iterator<Node, Type>::~in_order_iterator()
+    >::template in_order_iterator<Container, Type>::~in_order_iterator()
     {
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node, class Type>
+    template <class Container, class Type>
     typename BinarySearchTree<
         T, Compare, Alloc
-    >::in_order_iterator<Node, Type> &
+    >::template in_order_iterator<Container, Type> &
     BinarySearchTree<
         T, Compare, Alloc
-    >::in_order_iterator<Node, Type>::operator=(
+    >::template in_order_iterator<Container, Type>::operator=(
         in_order_iterator const &rhs
     )
     {
         if (this != &rhs)
         {
-            m_node = rhs.base();
+            m_container = rhs.base();
         }
         return *this;
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node, class Type>
-    Node BinarySearchTree<T, Compare, Alloc>::in_order_iterator<Node, Type>::base() const
+    template <class Container, class Type>
+    Container BinarySearchTree<
+        T, Compare, Alloc
+    >::template in_order_iterator<Container, Type>::base() const
     {
-        return m_node;
+        return m_container;
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node, class Type>
+    template <class Container, class Type>
     typename BinarySearchTree<
         T, Compare, Alloc
-    >::in_order_iterator<Node, Type>::reference
-    BinarySearchTree<T, Compare, Alloc>::in_order_iterator<Node, Type>::operator*() const
+    >::template in_order_iterator<Container, Type>::reference
+    BinarySearchTree<
+        T, Compare, Alloc
+    >::template in_order_iterator<Container, Type>::operator*() const
     {
-        return m_node->data;
+        return m_container->data;
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node, class Type>
+    template <class Container, class Type>
     typename BinarySearchTree<
         T, Compare, Alloc
-    >::in_order_iterator<Node, Type>::pointer
-    BinarySearchTree<T, Compare, Alloc>::in_order_iterator<Node, Type>::operator->() const
+    >::template in_order_iterator<Container, Type>::pointer
+    BinarySearchTree<
+        T, Compare, Alloc
+    >::template in_order_iterator<Container, Type>::operator->() const
     {
-        return &m_node->data;
+        return &m_container->data;
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node, class Type>
+    template <class Container, class Type>
     typename BinarySearchTree<
         T, Compare, Alloc
-    >::in_order_iterator<Node, Type> &
-    BinarySearchTree<T, Compare, Alloc>::in_order_iterator<Node, Type>::operator++()
+    >::template in_order_iterator<Container, Type> &
+    BinarySearchTree<
+        T, Compare, Alloc
+    >::template in_order_iterator<Container, Type>::operator++()
     {
         increment();
         return *this;
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node, class Type>
+    template <class Container, class Type>
     typename BinarySearchTree<
         T, Compare, Alloc
-    >::in_order_iterator<Node, Type>
+    >::template in_order_iterator<Container, Type>
     BinarySearchTree<
         T, Compare, Alloc
-    >::in_order_iterator<Node, Type>::operator++(int)
+    >::template in_order_iterator<Container, Type>::operator++(int)
     {
         in_order_iterator copy(*this);
         ++(*this);
@@ -131,48 +139,54 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node, class Type>
+    template <class Container, class Type>
     void BinarySearchTree<
         T, Compare, Alloc
-    >::in_order_iterator<Node, Type>::increment()
+    >::template in_order_iterator<Container, Type>::increment()
     {
         // If parent and has right child
-        if (m_node->rightChild)
+        if (m_container->rightChild)
         {
             // We reach end of left branch of right child
-            m_node = m_node->rightChild;
-            while (m_node->leftChild)
-                m_node = m_node->leftChild;
+            m_container = m_container->rightChild;
+            while (m_container->leftChild)
+                m_container = m_container->leftChild;
         }
         else
         {
             // If we are right child of parent we ascend the branch
-            Node parent = m_node->parent;
-            while (parent && parent->rightChild == m_node)
+            Container parent = m_container->parent;
+            while (parent && parent->rightChild == m_container)
             {
-                m_node = parent;
-                parent = m_node->parent;
+                m_container = parent;
+                parent = m_container->parent;
             }
-            if (parent != NULL && m_node->rightChild != parent)
-                m_node = parent;
+            if (parent != NULL && m_container->rightChild != parent)
+                m_container = parent;
         }
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node, class Type>
-    typename BinarySearchTree<T, Compare, Alloc>::in_order_iterator<Node, Type> &
-    BinarySearchTree<T, Compare, Alloc>::in_order_iterator<Node, Type>::operator--()
+    template <class Container, class Type>
+    typename BinarySearchTree<
+        T, Compare, Alloc
+    >::template in_order_iterator<Container, Type> &
+    BinarySearchTree<
+        T, Compare, Alloc
+    >::template in_order_iterator<Container, Type>::operator--()
     {
         decrement();
         return *this;
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node, class Type>
-    typename BinarySearchTree<T, Compare, Alloc>::in_order_iterator<Node, Type>
+    template <class Container, class Type>
+    typename BinarySearchTree<
+        T, Compare, Alloc
+    >::template in_order_iterator<Container, Type>
     BinarySearchTree<
         T, Compare, Alloc
-    >::in_order_iterator<Node, Type>::operator--(int)
+    >::template in_order_iterator<Container, Type>::operator--(int)
     {
         in_order_iterator copy(*this);
         --(*this);
@@ -180,30 +194,30 @@ namespace ft
     }
 
     template <class T, class Compare, class Alloc>
-    template <class Node, class Type>
+    template <class Container, class Type>
     void BinarySearchTree<
         T, Compare, Alloc
-    >::in_order_iterator<Node, Type>::decrement()
+    >::template in_order_iterator<Container, Type>::decrement()
     {
-        // If node has a left child
-        if (m_node->leftChild)
+        // If Container has a left child
+        if (m_container->leftChild)
         {
             // we reach end of right branch of left child
-            m_node = m_node->leftChild;
-            while (m_node->rightChild)
-                m_node = m_node->rightChild;
+            m_container = m_container->leftChild;
+            while (m_container->rightChild)
+                m_container = m_container->rightChild;
         }
         else
         {
             // If we are left child of parent we ascend the branch
-            Node parent = m_node->parent;
-            while (parent && parent->leftChild == m_node)
+            Container parent = m_container->parent;
+            while (parent && parent->leftChild == m_container)
             {
-                m_node = parent;
-                parent = m_node->parent;
+                m_container = parent;
+                parent = m_container->parent;
             }
-            if (parent && m_node->leftChild != parent)
-                m_node = parent;
+            if (parent && m_container->leftChild != parent)
+                m_container = parent;
         }
     }
 }

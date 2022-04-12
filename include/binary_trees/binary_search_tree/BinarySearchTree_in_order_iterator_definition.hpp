@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:28:33 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/12 14:04:27 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:06:51 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ namespace ft
     */
 
     template <class T, class Compare, class Alloc>
-    template <class Node, class Type>
+    template <class Container, class Type>
     class BinarySearchTree<T, Compare, Alloc>::in_order_iterator :
-        public IteratorRelationnalOperator<in_order_iterator<Node, Type> >
+        public IteratorRelationnalOperator<in_order_iterator<Container, Type> >
     {
     public:
         typedef typename std::bidirectional_iterator_tag
                                                 iterator_category;
-        typedef typename iterator_traits<Node>::difference_type
+        typedef typename iterator_traits<Container>::difference_type
                                                 difference_type;
         typedef typename iterator_traits<Type>::value_type
                                                 value_type;
@@ -40,9 +40,9 @@ namespace ft
                                                 reference;
 
         in_order_iterator();
-        in_order_iterator(Node const &node);
-        template <class Node2, class Type2>
-        in_order_iterator(in_order_iterator<Node2, Type2> const &copy);
+        in_order_iterator(Container const &container);
+        template <class Container2, class Type2>
+        in_order_iterator(in_order_iterator<Container2, Type2> const &copy);
         ~in_order_iterator();
 
         in_order_iterator &operator=(in_order_iterator const &rhs);
@@ -51,7 +51,7 @@ namespace ft
             * Getter
         */
 
-        Node base() const;
+        Container base() const;
 
         /*
             * Forward iterator spec
@@ -71,7 +71,7 @@ namespace ft
         in_order_iterator operator--(int);
 
     private:
-        Node    m_node;
+        Container    m_container;
 
         void increment();
         void decrement();

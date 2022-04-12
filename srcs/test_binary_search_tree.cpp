@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 14:02:58 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:07:22 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,7 @@ static int testBinarySearchTreeInsertSingleElement()
         ft::BinarySearchTree<int> intTree;
         for (std::size_t i(0); i < arraySize; ++i)
         {
-            ft::pair<typename ft::BinarySearchTree<int>::iterator, bool> r;
+            ft::pair<ft::BinarySearchTree<int>::iterator, bool> r;
             r = intTree.insert(values[i]);
             ASSERT(*r.first == values[i] && r.second == true);
         }
@@ -240,7 +240,7 @@ static int testBinarySearchTreeInsertSingleElement()
         ASSERT(first == intTree.end());
         ASSERT(intTree.size() == arraySize);
 
-        ft::pair<typename ft::BinarySearchTree<int>::iterator, bool> r;
+        ft::pair<ft::BinarySearchTree<int>::iterator, bool> r;
         r = intTree.insert(35);
         ASSERT(*r.first == 35 && r.second == false);
     }
