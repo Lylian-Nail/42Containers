@@ -6,7 +6,7 @@
 #    By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/09 19:59:42 by lperson-          #+#    #+#              #
-#    Updated: 2022/04/11 21:10:19 by lperson-         ###   ########.fr        #
+#    Updated: 2022/04/12 12:56:26 by lperson-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,7 @@ test_vector.cpp \
 test_stack.cpp \
 test_utility.cpp \
 test_binary_search_tree.cpp \
-test_map.cpp \
-debug.cpp
+test_map.cpp
 OBJS = ${addprefix ${PATHB}/, ${SRCS:.cpp=.o}}
 OBJS_STD = ${addprefix ${PATHB}/, ${SRCS:.cpp=_std.o}}
 DFILES = ${addprefix ${PATHD}/, ${SRCS:.cpp=.d}}

@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/12 11:04:49 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/12 12:45:34 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,38 @@ static int testVectorReverseIterator()
             ASSERT(*first == 42);
         }
         ASSERT(size == vectorOfInt.size());
+    }
+    {
+        ft::vector<int> vectorOfInt;
+
+        for (int i = 0; i < 10; ++i)
+            vectorOfInt.push_back(i + 1);
+
+        ft::vector<int>::reverse_iterator first(vectorOfInt.rbegin() + 3);
+        ASSERT(*first == 7);
+    }
+    {
+        ft::vector<int> vectorOfInt;
+
+        for (int i = 0; i < 10; ++i)
+            vectorOfInt.push_back(i + 1);
+
+        ft::vector<int>::reverse_iterator first(vectorOfInt.rbegin());
+        ft::vector<int>::reverse_iterator mid(vectorOfInt.rbegin());
+
+        mid++;
+        ASSERT((first + 1) == mid);
+        mid += 2;
+        ASSERT((first + 3) == mid);
+        ASSERT((mid - 3) == first)
+    }
+    {
+        ft::vector<int> vectorOfInt(1000, 42);
+        ft::vector<int>::const_reverse_iterator first(vectorOfInt.rbegin());
+        ft::vector<int>::reverse_iterator last(vectorOfInt.rend());
+
+        ASSERT(last - first == 1000);
+        ASSERT(first - last == -1000);
     }
 
     return 0;

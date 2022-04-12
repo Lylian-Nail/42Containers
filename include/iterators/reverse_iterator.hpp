@@ -6,13 +6,16 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:21:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 16:39:51 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/12 12:55:31 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef REVERSE_ITERATOR_HPP
 
 # define REVERSE_ITERATOR_HPP
+
+# include <iostream>
+
 namespace ft
 {
   /*
@@ -146,7 +149,16 @@ namespace ft
         reverse_iterator<Iterator> const &rhs
     )
     {
-        return lhs.base() - rhs.base();
+        return rhs.base() - lhs.base();
+    }
+
+    template <class IteratorL, class IteratorR>
+    typename reverse_iterator<IteratorL>::difference_type operator-(
+        reverse_iterator<IteratorL> const &lhs,
+        reverse_iterator<IteratorR> const &rhs
+    )
+    {
+        return rhs.base() - lhs.base();
     }
 
     template <class Iterator>
@@ -236,7 +248,7 @@ namespace ft
         reverse_iterator<IteratorR> const &rhs
     )
     {
-        return lhs.base() < rhs.base();
+        return lhs.base() > rhs.base();
     }
 
     template <class Iterator>
