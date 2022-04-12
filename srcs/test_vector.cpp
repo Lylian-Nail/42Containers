@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:24:11 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/08 12:41:57 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/12 11:04:49 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -510,6 +510,18 @@ static int testVectorErasePosition()
         {
             ASSERT(i == *newPos);
         }
+    }
+    {
+        ft::vector<std::string> vectorOfStrings(10);
+        for (std::size_t i = 0; i < vectorOfStrings.size(); ++i)
+        {
+            vectorOfStrings[i] = std::string(
+                vectorOfStrings.size() - i, i + 'A'
+            );
+        }
+
+        vectorOfStrings.erase(vectorOfStrings.begin() + 2);
+        ASSERT(vectorOfStrings.size() == 9);
     }
     {
         ft::vector<int> vectorOfInt;

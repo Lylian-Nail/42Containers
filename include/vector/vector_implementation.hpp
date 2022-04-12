@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:22:15 by lperson-          #+#    #+#             */
-/*   Updated: 2022/02/23 15:15:21 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/12 11:01:02 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,7 +351,7 @@ namespace ft
         const_iterator last = this->end();
         iterator first = position;
         m_alloc.destroy(&(*position));
-        for (;first != last; first++)
+        for (;first != last - 1; first++)
             first[0] = first[1];
         m_size--;
         return position;
