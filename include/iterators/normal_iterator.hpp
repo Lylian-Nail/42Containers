@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 13:04:56 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/12 11:07:32 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/12 11:10:00 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -294,6 +294,7 @@ namespace ft
     {
         return lhs.getBase() - rhs.getBase();
     }
+
 }
 
 #endif
