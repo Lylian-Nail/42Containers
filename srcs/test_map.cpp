@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 10:46:59 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/11 17:02:14 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/12 14:08:34 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,13 @@ namespace ft = std;
 #endif
 
 /*
- * Value tested
+ * Values tested
 */
+
+template <class T>
+struct Foo
+{
+};
 
 static ft::map<int, std::string> getStringMap(
     int values[], std::string const &second, std::size_t arraySize
@@ -52,8 +57,18 @@ static ft::map<int, std::string> getStringMap(
 
 static int testMapDefaultConstructor()
 {
-    ft::map<std::string, int> intMap;
-    (void)intMap;
+    {
+        ft::map<std::string, int> intMap;
+        ASSERT(intMap.begin() == intMap.end());
+        ASSERT(intMap.size() == 0);
+    }
+    {
+        ft::map<std::string, Foo<int> > specialMap;
+        ft::map<std::string, Foo<int> >::iterator it;
+        it = specialMap.begin();
+        ASSERT(specialMap.size() == 0)
+        ASSERT(it == specialMap.end());
+    }
     return 0;
 }
 
