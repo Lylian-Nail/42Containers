@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:53:41 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 09:00:18 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/11 21:29:02 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ namespace ft
         typedef typename allocator_type::const_pointer      const_pointer;
 
     protected:
-        typedef typename allocator_type::rebind<Node>::other
+        typedef typename allocator_type::template rebind<Node>::other
                                             node_allocator_type;
         typedef typename node_allocator_type::value_type 
                                             node_type;
@@ -106,10 +106,12 @@ namespace ft
         size_type size() const;
         size_type max_size() const;
         size_type count(const_reference value) const;
-        iterator find(const_reference value) const;
-        iterator lower_bound(const_reference value) const;
-        iterator upper_bound(const_reference value) const;
-        pair<iterator, iterator> equal_range(const_reference value) const;
+        const_iterator find(const_reference value) const;
+        const_iterator lower_bound(const_reference value) const;
+        const_iterator upper_bound(const_reference value) const;
+        ft::pair<const_iterator, const_iterator> equal_range(
+            const_reference value
+        ) const;
 
         /*
          * Setters
@@ -129,6 +131,10 @@ namespace ft
         void erase(iterator first, iterator last);
         void clear();
         void swap(BinarySearchTree &swapped);
+        iterator find(const_reference value);
+        iterator lower_bound(const_reference value);
+        iterator upper_bound(const_reference value);
+        ft::pair<iterator, iterator> equal_range(const_reference value);
 
         /*
          * Iterators
@@ -176,6 +182,19 @@ namespace ft
         virtual void erase_node(node_pointer root, iterator position);
         virtual void clear_node(node_pointer root);
 
+        // DEBUG!
+        template <class T2, class Compare2, class Alloc2>
+        friend void debug_tree(
+            ft::BinarySearchTree<T2, Compare2, Alloc2> const &bst
+        );
+
+        template <class T2, class Compare2, class Alloc2>
+        friend bool print_level(
+            typename ft::BinarySearchTree<
+                T2, Compare2, Alloc2
+            >::node_pointer const root,
+            int level
+        );
     };
 }
 #endif

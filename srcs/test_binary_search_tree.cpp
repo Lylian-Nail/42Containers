@@ -6,7 +6,7 @@
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:07:37 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 08:58:24 by lperson-         ###   ########.fr       */
+/*   Updated: 2022/04/08 14:02:58 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ static int testBinarySearchTreeFind()
         std::size_t arraySize = sizeof(values) / sizeof(values[0]);
 
         ft::BinarySearchTree<int> intTree(values, values + arraySize);
-        ft::BinarySearchTree<int>::iterator found = intTree.find(42);
+        ft::BinarySearchTree<int>::const_iterator found = intTree.find(42);
         ASSERT(*found == 42);
         ASSERT(*intTree.find(24) == 24);
         ASSERT(*intTree.find(101) == 101);
@@ -189,10 +189,10 @@ static int testBinarySearchTreeEqualRange()
         int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
         std::size_t arraySize = sizeof(values) / sizeof(values[0]);
 
-        ft::BinarySearchTree<int> intTree(values, values + arraySize);
+        ft::BinarySearchTree<int> const intTree(values, values + arraySize);
         ft::pair<
-            ft::BinarySearchTree<int>::iterator,
-            ft::BinarySearchTree<int>::iterator
+            ft::BinarySearchTree<int>::const_iterator,
+            ft::BinarySearchTree<int>::const_iterator
         > range = intTree.equal_range(24);
 
         ASSERT(*range.first == 24 && *range.second == 24);

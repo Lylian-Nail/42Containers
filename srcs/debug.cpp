@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.hpp                                           :+:      :+:    :+:   */
+/*   debug.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperson- <lperson-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/25 15:02:32 by lperson-          #+#    #+#             */
-/*   Updated: 2022/04/06 10:46:21 by lperson-         ###   ########.fr       */
+/*   Created: 2022/04/11 21:07:05 by lperson-          #+#    #+#             */
+/*   Updated: 2022/04/11 21:21:51 by lperson-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_HPP
+#include "debug.hpp"
 
-# define TEST_HPP
+void ft::debug_all()
+{
+    int values[] = {42, 24, 70, 35, 89, 101, 8, 9, 10};
+    std::size_t arraySize = sizeof(values) / sizeof(values[0]);
+    ft::BinarySearchTree<int> intTree(values, values + arraySize);
 
-# include "test/basic_test.hpp"
-# include "test/TestCase.hpp"
-# include "test/TestSuite.hpp"
-
-TestSuite *testUnitIterator();
-TestSuite *testUnitTypeTraits();
-TestSuite *testUnitVector();
-TestSuite *testUnitStack();
-TestSuite *testUnitUtility();
-TestSuite *testUnitBinarySearchTree();
-TestSuite *testUnitMap();
-
-#endif
+    debug_tree(intTree);
+}
